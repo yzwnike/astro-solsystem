@@ -1,0 +1,165 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  includeLegalizationCSS?: boolean;
+}
+
+const { 
+  title, 
+  description = "Legalizamos tu instalación eléctrica de forma rápida y sin complicaciones. Boletines eléctricos CIE, tramitación ante Industria y distribuidoras. ¡Presupuesto en 2 horas!",
+  includeLegalizationCSS = false 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- Styles -->
+  {includeLegalizationCSS && <link rel="stylesheet" href="/styles/legalizacion.css">}
+</head>
+
+<body>
+  <slot />
+  
+  <!-- Animation Scripts -->
+  <script>
+    // === CORE ANIMATION SYSTEM ===
+    
+    // Intersection Observer para animaciones de scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3
+    };
+
+    // Sistema de animaciones scroll
+    const initScrollAnimations = () => {
+      // Observar elemento intro-content para animación
+      const introContent = document.querySelector('.intro-content');
+      
+      if (introContent) {
+        const introObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+            }
+          });
+        }, observerOptions);
+        
+        introObserver.observe(introContent);
+        
+        // Split texto en palabras para animación word-by-word
+        const paragraph = introContent.querySelector('p');
+        if (paragraph) {
+          const text = paragraph.textContent;
+          const words = text.split(' ');
+          paragraph.innerHTML = words.map((word, index) => 
+            `<span class="intro-text-word" style="transition-delay: ${0.05 + (index * 0.05)}s;">${word}</span>`
+          ).join(' ');
+        }
+      }
+
+      // Animación de aparición progresiva para elementos
+      const elements = document.querySelectorAll('.service-card, .benefit-card, .reason-item, .proceso-feature');
+      
+      elements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'all 0.6s ease';
+        element.style.transitionDelay = `${index * 0.1}s`;
+      });
+
+      const elementsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.2 });
+
+      elements.forEach(element => {
+        elementsObserver.observe(element);
+      });
+    };
+
+    // Smooth scroll para enlaces internos
+    const initSmoothScroll = () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    };
+
+    // Efectos hover mejorados
+    const initHoverEffects = () => {
+      document.querySelectorAll('.service-card, .benefit-card, .reason-item').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+    };
+
+    // Responsive para títulos hero
+    const initResponsiveTitles = () => {
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+        const updateSize = () => {
+          if (window.innerWidth <= 544) {
+            heroTitle.style.fontSize = '42px';
+          } else if (window.innerWidth <= 921) {
+            heroTitle.style.fontSize = '50px';
+          } else {
+            heroTitle.style.fontSize = '60px';
+          }
+        };
+        
+        updateSize();
+        window.addEventListener('resize', updateSize);
+      }
+    };
+
+    // Inicializar todo cuando el DOM esté listo
+    const initApp = () => {
+      initScrollAnimations();
+      initSmoothScroll();
+      initHoverEffects();
+      initResponsiveTitles();
+    };
+
+    // Ejecutar cuando esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  </script>
+</body>
+</html>

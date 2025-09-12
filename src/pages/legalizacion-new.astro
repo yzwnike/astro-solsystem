@@ -1,0 +1,332 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import IntroSection from '../components/sections/IntroSection.astro';
+import ServicesSection from '../components/sections/ServicesSection.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<BaseLayout 
+  title="Legalización Eléctrica - SolSystems | Boletines CIE y Tramitación Oficial"
+  description="Legalizamos tu instalación eléctrica de forma rápida y sin complicaciones. Boletines eléctricos CIE, tramitación ante Industria y distribuidoras. ¡Presupuesto en 2 horas!"
+  includeLegalizationCSS={true}
+>
+  <!-- Header -->
+  <Header transparent={true} />
+
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Legalizamos tu instalación eléctrica de forma rápida y sin complicaciones"
+    subtitle="¿Necesitas un boletín eléctrico? ¿Te han pedido legalizar una instalación? Estás en el lugar adecuado."
+    ctaText="Solicitar presupuesto"
+    showIcons={true}
+  />
+
+  <!-- Intro Section -->
+  <IntroSection 
+    text="Somos instaladores autorizados con amplia experiencia en legalización de instalaciones eléctricas, emisión de CIE (certificados de instalación eléctrica), y trámites ante la distribuidora."
+    showIcon={true}
+  />
+
+  <!-- Proceso Section -->
+  <section class="proceso-section" id="proceso">
+    <!-- Header con imagen de fondo -->
+    <div class="proceso-header">
+      <div class="ast-container">
+        <h2><span class="material-icons" style="vertical-align: middle; margin-right: 10px;">electrical_services</span>NOS ENCARGAMOS DE TODO PARA QUE TÚ NO TE PREOCUPES DE NADA</h2>
+      </div>
+    </div>
+
+    <!-- Fila 1: Imagen izquierda, contenido derecha -->
+    <div class="proceso-row">
+      <div class="proceso-imagen">
+        <img src="/images/sol.jpg" alt="Contacto inicial - SolSystems">
+      </div>
+      <div class="proceso-content">
+        <div class="proceso-feature">
+          <span class="material-icons">bolt</span>
+          <div class="proceso-feature-content">
+            <h4>Rápidos</h4>
+            <p>Presupuesto sin compromiso en menos de 2 horas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fila 2: Contenido izquierda, imagen derecha -->
+    <div class="proceso-row proceso-row-reverse">
+      <div class="proceso-content">
+        <div class="proceso-feature">
+          <span class="material-icons">engineering</span>
+          <div class="proceso-feature-content">
+            <h4>Profesionales</h4>
+            <p>Instaladores autorizados con amplia experiencia</p>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-imagen">
+        <img src="/images/sol.jpg" alt="Inspección técnica - SolSystems">
+      </div>
+    </div>
+
+    <!-- Fila 3: Imagen izquierda, contenido derecha -->
+    <div class="proceso-row">
+      <div class="proceso-imagen">
+        <img src="/images/sol.jpg" alt="Tramitación oficial - SolSystems">
+      </div>
+      <div class="proceso-content">
+        <div class="proceso-feature">
+          <span class="material-icons">payments</span>
+          <div class="proceso-feature-content">
+            <h4>Precios claros</h4>
+            <p>Sin sorpresas, presupuestos cerrados</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fila 4: Contenido izquierda, imagen derecha -->
+    <div class="proceso-row proceso-row-reverse">
+      <div class="proceso-content">
+        <div class="proceso-feature">
+          <span class="material-icons">person_pin</span>
+          <div class="proceso-feature-content">
+            <h4>Atención personalizada</h4>
+            <p>Cada proyecto es único, como nuestro servicio</p>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-imagen">
+        <img src="/images/sol.jpg" alt="Atención personalizada - SolSystems">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <ServicesSection />
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-section" id="por-que">
+    <div class="ast-container">
+      <h2><span class="material-icons" style="vertical-align: middle; margin-right: 10px;">add_circle</span>¿Por qué legalizar tu instalación con nosotros?</h2>
+      <div class="reasons-grid">
+        <div class="reason-item">
+          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 3.5C14.8 3.4 14.6 3.4 14.5 3.5L9 7V9C9 9.6 9.4 10 10 10H11V16L9.5 15.5C9.1 15.4 8.6 15.6 8.5 16S8.6 16.9 9 17L12.2 18.1C12.4 18.2 12.6 18.2 12.8 18.1L16 17C16.4 16.9 16.6 16.4 16.5 16S15.9 15.4 15.5 15.5L14 16V10H15C15.6 10 16 9.6 16 9ZM12 7.5C12.8 7.5 13.5 8.2 13.5 9S12.8 10.5 12 10.5 10.5 9.8 10.5 9 11.2 7.5 12 7.5Z" fill="#53C307"/>
+          </svg>
+          <h3>Técnicos instaladores autorizados</h3>
+          <p>Profesionales certificados con años de experiencia</p>
+        </div>
+        <div class="reason-item">
+          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#53C307"/>
+            <path d="M14 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6z" fill="none" stroke="#53C307" stroke-width="1.5"/>
+          </svg>
+          <h3>Redacción de boletines y memorias técnicas</h3>
+          <p>Documentación completa y profesional</p>
+        </div>
+        <div class="reason-item">
+          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z" fill="#53C307"/>
+            <path d="M15 10h2v2h-2zm0 3h2v2h-2z" fill="white"/>
+          </svg>
+          <h3>Tramitación completa ante Industria</h3>
+          <p>Nos encargamos de todos los trámites oficiales</p>
+        </div>
+        <div class="reason-item">
+          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="#53C307"/>
+          </svg>
+          <h3>Precios cerrados sin sorpresas</h3>
+          <p>Transparencia total en nuestros presupuestos</p>
+        </div>
+        <div class="reason-item">
+          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#53C307"/>
+          </svg>
+          <h3>Servicio rápido y profesional</h3>
+          <p>Eficiencia garantizada en todos nuestros proyectos</p>
+        </div>
+        <div class="reason-item">
+          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H15.5C16.4,11 17,11.4 17,12V16C17,16.6 16.6,17 16,17H8C7.4,17 7,16.6 7,16V12C7,11.4 7.4,11 8,11H8.5V10C8.5,8.6 9.6,7 12,7M12,8.2C10.2,8.2 9.8,9.2 9.8,10V11H14.2V10C14.2,9.2 13.8,8.2 12,8.2Z" fill="#53C307"/>
+          </svg>
+          <h3>Evita multas y bloqueos</h3>
+          <p>Cumplimiento total con la normativa vigente</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer replica (Charlemos + Form) -->
+  <div data-elementor-type="footer" data-elementor-id="3471" class="elementor elementor-3471 elementor-location-footer" data-elementor-post-type="elementor_library">
+    <div class="footer-flex">
+      <div class="footer-left">
+        <div class="elementor-section-wrap">
+          <div class="elementor-element elementor-element-2a5d9277 e-con-full e-flex e-con e-parent" data-id="2a5d9277" data-element_type="container" data-settings='{"content_width":"full","background_background":"classic"}' data-core-v316-plus="true">
+            <div class="elementor-element elementor-element-527805ee e-con-full e-flex e-con e-child" data-id="527805ee" data-element_type="container" data-settings='{"content_width":"full"}'>
+              <div class="elementor-element elementor-element-1a534daa elementor-widget elementor-widget-heading" data-id="1a534daa" data-element_type="widget" data-widget_type="heading.default">
+                <div class="elementor-widget-container">
+                  <h2 class="elementor-heading-title elementor-size-default">Charlemos</h2>
+                </div>
+              </div>
+              <div class="elementor-element elementor-element-6621b7b7 elementor-widget__width-initial elementor-widget-mobile__width-initial elementor-widget elementor-widget-text-editor" data-id="6621b7b7" data-element_type="widget" data-widget_type="text-editor.default">
+                <div class="elementor-widget-container">
+                  <p>Démonos el tiempo necesario para descubrir todas las posibilidades para ayudarte a crecer.</p>
+                </div>
+              </div>
+              <div class="elementor-element elementor-element-21ed35b elementor-position-left elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="21ed35b" data-element_type="widget" data-widget_type="icon-box.default">
+                <div class="elementor-widget-container">
+                  <div class="elementor-icon-box-wrapper">
+                    <div class="elementor-icon-box-icon">
+                      <span class="elementor-icon elementor-animation-">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g id="local_phone" clip-path="url(#clip0_375_479)"><path id="Vector" d="M6.54 5C6.6 5.89 6.75 6.76 6.99 7.59L5.79 8.79C5.38 7.59 5.12 6.32 5.03 5H6.54ZM16.4 17.02C17.25 17.26 18.12 17.41 19 17.47V18.96C17.68 18.87 16.41 18.61 15.2 18.21L16.4 17.02ZM7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.51C21 15.96 20.55 15.51 20 15.51C18.76 15.51 17.55 15.31 16.43 14.94C16.33 14.9 16.22 14.89 16.12 14.89C15.86 14.89 15.61 14.99 15.41 15.18L13.21 17.38C10.38 15.93 8.06 13.62 6.62 10.79L8.82 8.59C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3Z" fill="#53C307"></path></g><defs><clipPath id="clip0_375_479"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg>
+                      </span>
+                    </div>
+                    <div class="elementor-icon-box-content">
+                      <h3 class="elementor-icon-box-title">
+                        <span>Teléfono</span>
+                      </h3>
+                      <p class="elementor-icon-box-description">
+                        Madrid: +34 656 701 824 <br>
+                        Barcelona: +34 695 047 081
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dirección Madrid -->
+            <div class="elementor-element elementor-element-4011d16c e-flex e-con-boxed e-con e-child" data-id="4011d16c" data-element_type="container" data-settings='{"content_width":"boxed"}'>
+              <div class="e-con-inner">
+                <div class="elementor-element elementor-element-136140cc elementor-position-left elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="136140cc" data-element_type="widget" data-widget_type="icon-box.default">
+                  <div class="elementor-widget-container">
+                    <div class="elementor-icon-box-wrapper">
+                      <div class="elementor-icon-box-icon">
+                        <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank" class="elementor-icon elementor-animation-" tabindex="-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none"><path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </a>
+                      </div>
+                      <div class="elementor-icon-box-content">
+                        <h3 class="elementor-icon-box-title">
+                          <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">Dirección:</a>
+                        </h3>
+                        <p class="elementor-icon-box-description">
+                          Calle Físicas 40, 28923 <br>
+                          Alcorcón, Madrid
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dirección Barcelona -->
+            <div class="elementor-element elementor-element-6f4fa791 elementor-position-left elementor-widget__width-initial elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="6f4fa791" data-element_type="widget" data-widget_type="icon-box.default">
+              <div class="elementor-widget-container">
+                <div class="elementor-icon-box-wrapper">
+                  <div class="elementor-icon-box-icon">
+                    <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank" class="elementor-icon elementor-animation-" tabindex="-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none"><path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </a>
+                  </div>
+                  <div class="elementor-icon-box-content">
+                    <h3 class="elementor-icon-box-title">
+                      <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">Dirección:</a>
+                    </h3>
+                    <p class="elementor-icon-box-description">
+                      Passeig (Paseo) de les Vilares 14 B, 1-1, 08390 Montgat, Barcelona
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Imagen lateral -->
+            <div class="elementor-element elementor-element-32f19235 elementor-widget elementor-widget-image" data-id="32f19235" data-element_type="widget" data-widget_type="image.default">
+              <div class="elementor-widget-container">
+                <img width="555" height="364" src="https://solsystems.es/wp-content/uploads/2024/02/Group-246.webp" class="attachment-large size-large wp-image-689" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <!-- Formulario presupuesto -->
+        <div class="elementor-element elementor-element-146699fd e-con-full e-flex e-con e-child" data-id="146699fd" data-element_type="container" id="form" data-settings='{"content_width":"full"}'>
+          <div class="elementor-element elementor-element-2af09bbc elementor-widget elementor-widget-heading" data-id="2af09bbc" data-element_type="widget" data-widget_type="heading.default">
+            <div class="elementor-widget-container">
+              <h2 class="elementor-heading-title elementor-size-default">Solicita un presupuesto personalizado</h2>
+            </div>
+          </div>
+          <div class="elementor-element elementor-element-1dc91d20 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="1dc91d20" data-element_type="widget" data-widget_type="text-editor.default">
+            <div class="elementor-widget-container">
+              <p>Rellena los datos del formulario para ponernos en contacto contigo lo antes posible, con un presupuesto adaptado a tus necesidades.</p>
+            </div>
+          </div>
+          <div class="elementor-element elementor-element-46a1ba81 elementor-button-align-center elementor-widget elementor-widget-form" data-id="46a1ba81" data-element_type="widget" data-settings='{"step_next_label":"Next","step_previous_label":"Previous","button_width":"100","step_type":"number_text","step_icon_shape":"circle"}' data-widget_type="form.default">
+            <div class="elementor-widget-container">
+              <div class="footer-form-card">
+                <form class="elementor-form" method="post" name="form_footer">
+                  <input type="hidden" name="post_id" value="3471"/>
+                  <input type="hidden" name="form_id" value="46a1ba81"/>
+                  <input type="hidden" name="referer_title" value=""/>
+                  <input type="hidden" name="queried_id" value="2"/>
+
+                  <div class="elementor-form-fields-wrapper elementor-labels-above">
+                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-100 elementor-field-required">
+                      <input size="1" type="text" name="form_fields[name]" id="form-field-name" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Nombre*" required aria-required="true">
+                    </div>
+                    <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
+                      <input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Correo electrónico*" required aria-required="true">
+                    </div>
+                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-message elementor-col-50 elementor-field-required">
+                      <input size="1" type="text" name="form_fields[message]" id="form-field-message" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Dirección*" required aria-required="true">
+                    </div>
+                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_fa347bd elementor-col-50">
+                      <input size="1" type="text" name="form_fields[field_fa347bd]" id="form-field-field_fa347bd" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Franja horaria">
+                    </div>
+                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_2d82f0a elementor-col-50 elementor-field-required">
+                      <input size="1" type="text" name="form_fields[field_2d82f0a]" id="form-field-field_2d82f0a" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Co. Postal*" required aria-required="true">
+                    </div>
+                    <div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_cfaaf23 elementor-col-50 elementor-field-required">
+                      <input size="1" type="tel" name="form_fields[field_cfaaf23]" id="form-field-field_cfaaf23" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Teléfono*" required aria-required="true" pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+                    </div>
+                    <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-field_72b7372 elementor-col-100">
+                      <textarea class="elementor-field-textual elementor-field  elementor-size-sm" name="form_fields[field_72b7372]" id="form-field-field_72b7372" rows="4" placeholder="Tu consulta"></textarea>
+                    </div>
+                    <div class="elementor-field-type-acceptance elementor-field-group elementor-column elementor-field-group-field_24cb135 elementor-col-100 elementor-field-required">
+                      <div class="elementor-field-subgroup">
+                        <span class="elementor-field-option">
+                          <input type="checkbox" name="form_fields[field_24cb135]" id="form-field-field_24cb135" class="elementor-field elementor-size-sm  elementor-acceptance-field" required aria-required="true">
+                          <label for="form-field-field_24cb135">Acepto los términos y condiciones</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+                      <button type="submit" class="elementor-button elementor-size-sm elementor-animation-grow">
+                        <span>
+                          <span class="elementor-button-icon"></span>
+                          <span class="elementor-button-text">Enviar</span>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/+34656701824" target="_blank" class="whatsapp-button" title="WhatsApp - Presupuesto inmediato">
+    <img src="/images/whatsapp-icon.svg" alt="WhatsApp" style="width: 55px; height: 55px;">
+  </a>
+</BaseLayout>

@@ -1,0 +1,177 @@
+---
+import ServiceCard from '../ui/ServiceCard.astro';
+import Button from '../ui/Button.astro';
+
+const services = [
+  {
+    icon: 'description',
+    title: 'Boletines eléctricos (CIE)',
+    description: 'Emitimos certificados de instalación eléctrica para viviendas, locales, trasteros, garajes y todo tipo de inmuebles.',
+    details: 'Ya sea por alta nueva, reforma, cambio de titular o aumento de potencia, te lo entregamos listo para presentar a la distribuidora.',
+    features: [
+      { icon: 'build', text: 'Instalación certificada' },
+      { icon: 'schedule', text: 'Entrega rápida' },
+      { icon: 'payments', text: 'Presupuesto cerrado' }
+    ]
+  },
+  {
+    icon: 'electrical_services',
+    title: 'Legalización de instalación nueva',
+    description: '¿Has hecho una instalación nueva y necesitas legalizarla?',
+    details: 'Realizamos inspección, planos, memoria técnica y toda la documentación necesaria para que cumplas con la normativa y tengas luz legalmente.',
+    features: [
+      { icon: 'article', text: 'Documentación completa' },
+      { icon: 'business', text: 'Tramitación oficial' },
+      { icon: 'place', text: 'Servicio en tu zona' }
+    ]
+  },
+  {
+    icon: 'tune',
+    title: 'Aumento de potencia contratada',
+    description: '¿Te salta el automático? ¿La compañía eléctrica te exige el boletín actualizado?',
+    details: 'Te ayudamos a subir la potencia contratada con un boletín actualizado y adaptado a tu nueva necesidad.',
+    features: [
+      { icon: 'trending_up', text: 'Subida legal y segura' },
+      { icon: 'folder', text: 'Documentación lista' },
+      { icon: 'access_time', text: 'Sin esperas innecesarias' }
+    ]
+  },
+  {
+    icon: 'handyman',
+    title: 'Reformas eléctricas y actualizaciones',
+    description: 'Si has renovado tu instalación eléctrica o necesitas adaptarla al reglamento actual (REBT).',
+    details: 'Te ayudamos a legalizar la reforma y dejar todo en regla.',
+    features: [
+      { icon: 'lightbulb', text: 'Memoria técnica' },
+      { icon: 'home', text: 'Viviendas y negocios' },
+      { icon: 'check_circle', text: 'Normativa vigente' }
+    ]
+  },
+  {
+    icon: 'ev_station',
+    title: 'Legalización de cargadores para coche eléctrico (IRVE)',
+    description: '¿Has instalado un cargador para tu vehículo eléctrico?',
+    details: 'Nos encargamos de todo el proceso de legalización del punto de recarga (IRVE), tanto en viviendas unifamiliares como en garajes comunitarios.',
+    features: [
+      { icon: 'verified', text: 'Revisión instalación' },
+      { icon: 'verified_user', text: 'Certificado CIE' },
+      { icon: 'gavel', text: 'Tramitación Industria' }
+    ],
+    highlight: 'Carga segura y legal',
+    additionalClasses: 'cargadores'
+  },
+  {
+    icon: 'wb_sunny',
+    title: 'Legalización de instalaciones fotovoltaicas para autoconsumo',
+    description: '¿Has instalado placas solares y necesitas legalizarlas?',
+    details: 'Gestionamos todo el proceso para que tu instalación fotovoltaica esté registrada y legalizada.',
+    features: [
+      { icon: 'folder_open', text: 'Documentación técnica' },
+      { icon: 'assignment_turned_in', text: 'Tramitación completa' },
+      { icon: 'energy_savings_leaf', text: 'Autoconsumo legal' }
+    ],
+    highlight: 'Conforme RD 244/2019',
+    additionalClasses: 'fotovoltaicas'
+  }
+];
+---
+
+<section class="services-section" id="servicios">
+  <div class="ast-container">
+    <!-- Header Section -->
+    <div class="services-header">
+      <h2 class="services-main-title">
+        <span class="title-icon material-icons">bolt</span>
+        Nuestros servicios de legalización
+      </h2>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-grid">
+      {services.map(service => (
+        <ServiceCard
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+          details={service.details}
+          features={service.features}
+          highlight={service.highlight}
+          additionalClasses={service.additionalClasses}
+        />
+      ))}
+    </div>
+
+    <!-- CTA Button -->
+    <div class="services-cta">
+      <Button
+        variant="primary"
+        href="https://wa.me/+34656701824"
+        target="_blank"
+        className="btn-services-cta"
+      >
+        Solicitar Presupuesto GRATIS
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    position: relative;
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .services-main-title {
+    font-size: 2.5rem;
+    color: var(--ast-global-color-2);
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .services-main-title .title-icon {
+    font-size: 2.5rem;
+    color: var(--green-primary);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  .services-cta {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  @media (max-width: 921px) {
+    .services-main-title {
+      font-size: 2rem;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .services-main-title .title-icon {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 544px) {
+    .services-main-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>

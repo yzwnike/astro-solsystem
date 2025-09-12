@@ -1,0 +1,134 @@
+---
+export interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = true } = Astro.props;
+---
+
+<header class={`site-header ${transparent ? 'transparent' : ''}`}>
+  <div class="container">
+    <div class="main-header-bar">
+      <div class="site-logo">
+        <img src="/images/logo.png" alt="SolSystems">
+      </div>
+      
+      <nav class="main-navigation">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li class="nav-item">
+            <a href="#servicios" class="dropdown">Servicios</a>
+            <ul class="dropdown-menu">
+              <li><a href="#energia-solar">Energía solar fotovoltaica</a></li>
+              <li><a href="#cargadores-coches">Cargadores de coches eléctricos</a></li>
+              <li><a href="#cuadros-electricos">Cuadros eléctricos & control</a></li>
+              <li><a href="#instalaciones-electricas">Instalaciones eléctricas</a></li>
+              <li><a href="#aerotermia">Aerotermia</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#mantenimiento" class="dropdown">Mantenimiento</a>
+            <ul class="dropdown-menu">
+              <li><a href="#mantenimiento-energia-solar">Energía Solar</a></li>
+              <li><a href="#mantenimiento-aerotermia">Aerotermia</a></li>
+            </ul>
+          </li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#form">Contacto</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-cta-container">
+        <button 
+          class="header-cta-button" 
+          onclick="document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})"
+        >
+          Contáctanos
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+  }
+
+  .site-header.transparent {
+    background: transparent;
+  }
+
+  .site-header:not(.transparent) {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .main-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .site-logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+  }
+
+  .site-logo img {
+    height: 60px;
+    width: auto;
+  }
+
+  .main-navigation {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-cta-container {
+    flex: 0 0 auto;
+  }
+
+  .header-cta-button {
+    background: var(--green-primary);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .header-cta-button:hover {
+    background: var(--green-hover);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 921px) {
+    .main-navigation ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>

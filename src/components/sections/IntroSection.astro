@@ -1,0 +1,151 @@
+---
+export interface Props {
+  text: string;
+  showIcon?: boolean;
+}
+
+const { 
+  text,
+  showIcon = true 
+} = Astro.props;
+---
+
+<section class="intro-section">
+  <div class="ast-container">
+    <div class="intro-content">
+      {showIcon && <div class="intro-icon"></div>}
+      <p>{text}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .intro-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    border: 1px solid rgba(83, 195, 7, 0.2);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    
+    /* Estados iniciales para animación */
+    transform: translateY(80px) scale(0.9);
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .intro-content.in-view {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .intro-icon {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 30px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2353C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>') no-repeat center;
+    background-size: contain;
+    filter: drop-shadow(0 4px 8px rgba(83, 195, 7, 0.3));
+    animation: pulse-glow 2s ease-in-out infinite;
+    
+    /* Estado inicial para animación */
+    transform: translateY(-50px) rotate(-180deg) scale(0.5);
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition-delay: 0.3s;
+  }
+
+  .intro-content.in-view .intro-icon {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      transform: scale(1);
+      filter: drop-shadow(0 4px 8px rgba(83, 195, 7, 0.3));
+    }
+    50% { 
+      transform: scale(1.1);
+      filter: drop-shadow(0 8px 16px rgba(83, 195, 7, 0.5));
+    }
+  }
+
+  .intro-content p {
+    font-size: 26px;
+    line-height: 1.8;
+    color: var(--ast-global-color-2);
+    font-weight: 500;
+    margin: 0;
+    position: relative;
+    letter-spacing: 0.3px;
+  }
+
+  .intro-content p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green-primary), rgba(83, 195, 7, 0.3));
+    animation: underline-expand 2s ease-out 1s forwards;
+  }
+
+  @keyframes underline-expand {
+    to { width: 100%; }
+  }
+
+  /* Animación word-by-word para el texto */
+  .intro-text-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) rotateX(90deg);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0.05s;
+  }
+
+  .intro-content.in-view .intro-text-word {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+
+  /* Fallback para navegadores que no soporten las animaciones */
+  @media (prefers-reduced-motion: reduce) {
+    .intro-content,
+    .intro-text-word,
+    .intro-icon {
+      transform: none !important;
+      transition: opacity 0.3s ease !important;
+    }
+    
+    .intro-content.in-view,
+    .intro-content.in-view .intro-text-word,
+    .intro-content.in-view .intro-icon {
+      opacity: 1 !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .intro-content p {
+      font-size: 20px;
+    }
+  }
+</style>
