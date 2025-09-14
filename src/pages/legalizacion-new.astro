@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
-import HeroSection from '../components/sections/HeroSection.astro';
+import ReparluxHeroSection from '../components/sections/ReparluxHeroSection.astro';
+import ReparluxServicesSection from '../components/sections/ReparluxServicesSection.astro';
+import ReparluxAdvantagesSection from '../components/sections/ReparluxAdvantagesSection.astro';
 import IntroSection from '../components/sections/IntroSection.astro';
 import ServicesSection from '../components/sections/ServicesSection.astro';
+import LegalizationServicesSection from '../components/sections/LegalizationServicesSection.astro';
 import Button from '../components/ui/Button.astro';
 ---
 
@@ -13,28 +16,26 @@ import Button from '../components/ui/Button.astro';
   includeLegalizationCSS={true}
 >
   <!-- Header -->
-  <Header transparent={true} />
+  <Header transparent={false} />
 
-  <!-- Hero Section -->
-  <HeroSection 
+  <!-- Hero Section estilo Reparlux -->
+  <ReparluxHeroSection 
     title="Legalizamos tu instalación eléctrica de forma rápida y sin complicaciones"
     subtitle="¿Necesitas un boletín eléctrico? ¿Te han pedido legalizar una instalación? Estás en el lugar adecuado."
     ctaText="Solicitar presupuesto"
-    showIcons={true}
+    price="Desde 99€"
+    heroImage="/images/fondo.png"
   />
 
-  <!-- Intro Section -->
-  <IntroSection 
-    text="Somos instaladores autorizados con amplia experiencia en legalización de instalaciones eléctricas, emisión de CIE (certificados de instalación eléctrica), y trámites ante la distribuidora."
-    showIcon={true}
-  />
+  <!-- Servicios de legalización específicos -->
+  <LegalizationServicesSection />
 
   <!-- Proceso Section -->
   <section class="proceso-section" id="proceso">
     <!-- Header con imagen de fondo -->
     <div class="proceso-header">
       <div class="ast-container">
-        <h2><span class="material-icons" style="vertical-align: middle; margin-right: 10px;">electrical_services</span>NOS ENCARGAMOS DE TODO PARA QUE TÚ NO TE PREOCUPES DE NADA</h2>
+        <h2><span class="material-icons" style="vertical-align: middle; margin-right: 10px; color: #046bd2;">electrical_services</span>NOS ENCARGAMOS DE TODO PARA QUE TÚ NO TE PREOCUPES DE NADA</h2>
       </div>
     </div>
 
@@ -103,61 +104,9 @@ import Button from '../components/ui/Button.astro';
     </div>
   </section>
 
-  <!-- Services Section -->
-  <ServicesSection />
+  <!-- Ventajas competitivas estilo Reparlux -->
+  <ReparluxAdvantagesSection />
 
-  <!-- Why Choose Us Section -->
-  <section class="why-choose-section" id="por-que">
-    <div class="ast-container">
-      <h2><span class="material-icons" style="vertical-align: middle; margin-right: 10px;">add_circle</span>¿Por qué legalizar tu instalación con nosotros?</h2>
-      <div class="reasons-grid">
-        <div class="reason-item">
-          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 3.5C14.8 3.4 14.6 3.4 14.5 3.5L9 7V9C9 9.6 9.4 10 10 10H11V16L9.5 15.5C9.1 15.4 8.6 15.6 8.5 16S8.6 16.9 9 17L12.2 18.1C12.4 18.2 12.6 18.2 12.8 18.1L16 17C16.4 16.9 16.6 16.4 16.5 16S15.9 15.4 15.5 15.5L14 16V10H15C15.6 10 16 9.6 16 9ZM12 7.5C12.8 7.5 13.5 8.2 13.5 9S12.8 10.5 12 10.5 10.5 9.8 10.5 9 11.2 7.5 12 7.5Z" fill="#53C307"/>
-          </svg>
-          <h3>Técnicos instaladores autorizados</h3>
-          <p>Profesionales certificados con años de experiencia</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#53C307"/>
-            <path d="M14 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6z" fill="none" stroke="#53C307" stroke-width="1.5"/>
-          </svg>
-          <h3>Redacción de boletines y memorias técnicas</h3>
-          <p>Documentación completa y profesional</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z" fill="#53C307"/>
-            <path d="M15 10h2v2h-2zm0 3h2v2h-2z" fill="white"/>
-          </svg>
-          <h3>Tramitación completa ante Industria</h3>
-          <p>Nos encargamos de todos los trámites oficiales</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="#53C307"/>
-          </svg>
-          <h3>Precios cerrados sin sorpresas</h3>
-          <p>Transparencia total en nuestros presupuestos</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#53C307"/>
-          </svg>
-          <h3>Servicio rápido y profesional</h3>
-          <p>Eficiencia garantizada en todos nuestros proyectos</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H15.5C16.4,11 17,11.4 17,12V16C17,16.6 16.6,17 16,17H8C7.4,17 7,16.6 7,16V12C7,11.4 7.4,11 8,11H8.5V10C8.5,8.6 9.6,7 12,7M12,8.2C10.2,8.2 9.8,9.2 9.8,10V11H14.2V10C14.2,9.2 13.8,8.2 12,8.2Z" fill="#53C307"/>
-          </svg>
-          <h3>Evita multas y bloqueos</h3>
-          <p>Cumplimiento total con la normativa vigente</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Footer replica (Charlemos + Form) -->
   <div data-elementor-type="footer" data-elementor-id="3471" class="elementor elementor-3471 elementor-location-footer" data-elementor-post-type="elementor_library">
