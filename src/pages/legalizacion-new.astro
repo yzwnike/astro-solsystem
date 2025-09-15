@@ -16,7 +16,7 @@ import Button from '../components/ui/Button.astro';
   includeLegalizationCSS={true}
 >
   <!-- Header -->
-  <Header transparent={false} />
+  <Header transparent={true} />
 
   <!-- Hero Section estilo Reparlux -->
   <ReparluxHeroSection 
@@ -110,96 +110,80 @@ import Button from '../components/ui/Button.astro';
 
   <!-- Footer replica (Charlemos + Form) -->
   <div data-elementor-type="footer" data-elementor-id="3471" class="elementor elementor-3471 elementor-location-footer" data-elementor-post-type="elementor_library">
+  <div class="footer-container" id="contacto">
     <div class="footer-flex">
       <div class="footer-left">
-        <div class="elementor-section-wrap">
-          <div class="elementor-element elementor-element-2a5d9277 e-con-full e-flex e-con e-parent" data-id="2a5d9277" data-element_type="container" data-settings='{"content_width":"full","background_background":"classic"}' data-core-v316-plus="true">
-            <div class="elementor-element elementor-element-527805ee e-con-full e-flex e-con e-child" data-id="527805ee" data-element_type="container" data-settings='{"content_width":"full"}'>
-              <div class="elementor-element elementor-element-1a534daa elementor-widget elementor-widget-heading" data-id="1a534daa" data-element_type="widget" data-widget_type="heading.default">
-                <div class="elementor-widget-container">
-                  <h2 class="elementor-heading-title elementor-size-default">Charlemos</h2>
-                </div>
-              </div>
-              <div class="elementor-element elementor-element-6621b7b7 elementor-widget__width-initial elementor-widget-mobile__width-initial elementor-widget elementor-widget-text-editor" data-id="6621b7b7" data-element_type="widget" data-widget_type="text-editor.default">
-                <div class="elementor-widget-container">
-                  <p>Démonos el tiempo necesario para descubrir todas las posibilidades para ayudarte a crecer.</p>
-                </div>
-              </div>
-              <div class="elementor-element elementor-element-21ed35b elementor-position-left elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="21ed35b" data-element_type="widget" data-widget_type="icon-box.default">
-                <div class="elementor-widget-container">
-                  <div class="elementor-icon-box-wrapper">
-                    <div class="elementor-icon-box-icon">
-                      <span class="elementor-icon elementor-animation-">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g id="local_phone" clip-path="url(#clip0_375_479)"><path id="Vector" d="M6.54 5C6.6 5.89 6.75 6.76 6.99 7.59L5.79 8.79C5.38 7.59 5.12 6.32 5.03 5H6.54ZM16.4 17.02C17.25 17.26 18.12 17.41 19 17.47V18.96C17.68 18.87 16.41 18.61 15.2 18.21L16.4 17.02ZM7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.51C21 15.96 20.55 15.51 20 15.51C18.76 15.51 17.55 15.31 16.43 14.94C16.33 14.9 16.22 14.89 16.12 14.89C15.86 14.89 15.61 14.99 15.41 15.18L13.21 17.38C10.38 15.93 8.06 13.62 6.62 10.79L8.82 8.59C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3Z" fill="#53C307"></path></g><defs><clipPath id="clip0_375_479"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg>
-                      </span>
-                    </div>
-                    <div class="elementor-icon-box-content">
-                      <h3 class="elementor-icon-box-title">
-                        <span>Teléfono</span>
-                      </h3>
-                      <p class="elementor-icon-box-description">
-                        Madrid: +34 656 701 824 <br>
-                        Barcelona: +34 695 047 081
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <!-- Charlemos Section -->
+        <div class="charlemos-section">
+          <h2 class="charlemos-title">Charlemos</h2>
+          <p class="charlemos-subtitle">Démonos el tiempo necesario para descubrir todas las posibilidades para ayudarte a crecer.</p>
+          
+          <!-- Teléfono -->
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <g id="local_phone" clip-path="url(#clip0_375_479)">
+                  <path id="Vector" d="M6.54 5C6.6 5.89 6.75 6.76 6.99 7.59L5.79 8.79C5.38 7.59 5.12 6.32 5.03 5H6.54ZM16.4 17.02C17.25 17.26 18.12 17.41 19 17.47V18.96C17.68 18.87 16.41 18.61 15.2 18.21L16.4 17.02ZM7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.51C21 15.96 20.55 15.51 20 15.51C18.76 15.51 17.55 15.31 16.43 14.94C16.33 14.9 16.22 14.89 16.12 14.89C15.86 14.89 15.61 14.99 15.41 15.18L13.21 17.38C10.38 15.93 8.06 13.62 6.62 10.79L8.82 8.59C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3Z" fill="#53C307"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_375_479">
+                    <rect width="24" height="24" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
-
-            <!-- Dirección Madrid -->
-            <div class="elementor-element elementor-element-4011d16c e-flex e-con-boxed e-con e-child" data-id="4011d16c" data-element_type="container" data-settings='{"content_width":"boxed"}'>
-              <div class="e-con-inner">
-                <div class="elementor-element elementor-element-136140cc elementor-position-left elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="136140cc" data-element_type="widget" data-widget_type="icon-box.default">
-                  <div class="elementor-widget-container">
-                    <div class="elementor-icon-box-wrapper">
-                      <div class="elementor-icon-box-icon">
-                        <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank" class="elementor-icon elementor-animation-" tabindex="-1">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none"><path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                        </a>
-                      </div>
-                      <div class="elementor-icon-box-content">
-                        <h3 class="elementor-icon-box-title">
-                          <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">Dirección:</a>
-                        </h3>
-                        <p class="elementor-icon-box-description">
-                          Calle Físicas 40, 28923 <br>
-                          Alcorcón, Madrid
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="contact-content">
+              <h3 class="contact-title">Teléfono</h3>
+              <p class="contact-description">
+                Madrid: +34 656 701 824<br>
+                Barcelona: +34 695 047 081
+              </p>
             </div>
-
-            <!-- Dirección Barcelona -->
-            <div class="elementor-element elementor-element-6f4fa791 elementor-position-left elementor-widget__width-initial elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="6f4fa791" data-element_type="widget" data-widget_type="icon-box.default">
-              <div class="elementor-widget-container">
-                <div class="elementor-icon-box-wrapper">
-                  <div class="elementor-icon-box-icon">
-                    <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank" class="elementor-icon elementor-animation-" tabindex="-1">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none"><path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </a>
-                  </div>
-                  <div class="elementor-icon-box-content">
-                    <h3 class="elementor-icon-box-title">
-                      <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">Dirección:</a>
-                    </h3>
-                    <p class="elementor-icon-box-description">
-                      Passeig (Paseo) de les Vilares 14 B, 1-1, 08390 Montgat, Barcelona
-                    </p>
-                  </div>
-                </div>
-              </div>
+          </div>
+          
+          <!-- Dirección Madrid -->
+          <div class="contact-item">
+            <div class="contact-icon">
+              <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none">
+                  <path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
-
-            <!-- Imagen lateral -->
-            <div class="elementor-element elementor-element-32f19235 elementor-widget elementor-widget-image" data-id="32f19235" data-element_type="widget" data-widget_type="image.default">
-              <div class="elementor-widget-container">
-                <img width="555" height="364" src="https://solsystems.es/wp-content/uploads/2024/02/Group-246.webp" class="attachment-large size-large wp-image-689" alt="" />
-              </div>
+            <div class="contact-content">
+              <h3 class="contact-title">
+                <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">Dirección:</a>
+              </h3>
+              <p class="contact-description">
+                Calle Físicas 40, 28923<br>
+                Alcorcón, Madrid
+              </p>
             </div>
+          </div>
+          
+          <!-- Dirección Barcelona -->
+          <div class="contact-item">
+            <div class="contact-icon">
+              <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none">
+                  <path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+            <div class="contact-content">
+              <h3 class="contact-title">
+                <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">Dirección:</a>
+              </h3>
+              <p class="contact-description">
+                Passeig (Paseo) de les Vilares 14 B,<br>
+                1-1, 08390 Montgat, Barcelona
+              </p>
+            </div>
+          </div>
+          
+          <!-- Mapa de España -->
+          <div class="spain-map">
+            <img src="/images/mapa.webp" alt="Mapa de España" class="map-image">
           </div>
         </div>
       </div>
@@ -273,9 +257,10 @@ import Button from '../components/ui/Button.astro';
       </div>
     </div>
   </div>
+  </div>
 
   <!-- WhatsApp Button -->
   <a href="https://wa.me/+34656701824" target="_blank" class="whatsapp-button" title="WhatsApp - Presupuesto inmediato">
-    <img src="/images/whatsapp-icon.svg" alt="WhatsApp" style="width: 55px; height: 55px;">
+    <img src="/images/whatsapp-icon.svg" alt="WhatsApp" style="width: 35px; height: 35px;">
   </a>
 </BaseLayout>
