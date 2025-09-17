@@ -1,0 +1,409 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { 
+  title = "Adaptamos el presupuesto a tus necesidades",
+  subtitle = "Ofrecemos soluciones eléctricas profesionales con precios transparentes y competitivos"
+} = Astro.props;
+---
+
+<section class="pricing-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="pricing-header">
+      <h2 class="pricing-title">{title}</h2>
+      <p class="pricing-subtitle">{subtitle}</p>
+    </div>
+
+    <!-- Pricing Cards Grid -->
+    <div class="pricing-grid">
+      
+      <!-- Certificado Vivienda -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <div class="pricing-icon">
+            <span class="material-icons">home</span>
+          </div>
+          <h3>Certificado eléctrico Vivienda</h3>
+          <div class="pricing-price">
+            <span class="price-from">Desde</span>
+            <span class="price-amount">99€</span>
+            <span class="price-note">*Precio final según características</span>
+          </div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-features">
+            <li><span class="material-icons">check</span>Aumentos de potencia</li>
+            <li><span class="material-icons">check</span>Cambios de titular</li>
+            <li><span class="material-icons">check</span>Nuevos suministros</li>
+            <li><span class="material-icons">check</span>Inspección completa</li>
+            <li><span class="material-icons">check</span>Tramitación incluida</li>
+          </ul>
+        </div>
+        <div class="pricing-card-footer">
+          <button class="pricing-btn" onclick="document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})">
+            Solicitar presupuesto
+          </button>
+        </div>
+      </div>
+
+      <!-- Certificado Local Comercial -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Más Popular</div>
+        <div class="pricing-card-header">
+          <div class="pricing-icon">
+            <span class="material-icons">business</span>
+          </div>
+          <h3>Certificado Local Comercial</h3>
+          <div class="pricing-price">
+            <span class="price-from">Desde</span>
+            <span class="price-amount">149€</span>
+            <span class="price-note">*Precio final según características</span>
+          </div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-features">
+            <li><span class="material-icons">check</span>Altas de suministro</li>
+            <li><span class="material-icons">check</span>Licencias de actividad</li>
+            <li><span class="material-icons">check</span>Aumentos de potencia</li>
+            <li><span class="material-icons">check</span>Inspección OCA</li>
+            <li><span class="material-icons">check</span>Gestión completa</li>
+          </ul>
+        </div>
+        <div class="pricing-card-footer">
+          <button class="pricing-btn" onclick="document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})">
+            Solicitar presupuesto
+          </button>
+        </div>
+      </div>
+
+      <!-- Certificado IRVE -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <div class="pricing-icon">
+            <span class="material-icons">ev_station</span>
+          </div>
+          <h3>Certificado IRVE</h3>
+          <div class="pricing-price">
+            <span class="price-from">Desde</span>
+            <span class="price-amount">199€</span>
+            <span class="price-note">*Precio final según características</span>
+          </div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-features">
+            <li><span class="material-icons">check</span>Instalación puntos de recarga</li>
+            <li><span class="material-icons">check</span>Gestión ayudas MOVES</li>
+            <li><span class="material-icons">check</span>Certificado de instalación</li>
+            <li><span class="material-icons">check</span>Tramitación completa</li>
+            <li><span class="material-icons">check</span>Garantía incluida</li>
+          </ul>
+        </div>
+        <div class="pricing-card-footer">
+          <button class="pricing-btn" onclick="document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})">
+            Solicitar presupuesto
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    padding: 40px 0;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .pricing-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    line-height: 1.2;
+  }
+
+  .pricing-subtitle {
+    font-size: 16px;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Pricing Grid */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-bottom: 0;
+  }
+
+  /* Pricing Cards */
+  .pricing-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .pricing-card.featured {
+    border-color: #00AD2E;
+    transform: scale(1.05);
+    z-index: 2;
+  }
+
+  .pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-5px);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00AD2E, #00BF33);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 173, 46, 0.4);
+  }
+
+  /* Card Header */
+  .pricing-card-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .pricing-icon {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #00AD2E, #00BF33);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    box-shadow: 0 6px 15px rgba(0, 173, 46, 0.3);
+  }
+
+  .pricing-icon .material-icons {
+    font-size: 32px;
+    color: white;
+  }
+
+  .pricing-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .pricing-price {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .price-from {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .price-amount {
+    display: block;
+    font-size: 60px;
+    font-weight: 900;
+    color: #00AD2E;
+    margin-bottom: 8px;
+    text-shadow: 0 4px 8px rgba(0, 173, 46, 0.3);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .price-note {
+    font-size: 12px;
+    color: #6c757d;
+    font-style: italic;
+  }
+
+  /* Card Body */
+  .pricing-card-body {
+    flex-grow: 1;
+    margin-bottom: 25px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f3f4;
+    color: #495057;
+    font-size: 14px;
+  }
+
+  .pricing-features li:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-features .material-icons {
+    color: #00AD2E;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  /* Card Footer */
+  .pricing-card-footer {
+    text-align: center;
+  }
+
+  .pricing-btn {
+    background: linear-gradient(135deg, #00AD2E, #00BF33);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 173, 46, 0.4);
+  }
+
+  .pricing-btn:hover {
+    background: linear-gradient(135deg, #009426, #00A52E);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 173, 46, 0.5);
+  }
+
+  .featured .pricing-btn {
+    background: linear-gradient(135deg, #006622, #007d28);
+    box-shadow: 0 6px 20px rgba(0, 102, 34, 0.4);
+  }
+
+  .featured .pricing-btn:hover {
+    background: linear-gradient(135deg, #004d1a, #006622);
+    box-shadow: 0 8px 25px rgba(0, 102, 34, 0.5);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 921px) {
+    .pricing-section {
+      padding: 35px 0;
+    }
+
+    .container {
+      padding: 0 20px;
+    }
+
+    .pricing-title {
+      font-size: 1.8rem;
+    }
+
+    .pricing-subtitle {
+      font-size: 15px;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-5px);
+    }
+
+    .pricing-card {
+      padding: 25px 20px;
+    }
+  }
+
+  @media (max-width: 544px) {
+    .pricing-section {
+      padding: 40px 0;
+    }
+
+    .container {
+      padding: 0 15px;
+    }
+
+    .pricing-title {
+      font-size: 1.6rem;
+    }
+
+    .pricing-card {
+      padding: 20px 18px;
+    }
+
+    .pricing-icon {
+      width: 55px;
+      height: 55px;
+    }
+
+    .pricing-icon .material-icons {
+      font-size: 28px;
+    }
+
+    .pricing-card h3 {
+      font-size: 18px;
+    }
+
+    .price-amount {
+      font-size: 48px;
+    }
+  }
+</style>

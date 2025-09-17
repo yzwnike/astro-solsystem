@@ -5,284 +5,752 @@ export interface Props {
   ctaText?: string;
   ctaAction?: string;
   price?: string;
-  heroImage?: string;
 }
 
 const { 
-  title, 
+  title = "¿Necesitas un boletín eléctrico? ¿Te han pedido legalizar una instalación? Estás en el lugar adecuado.", 
   subtitle, 
-  ctaText = "Solicitar presupuesto",
+  ctaText = "SOLICITA TU PRESUPUESTO YA",
   ctaAction = "document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})",
-  price = "Desde 99€",
-  heroImage = "/images/electricista-profesional.jpg"
+  price = "Desde 99€"
 } = Astro.props;
+
+// Servicios que antes estaban en LegalizationServicesSection
+const services = [
+  {
+    icon: 'description',
+    title: 'Boletines eléctricos (CIE)',
+    description: 'Certificados de instalación eléctrica para viviendas, locales y todo tipo de inmuebles.'
+  },
+  {
+    icon: 'electrical_services', 
+    title: 'Legalización instalación nueva',
+    description: 'Inspección, planos y documentación para cumplir con la normativa vigente.'
+  },
+  {
+    icon: 'tune',
+    title: 'Aumento de potencia',
+    description: 'Boletín actualizado para subir la potencia contratada de forma legal y segura.'
+  },
+  {
+    icon: 'handyman',
+    title: 'Reformas eléctricas',
+    description: 'Legalización de reformas y actualizaciones al reglamento REBT.'
+  },
+  {
+    icon: 'ev_station',
+    title: 'Cargadores coche eléctrico',
+    description: 'Legalización de puntos de recarga (IRVE) en viviendas y garajes.'
+  },
+  {
+    icon: 'wb_sunny',
+    title: 'Instalaciones fotovoltaicas',
+    description: 'Registro y legalización de placas solares para autoconsumo legal.'
+  }
+];
 ---
 
 <section class="reparlux-hero-section" id="inicio">
   <div class="hero-container">
-    <div class="hero-content">
-      <!-- Título principal -->
-      <h1 class="hero-title">{title}</h1>
+    <!-- Título principal alineado a la izquierda -->
+    <h1 class="hero-title">{title}</h1>
 
-      <!-- Subtítulo -->
-      <p class="hero-subtitle">{subtitle}</p>
+    <!-- Subtítulo -->
+    <p class="hero-subtitle">¿Necesitas un boletín eléctrico? ¿Te han pedido legalizar una instalación? Estás en el lugar adecuado.</p>
 
-      <!-- Símbolo del rayo en recuadro con texto -->
-      <div class="lightning-box">
-        <div class="lightning-symbol">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#53C307"/>
-          </svg>
-          <div class="lightning-text">
-            <p>Somos instaladores autorizados con amplia experiencia en legalización de instalaciones eléctricas, emisión de CIE (certificados de instalación eléctrica), y trámites ante la distribuidora.</p>
-          </div>
-        </div>
+    <!-- Valoración y botón -->
+    <div class="hero-rating-and-cta">
+      <div class="rating-section">
+        <img src="/images/trustpilot.png" alt="Trustpilot - Excelente valoración" class="trustpilot-image" />
       </div>
-
+      
       <!-- Botón CTA -->
       <button 
-        class="cta-button" 
+        class="cta-button-main" 
         onclick={ctaAction}
       >
         {ctaText}
       </button>
-
     </div>
 
-    <div class="hero-image">
-      <img src={heroImage} alt="Certificado eléctrico profesional" />
+    <!-- Carrusel de 6 servicios con 3 visibles y flechas -->
+    <div class="services-carousel-container">
+      <!-- Flecha izquierda -->
+      <button class="carousel-arrow carousel-arrow-left" id="arrow-left">
+        <span class="material-icons">chevron_left</span>
+      </button>
+      
+      <div class="services-carousel-track" id="carousel-track">
+        {services.map((service, index) => (
+          <div class="service-card-carousel" key={index}>
+            <div class="service-icon-carousel">
+              <span class="material-icons">{service.icon}</span>
+            </div>
+            <h4>{service.title}</h4>
+            <p>{service.description}</p>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Flecha derecha -->
+      <button class="carousel-arrow carousel-arrow-right" id="arrow-right">
+        <span class="material-icons">chevron_right</span>
+      </button>
     </div>
+    
+    <!-- Indicadores de scroll fuera del contenedor -->
+    <div class="carousel-indicators">
+      {services.map((_, index) => (
+        <div class="indicator" key={index}></div>
+      ))}
+    </div>
+
+    <!-- Script para controlar el carrusel -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('carousel-track');
+        const leftArrow = document.getElementById('arrow-left');
+        const rightArrow = document.getElementById('arrow-right');
+        const indicators = document.querySelectorAll('.indicator');
+        
+        let currentIndex = 0;
+        const totalCards = 6;
+        const visibleCards = 3;
+        const maxIndex = totalCards - visibleCards;
+        
+        function updateArrows() {
+          // Flecha izquierda verde si puede ir hacia la izquierda
+          if (currentIndex > 0) {
+            leftArrow.classList.add('active');
+          } else {
+            leftArrow.classList.remove('active');
+          }
+          
+          // Flecha derecha verde si puede ir hacia la derecha  
+          if (currentIndex < maxIndex) {
+            rightArrow.classList.add('active');
+          } else {
+            rightArrow.classList.remove('active');
+          }
+        }
+        
+        function updateIndicators() {
+          indicators.forEach((indicator, index) => {
+            if (index >= currentIndex && index < currentIndex + visibleCards) {
+              indicator.classList.add('active');
+            } else {
+              indicator.classList.remove('active');
+            }
+          });
+        }
+        
+        function scrollToIndex(index) {
+          const trackWidth = track.offsetWidth;
+          const cardWidth = trackWidth / 3; // Cada card ocupa 1/3 del ancho visible
+          track.scrollTo({
+            left: index * cardWidth,
+            behavior: 'smooth'
+          });
+          currentIndex = index;
+          updateArrows();
+          updateIndicators();
+        }
+        
+        leftArrow.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            scrollToIndex(currentIndex - 1);
+          }
+        });
+        
+        rightArrow.addEventListener('click', () => {
+          if (currentIndex < maxIndex) {
+            scrollToIndex(currentIndex + 1);
+          }
+        });
+        
+        // Detectar scroll manual
+        track.addEventListener('scroll', () => {
+          const trackWidth = track.offsetWidth;
+          const cardWidth = trackWidth / 3;
+          const newIndex = Math.round(track.scrollLeft / cardWidth);
+          if (newIndex !== currentIndex) {
+            currentIndex = Math.max(0, Math.min(newIndex, maxIndex));
+            updateArrows();
+            updateIndicators();
+          }
+        });
+        
+        // Inicializar
+        updateArrows();
+        updateIndicators();
+      });
+    </script>
   </div>
 </section>
 
 <style>
   .reparlux-hero-section {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f9e8 30%, #e8f5d8 70%, #dff0c8 100%);
-    min-height: calc(100vh - 140px);
-    padding: 80px 20px 80px;
-    display: flex;
-    align-items: center;
+    background: transparent;
+    padding: 30px 40px 60px;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-height: auto;
   }
 
   .hero-container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    width: 100%;
   }
 
-  .hero-content {
-    text-align: left;
-    padding: 20px;
-  }
-
-  .price-badge {
-    background: var(--green-primary);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 25px;
-    display: inline-block;
-    margin-bottom: 25px;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(83, 195, 7, 0.3);
-  }
-
-  .price-text {
-    font-size: 24px;
-    font-weight: 700;
-    margin-right: 10px;
-  }
-
-  .price-label {
-    font-size: 16px;
-    opacity: 0.9;
-  }
-
+  /* Título alineado a la izquierda y más grande como Reparlux */
   .hero-title {
-    font-size: 28px !important;
-    font-weight: 800 !important;
-    color: #2d5a27 !important;
+    font-size: 3.2rem !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    text-align: left !important;
     background: none !important;
-    -webkit-text-fill-color: #2d5a27 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
     animation: none !important;
     margin-bottom: 20px;
+    line-height: 1.1;
+    max-width: 700px;
   }
 
   .hero-subtitle {
     font-size: 18px;
-    line-height: 1.5;
-    color: #4a6741;
-    margin-bottom: 25px;
-    text-align: left;
+    line-height: 1.4;
+    color: #6c757d;
+    margin-bottom: 40px;
+    text-align: left !important;
+    max-width: 600px;
+    font-weight: 400;
+    margin-left: 0 !important;
+    margin-right: auto !important;
   }
 
-  .lightning-box {
+  /* Contenedor de valoración y botón */
+  .hero-rating-and-cta {
     display: flex;
-    justify-content: flex-start;
-    margin-bottom: 30px;
-  }
-
-  .lightning-symbol {
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 15px 20px;
-    max-width: 550px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    gap: 35px;
+    margin-bottom: 35px;
+    margin-top: 20px;
+    flex-wrap: wrap;
   }
 
-  .lightning-text {
+  /* Sección de valoraciones estilo Reparlux */
+  .rating-section {
+    flex: 0 0 auto;
     text-align: left;
   }
 
-  .lightning-text p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #555;
-    margin: 0;
+  .trustpilot-image {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
   }
 
-
-  .description-text {
-    margin-bottom: 25px;
+  /* Botón principal estilo cuadrado verde */
+  .cta-button-main {
+    background: linear-gradient(135deg, #00AD2E, #00BF33);
+    color: white;
+    padding: 22px 40px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    box-shadow: 
+      0 6px 20px rgba(0, 173, 46, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    min-width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
   }
-
-  .description-text p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #555;
-    margin: 0;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+  
+  .cta-button-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.7s;
+  }
+  
+  .cta-button-main:hover::before {
+    left: 100%;
   }
 
-  .cta-button {
-    background: var(--green-primary);
-    color: white;
-    padding: 16px 32px;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    border: 2px solid var(--green-primary);
+  .cta-button-main:hover {
+    background: linear-gradient(135deg, #009426, #00A52E);
+    transform: scale(1.03);
+    box-shadow: 
+      0 10px 30px rgba(0, 173, 46, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .cta-button-main:active {
+    transform: scale(0.97);
+    box-shadow: 
+      0 6px 18px rgba(0, 173, 46, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Carrusel de servicios compacto */
+  .services-carousel-container {
+    margin-top: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Flechas de navegación */
+  .carousel-arrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #e9ecef;
+    background: white;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(83, 195, 7, 0.3);
-    margin: 25px 0;
-    display: block;
-    width: fit-content;
-    margin-left: 0;
-    margin-right: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    flex-shrink: 0;
   }
 
-  .cta-button:hover {
-    background: var(--green-hover);
-    border-color: var(--green-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(83, 195, 7, 0.4);
+  .carousel-arrow:hover {
+    border-color: #00AD2E;
+    color: #00AD2E;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 173, 46, 0.2);
   }
 
-  .ratings-section {
+  .carousel-arrow.active {
+    border-color: #00AD2E;
+    background: #00AD2E;
+    color: white;
+  }
+
+  .carousel-arrow.active:hover {
+    background: #009426;
+    border-color: #009426;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 173, 46, 0.3);
+  }
+
+  .carousel-arrow .material-icons {
+    font-size: 24px;
+  }
+
+  .carousel-arrow-left {
+    order: 1;
+  }
+
+  .carousel-arrow-right {
+    order: 3;
+  }
+
+  .services-carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 15px 10px 20px;
+    margin: 0 -10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    order: 2;
+    flex: 1;
+  }
+
+  .services-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Cards del carrusel más compactas */
+  .service-card-carousel {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 18px;
+    width: calc(33.333% - 14px);
+    min-width: 280px;
+    max-height: 180px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .service-card-carousel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .service-card-carousel:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.12);
+  }
+
+  .service-card-carousel:hover::before {
+    opacity: 1;
+  }
+
+  /* Iconos del carrusel más pequeños */
+  .service-icon-carousel {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .service-card-carousel:hover .service-icon-carousel {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    transform: scale(1.05);
+  }
+
+  .service-icon-carousel .material-icons {
+    font-size: 32px;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+  }
+
+  .service-card-carousel:hover .service-icon-carousel .material-icons {
+    color: white;
+  }
+
+  /* Texto del carrusel más compacto */
+  .service-card-carousel h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+  }
+
+  .service-card-carousel:hover h4 {
+    color: #007bff;
+  }
+
+  .service-card-carousel p {
+    color: #6c757d;
+    line-height: 1.3;
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .service-card-carousel:hover p {
+    opacity: 1;
+  }
+
+  /* Indicadores del carrusel */
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 25px;
+    padding: 0 20px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e9ecef;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .indicator.active {
+    background: #007bff;
+    transform: scale(1.1);
+  }
+  
+  .indicator:hover {
+    background: #007bff;
+    transform: scale(1.2);
+  }
+
+  /* Efecto de foco para accesibilidad */
+  .service-card-carousel:focus-within {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+
+  .services-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2d5a27;
+    margin-bottom: 30px;
     text-align: center;
   }
 
-  .stars {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .rating-text {
-    font-size: 14px;
-    color: #666;
-    margin: 0 0 5px 0;
-  }
-
-  .rating-label {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--green-primary);
-    margin: 0;
-  }
-
-  .hero-image {
+  /* Carrusel con CSS scroll-snap */
+  .services-carousel {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0;
+    margin: 0 -10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .hero-image img {
-    width: 100%;
-    max-width: 900px;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  .services-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Cards de servicios miniaturizadas */
+  .service-card-mini {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 16px;
+    min-width: 200px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(83, 195, 7, 0.1);
+    text-align: center;
+  }
+
+  .service-card-mini:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(83, 195, 7, 0.15);
+  }
+
+  .service-icon-mini {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #00AD2E 0%, #00BF33 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    box-shadow: 0 3px 10px rgba(0, 173, 46, 0.3);
+  }
+
+  .service-icon-mini .material-icons {
+    font-size: 20px;
+    color: white;
+  }
+
+  .service-card-mini h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d5a27;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .service-card-mini p {
+    color: #666;
+    line-height: 1.3;
+    margin: 0;
+    font-size: 12px;
   }
 
   /* Responsive */
   @media (max-width: 921px) {
-    .hero-container {
-      grid-template-columns: 1fr;
-      gap: 40px;
-      text-align: center;
+    .reparlux-hero-section {
+      padding: 60px 30px;
     }
 
     .hero-title {
-      font-size: 24px !important;
+      font-size: 2.5rem !important;
+      text-align: center !important;
     }
 
     .hero-subtitle {
       font-size: 16px;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .lightning-symbol {
-      max-width: 450px;
-      width: 85%;
-      padding: 12px 18px;
-      gap: 8px;
+    .hero-rating-and-cta {
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      text-align: center;
     }
 
-    .lightning-symbol svg {
-      width: 28px;
-      height: 28px;
+    .rating-section {
+      text-align: center;
     }
 
-    .lightning-text p {
+    .cta-button-main {
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+
+    .services-carousel-container {
+      margin-top: 40px;
+    }
+
+    .services-carousel-track {
+      gap: 20px;
+      padding: 15px 5px 25px;
+    }
+
+    .service-card-carousel {
+      min-width: 240px;
+      padding: 25px 20px;
+    }
+
+    .service-icon-carousel {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 20px;
+    }
+
+    .service-icon-carousel .material-icons {
+      font-size: 35px;
+    }
+
+    .service-card-carousel h4 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .service-card-carousel p {
       font-size: 13px;
     }
 
-    .cta-button {
-      font-size: 16px;
-      padding: 14px 28px;
-      margin-left: auto;
-      margin-right: auto;
+    .carousel-indicators {
+      margin-top: 20px;
+      gap: 6px;
+    }
+
+    .indicator {
+      width: 8px;
+      height: 8px;
     }
   }
 
   @media (max-width: 544px) {
     .reparlux-hero-section {
-      padding: 60px 15px 60px;
+      padding: 40px 20px;
     }
 
     .hero-title {
-      font-size: 20px !important;
+      font-size: 2rem !important;
+      margin-bottom: 15px;
+      text-align: center !important;
     }
 
     .hero-subtitle {
-      font-size: 16px;
+      font-size: 15px;
+      margin-bottom: 25px;
+      text-align: center;
     }
 
-    .hero-image img {
-      max-width: 100%;
-      height: 350px;
+    .hero-rating-and-cta {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .rating-section {
+      text-align: center;
+    }
+
+
+    .cta-button-main {
+      font-size: 16px;
+      padding: 14px 28px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .services-carousel-container {
+      margin-top: 30px;
+    }
+
+    .services-carousel-track {
+      gap: 15px;
+      padding: 10px 5px 20px;
+    }
+
+    .service-card-carousel {
+      min-width: 220px;
+      padding: 20px 15px;
+    }
+
+    .service-icon-carousel {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+    }
+
+    .service-icon-carousel .material-icons {
+      font-size: 30px;
+    }
+
+    .service-card-carousel h4 {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .service-card-carousel p {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .carousel-indicators {
+      margin-top: 15px;
+      gap: 5px;
+    }
+
+    .indicator {
+      width: 7px;
+      height: 7px;
     }
   }
 </style>

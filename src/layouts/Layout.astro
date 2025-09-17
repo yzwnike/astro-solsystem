@@ -27,21 +27,21 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 	:root{--e-global-color-primary:#046bd2;--e-global-color-secondary:#045cb4;--e-global-color-text:#334155;--e-global-color-accent:#53C307;--e-global-typography-primary-font-family:'Montserrat';--e-global-typography-primary-font-weight:600;--e-global-typography-text-font-family:'Montserrat';--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:'Montserrat';--e-global-typography-accent-font-weight:500;--e-global-typography-secondary-font-family:'Montserrat';--e-global-typography-secondary-font-weight:400}
 
 	/* Elementor Global Colors */
-	:root{--e-global-color-astglobalcolor0:#046bd2;--e-global-color-astglobalcolor1:#045cb4;--e-global-color-astglobalcolor2:#1e293b;--e-global-color-astglobalcolor3:#334155;--e-global-color-astglobalcolor4:#F0F5FA;--e-global-color-astglobalcolor5:#FFFFFF;--e-global-color-astglobalcolor6:#D1D5DB;--e-global-color-astglobalcolor7:#111111;--e-global-color-astglobalcolor8:#111111}
+	:root{--e-global-color-astglobalcolor0:#046bd2;--e-global-color-astglobalcolor1:#045cb4;--e-global-color-astglobalcolor2:#1e293b;--e-global-color-astglobalcolor3:#334155;--e-global-color-astglobalcolor4:#F7F7F7;--e-global-color-astglobalcolor5:#FFFFFF;--e-global-color-astglobalcolor6:#D1D5DB;--e-global-color-astglobalcolor7:#111111;--e-global-color-astglobalcolor8:#111111}
 	/* Variables and reset - Exact match with original */
 	:root {
-		--green-primary: #53C307;
-		--green-hover: #45a006;
+		--green-primary: #00AD2E;
+		--green-hover: #009426;
 		--text-dark: #334155;
 		--text-white: #FFFFFF;
-		--bg-light: #F0F5FA;
+		--bg-light: #F7F7F7;
 		
 		/* Original Astra theme variables */
 		--ast-global-color-0: #046bd2;
 		--ast-global-color-1: #045cb4;
 		--ast-global-color-2: #1e293b;
 		--ast-global-color-3: #334155;
-		--ast-global-color-4: #F0F5FA;
+		--ast-global-color-4: #F7F7F7;
 		--ast-global-color-5: #FFFFFF;
 		--ast-global-color-6: #D1D5DB;
 		--ast-global-color-7: #111111;
@@ -70,6 +70,7 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+		background: #F7F7F7;
 	}
 	
 	body {
@@ -78,7 +79,7 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 		font-size: 16px;
 		line-height: 1.65em;
 		color: var(--text-dark);
-		background: #fff;
+		background: #F7F7F7;
 	}
 	
 	a {
@@ -136,7 +137,7 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 	}
 	
 	.site-logo img {
-		height: 60px;
+		height: 52px;
 		width: auto;
 	}
 	
@@ -739,7 +740,7 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 	.main-cta-button {
 		background: var(--green-primary);
 		color: white;
-		padding: 14px 24px;
+		padding: 18px 24px;
 		border-radius: 8px;
 		font-size: 24px;
 		font-weight: 500;
@@ -830,7 +831,7 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 	/* Services Section - Grid Style Cards */
 	.services-section {
 		padding: 80px 0;
-		background-color: #f8f9fa;
+		background-color: #F7F7F7;
 		position: relative;
 	}
 	
@@ -1426,17 +1427,17 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 	justify-content: flex-start;
 }
 .charlemos-title {
-	font-size: 36px;
+	font-size: 30px;
 	font-weight: 400;
 	color: #111827;
-	margin-bottom: 20px;
+	margin-bottom: 16px;
 	line-height: 1.2;
 }
 	.charlemos-subtitle {
-		font-size: 16px;
+		font-size: 15px;
 		color: #374151;
 		line-height: 1.6;
-		margin-bottom: 40px;
+		margin-bottom: 35px;
 		max-width: 300px;
 	}
 	.contact-item {
@@ -1508,9 +1509,9 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 		transition: border-color 0.2s;
 	}
 	.footer-form-card .elementor-field:focus {
-		border-color: #53C307;
+		border-color: #00AD2E;
 		outline: none;
-		box-shadow: 0 0 0 3px rgba(83, 195, 7, 0.1);
+		box-shadow: 0 0 0 3px rgba(0, 173, 46, 0.1);
 	}
 	.footer-form-card textarea.elementor-field-textual {
 		height: 120px;
@@ -1521,7 +1522,7 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 		color: #374151;
 	}
 	.footer-form-card .elementor-button {
-		background: var(--green-primary);
+		background: #00AD2E;
 		border-radius: 8px;
 		font-weight: 600;
 		padding: 14px 28px;
@@ -1530,9 +1531,9 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 		transition: all 0.2s;
 	}
 	.footer-form-card .elementor-button:hover {
-		background: var(--green-hover);
+		background: #009426;
 		transform: translateY(-1px);
-		box-shadow: 0 4px 12px rgba(83, 195, 7, 0.25);
+		box-shadow: 0 4px 12px rgba(0, 173, 46, 0.25);
 	}
 	/* Form headers */
 #form .elementor-heading-title { 

@@ -4,6 +4,7 @@ import Header from '../components/layout/Header.astro';
 import ReparluxHeroSection from '../components/sections/ReparluxHeroSection.astro';
 import ReparluxServicesSection from '../components/sections/ReparluxServicesSection.astro';
 import ReparluxAdvantagesSection from '../components/sections/ReparluxAdvantagesSection.astro';
+import PricingSection from '../components/sections/PricingSection.astro';
 import IntroSection from '../components/sections/IntroSection.astro';
 import ServicesSection from '../components/sections/ServicesSection.astro';
 import LegalizationServicesSection from '../components/sections/LegalizationServicesSection.astro';
@@ -27,19 +28,18 @@ import Button from '../components/ui/Button.astro';
     heroImage="/images/fondo.png"
   />
 
-  <!-- Servicios de legalización específicos -->
-  <LegalizationServicesSection />
+  <!-- Servicios de legalización específicos - Movidos al hero -->
+  <!-- <LegalizationServicesSection /> -->
 
-  <!-- Proceso Section -->
+  <!-- Proceso Section - Eliminado según solicitud -->
+  <!-- 
   <section class="proceso-section" id="proceso">
-    <!-- Header con imagen de fondo -->
     <div class="proceso-header">
       <div class="ast-container">
         <h2><span class="material-icons" style="vertical-align: middle; margin-right: 10px; color: #046bd2;">electrical_services</span>NOS ENCARGAMOS DE TODO PARA QUE TÚ NO TE PREOCUPES DE NADA</h2>
       </div>
     </div>
 
-    <!-- Fila 1: Imagen izquierda, contenido derecha -->
     <div class="proceso-row">
       <div class="proceso-imagen">
         <img src="/images/sol.jpg" alt="Contacto inicial - SolSystems">
@@ -55,7 +55,6 @@ import Button from '../components/ui/Button.astro';
       </div>
     </div>
 
-    <!-- Fila 2: Contenido izquierda, imagen derecha -->
     <div class="proceso-row proceso-row-reverse">
       <div class="proceso-content">
         <div class="proceso-feature">
@@ -71,7 +70,6 @@ import Button from '../components/ui/Button.astro';
       </div>
     </div>
 
-    <!-- Fila 3: Imagen izquierda, contenido derecha -->
     <div class="proceso-row">
       <div class="proceso-imagen">
         <img src="/images/sol.jpg" alt="Tramitación oficial - SolSystems">
@@ -87,7 +85,6 @@ import Button from '../components/ui/Button.astro';
       </div>
     </div>
 
-    <!-- Fila 4: Contenido izquierda, imagen derecha -->
     <div class="proceso-row proceso-row-reverse">
       <div class="proceso-content">
         <div class="proceso-feature">
@@ -103,10 +100,13 @@ import Button from '../components/ui/Button.astro';
       </div>
     </div>
   </section>
+  -->
 
   <!-- Ventajas competitivas estilo Reparlux -->
   <ReparluxAdvantagesSection />
 
+  <!-- Pricing Section -->
+  <PricingSection />
 
   <!-- Footer replica (Charlemos + Form) -->
   <div data-elementor-type="footer" data-elementor-id="3471" class="elementor elementor-3471 elementor-location-footer" data-elementor-post-type="elementor_library">
