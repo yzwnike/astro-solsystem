@@ -110,12 +110,12 @@ import Button from '../components/ui/Button.astro';
 
   <!-- Footer replica (Charlemos + Form) -->
   <div data-elementor-type="footer" data-elementor-id="3471" class="elementor elementor-3471 elementor-location-footer" data-elementor-post-type="elementor_library">
-  <div class="footer-container" id="contacto">
-    <div class="footer-flex">
-      <div class="footer-left">
+  <div class="footer-container" id="contacto" style="min-height: 700px !important;">
+    <div class="footer-flex" style="align-items: flex-start !important; min-height: 800px; padding: 60px 40px;">
+      <div class="footer-left" style="margin-left: 30px; display: flex; flex-direction: column; justify-content: flex-start;">
         <!-- Charlemos Section -->
         <div class="charlemos-section">
-          <h2 class="charlemos-title">Charlemos</h2>
+          <h2 class="charlemos-title" style="font-weight: 550 !important; font-family: 'Montserrat', sans-serif !important;">Charlemos</h2>
           <p class="charlemos-subtitle">Démonos el tiempo necesario para descubrir todas las posibilidades para ayudarte a crecer.</p>
           
           <!-- Teléfono -->
@@ -141,59 +141,62 @@ import Button from '../components/ui/Button.astro';
             </div>
           </div>
           
-          <!-- Dirección Madrid -->
-          <div class="contact-item">
-            <div class="contact-icon">
-              <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none">
-                  <path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
+          <!-- Direcciones en layout horizontal -->
+          <div class="footer-direccion" style="gap: 10px;">
+            <!-- Dirección Madrid -->
+            <div class="contact-item">
+              <div class="contact-icon">
+                <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none">
+                    <path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+              <div class="contact-content">
+                <h3 class="contact-title">
+                  <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">Dirección:</a>
+                </h3>
+                <p class="contact-description">
+                  Calle Físicas 40, 28923<br>
+                  Alcorcón, Madrid
+                </p>
+              </div>
             </div>
-            <div class="contact-content">
-              <h3 class="contact-title">
-                <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">Dirección:</a>
-              </h3>
-              <p class="contact-description">
-                Calle Físicas 40, 28923<br>
-                Alcorcón, Madrid
-              </p>
-            </div>
-          </div>
-          
-          <!-- Dirección Barcelona -->
-          <div class="contact-item">
-            <div class="contact-icon">
-              <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none">
-                  <path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-            <div class="contact-content">
-              <h3 class="contact-title">
-                <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">Dirección:</a>
-              </h3>
-              <p class="contact-description">
-                Passeig (Paseo) de les Vilares 14 B,<br>
-                1-1, 08390 Montgat, Barcelona
-              </p>
+            
+            <!-- Dirección Barcelona -->
+            <div class="contact-item">
+              <div class="contact-icon">
+                <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none">
+                    <path id="Sustracción 2" d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+              <div class="contact-content">
+                <h3 class="contact-title">
+                  <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">Dirección:</a>
+                </h3>
+                <p class="contact-description">
+                  Passeig (Paseo) de les Vilares 14 B, 1-1,<br>
+                  08390 Montgat, Barcelona
+                </p>
+              </div>
             </div>
           </div>
           
           <!-- Mapa de España -->
-          <div class="spain-map">
-            <img src="/images/mapa.webp" alt="Mapa de España" class="map-image">
+          <div class="spain-map" style="max-width: 500px; margin-top: 40px;">
+            <img src="/images/mapa.webp" alt="Mapa de España" class="map-image" style="width: 100%; height: auto;">
           </div>
         </div>
       </div>
 
-      <div class="footer-right">
+      <div class="footer-right" style="display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: stretch !important;">
         <!-- Formulario presupuesto -->
         <div class="elementor-element elementor-element-146699fd e-con-full e-flex e-con e-child" data-id="146699fd" data-element_type="container" id="form" data-settings='{"content_width":"full"}'>
           <div class="elementor-element elementor-element-2af09bbc elementor-widget elementor-widget-heading" data-id="2af09bbc" data-element_type="widget" data-widget_type="heading.default">
             <div class="elementor-widget-container">
-              <h2 class="elementor-heading-title elementor-size-default">Solicita un presupuesto personalizado</h2>
+              <h2 class="elementor-heading-title elementor-size-default" style="font-weight: 550 !important; font-family: 'Montserrat', sans-serif !important;">Solicita un presupuesto personalizado</h2>
             </div>
           </div>
           <div class="elementor-element elementor-element-1dc91d20 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="1dc91d20" data-element_type="widget" data-widget_type="text-editor.default">
@@ -217,18 +220,25 @@ import Button from '../components/ui/Button.astro';
                     <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
                       <input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Correo electrónico*" required aria-required="true">
                     </div>
-                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-message elementor-col-50 elementor-field-required">
-                      <input size="1" type="text" name="form_fields[message]" id="form-field-message" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Dirección*" required aria-required="true">
+                   
+                    <div class="form-row">
+                      <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-message elementor-col-50 elementor-field-required">
+                        <input size="1" type="text" name="form_fields[message]" id="form-field-message" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Dirección*" required aria-required="true">
+                      </div>
+                      <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_fa347bd elementor-col-50">
+                        <input size="1" type="text" name="form_fields[field_fa347bd]" id="form-field-field_fa347bd" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Franja horaria">
+                      </div>
                     </div>
-                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_fa347bd elementor-col-50">
-                      <input size="1" type="text" name="form_fields[field_fa347bd]" id="form-field-field_fa347bd" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Franja horaria">
+                   
+                    <div class="form-row">
+                      <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_2d82f0a elementor-col-50 elementor-field-required">
+                        <input size="1" type="text" name="form_fields[field_2d82f0a]" id="form-field-field_2d82f0a" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Co. Postal*" required aria-required="true">
+                      </div>
+                      <div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_cfaaf23 elementor-col-50 elementor-field-required">
+                        <input size="1" type="tel" name="form_fields[field_cfaaf23]" id="form-field-field_cfaaf23" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Teléfono*" required aria-required="true" pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+                      </div>
                     </div>
-                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_2d82f0a elementor-col-50 elementor-field-required">
-                      <input size="1" type="text" name="form_fields[field_2d82f0a]" id="form-field-field_2d82f0a" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Co. Postal*" required aria-required="true">
-                    </div>
-                    <div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_cfaaf23 elementor-col-50 elementor-field-required">
-                      <input size="1" type="tel" name="form_fields[field_cfaaf23]" id="form-field-field_cfaaf23" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Teléfono*" required aria-required="true" pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
-                    </div>
+                    
                     <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-field_72b7372 elementor-col-100">
                       <textarea class="elementor-field-textual elementor-field  elementor-size-sm" name="form_fields[field_72b7372]" id="form-field-field_72b7372" rows="4" placeholder="Tu consulta"></textarea>
                     </div>
@@ -241,7 +251,7 @@ import Button from '../components/ui/Button.astro';
                       </div>
                     </div>
                     <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
-                      <button type="submit" class="elementor-button elementor-size-sm elementor-animation-grow">
+                      <button type="submit" class="elementor-button elementor-size-sm elementor-animation-grow" style="width: 100%; padding: 15px 40px; min-width: 200px;">
                         <span>
                           <span class="elementor-button-icon"></span>
                           <span class="elementor-button-text">Enviar</span>

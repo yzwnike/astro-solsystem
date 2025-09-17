@@ -1240,10 +1240,10 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 		font-size: 18px;
 		font-weight: 600;
 		line-height: 1.3;
-		color: var(--ast-global-color-2);
+		color: #111827 !important; /* Force black color for contact titles */
 	}
 	.elementor-icon-box-title a {
-		color: inherit;
+		color: #111827 !important; /* Force black color for contact title links */
 		text-decoration: none;
 	}
 	.elementor-icon-box-description {
@@ -1375,30 +1375,63 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 	}
 	.footer-flex { 
 		display: flex; 
-		gap: 80px; 
+		gap: 60px; 
 		align-items: flex-start; 
-		max-width: 1200px; 
-		margin: 0 auto; 
-		padding: 0 20px; 
+		/* Remove max-width and centering constraints */
+		padding: 0 40px; 
 	}
-	.footer-left { flex: 0 0 350px; }
-	.footer-right { flex: 1; }
+	.footer-left { 
+		flex: 0 0 500px; 
+		max-width: 500px; 
+	}
+.footer-right { 
+	flex: 1; 
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+	
+	/* Horizontal address layout */
+	.footer-direccion {
+		display: flex;
+		flex-direction: row;
+		gap: 40px;
+		margin-top: 20px;
+	}
+	
+	.footer-direccion .contact-item {
+		flex: 1;
+		margin-bottom: 20px;
+	}
+	
+	/* Bigger map */
+	.spain-map {
+		margin-top: 30px;
+		max-width: 400px;
+	}
+	
 	@media (max-width: 921px) { 
-		.footer-flex { flex-direction: column; gap: 40px; padding: 0 10px; }
-		.footer-left { flex: none; }
+		.footer-flex { flex-direction: column; gap: 40px; padding: 0 20px; }
+		.footer-left { flex: none; max-width: none; }
+		.footer-direccion { flex-direction: column; gap: 15px; }
+		.spain-map { max-width: 280px; }
 	}
 
-	/* Charlemos Section Styles */
-	.charlemos-section {
-		padding-right: 20px;
-	}
-	.charlemos-title {
-		font-size: 36px;
-		font-weight: 700;
-		color: #111827;
-		margin-bottom: 20px;
-		line-height: 1.2;
-	}
+/* Charlemos Section Styles */
+.charlemos-section {
+	padding-right: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+.charlemos-title {
+	font-size: 36px;
+	font-weight: 400;
+	color: #111827;
+	margin-bottom: 20px;
+	line-height: 1.2;
+}
 	.charlemos-subtitle {
 		font-size: 16px;
 		color: #374151;
@@ -1430,12 +1463,12 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 	.contact-title {
 		font-size: 16px;
 		font-weight: 600;
-		color: #53C307;
+		color: #111827; /* Black text instead of green */
 		margin-bottom: 5px;
 		line-height: 1.4;
 	}
 	.contact-title a {
-		color: #53C307;
+		color: #111827; /* Black text for links too */
 		text-decoration: none;
 	}
 	.contact-description {
@@ -1502,13 +1535,13 @@ const { title, description = "Legalizamos tu instalación eléctrica de forma r�
 		box-shadow: 0 4px 12px rgba(83, 195, 7, 0.25);
 	}
 	/* Form headers */
-	#form .elementor-heading-title { 
-		color: #111827; 
-		font-size: 28px;
-		font-weight: 700;
-		margin-bottom: 16px;
-		line-height: 1.3;
-	}
+#form .elementor-heading-title { 
+	color: #111827; 
+	font-size: 28px;
+	font-weight: 400;
+	margin-bottom: 16px;
+	line-height: 1.3;
+}
 	#form .elementor-widget-text-editor p { 
 		color: #6b7280; 
 		font-size: 16px;
