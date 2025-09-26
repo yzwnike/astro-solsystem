@@ -83,7 +83,7 @@ a {
 /* Hero Section with Background - Forest background image */
 .hero-section {
 	/* Forest background simple sin degradado */
-	background: url('/images/fondo.png') center/cover no-repeat;
+	background: url('../images/fondo.png') center/cover no-repeat;
 	min-height: 100vh;
 	position: relative;
 	display: flex;
