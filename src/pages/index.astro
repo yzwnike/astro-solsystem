@@ -207,57 +207,61 @@ import Button from '../components/ui/Button.astro';
           <div class="elementor-element elementor-element-46a1ba81 elementor-button-align-center elementor-widget elementor-widget-form" data-id="46a1ba81" data-element_type="widget" data-settings='{"step_next_label":"Next","step_previous_label":"Previous","button_width":"100","step_type":"number_text","step_icon_shape":"circle"}' data-widget_type="form.default">
             <div class="elementor-widget-container">
               <div class="footer-form-card">
-                <form class="elementor-form" method="post" name="form_footer">
+                <form class="elementor-form" method="post" name="form_footer" id="contact-form">
                   <input type="hidden" name="post_id" value="3471"/>
                   <input type="hidden" name="form_id" value="46a1ba81"/>
                   <input type="hidden" name="referer_title" value=""/>
                   <input type="hidden" name="queried_id" value="2"/>
+                  <input type="hidden" name="form_source" value="homepage"/>
 
                   <div class="elementor-form-fields-wrapper elementor-labels-above">
                     <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-100 elementor-field-required">
-                      <input size="1" type="text" name="form_fields[name]" id="form-field-name" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Nombre*" required aria-required="true">
+                      <input size="1" type="text" name="name" id="form-field-name" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Nombre*" required aria-required="true">
                     </div>
                     <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
-                      <input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Correo electrónico*" required aria-required="true">
+                      <input size="1" type="email" name="email" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Correo electrónico*" required aria-required="true">
                     </div>
                    
                     <div class="form-row">
                       <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-message elementor-col-50 elementor-field-required">
-                        <input size="1" type="text" name="form_fields[message]" id="form-field-message" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Dirección*" required aria-required="true">
+                        <input size="1" type="text" name="address" id="form-field-address" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Dirección*" required aria-required="true">
                       </div>
                       <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_fa347bd elementor-col-50">
-                        <input size="1" type="text" name="form_fields[field_fa347bd]" id="form-field-field_fa347bd" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Franja horaria">
+                        <input size="1" type="text" name="timeFrame" id="form-field-timeframe" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Franja horaria">
                       </div>
                     </div>
                    
                     <div class="form-row">
                       <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_2d82f0a elementor-col-50 elementor-field-required">
-                        <input size="1" type="text" name="form_fields[field_2d82f0a]" id="form-field-field_2d82f0a" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Co. Postal*" required aria-required="true">
+                        <input size="1" type="text" name="postalCode" id="form-field-postal" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Co. Postal*" required aria-required="true">
                       </div>
                       <div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_cfaaf23 elementor-col-50 elementor-field-required">
-                        <input size="1" type="tel" name="form_fields[field_cfaaf23]" id="form-field-field_cfaaf23" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Teléfono*" required aria-required="true" pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+                        <input size="1" type="tel" name="phone" id="form-field-phone" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Teléfono*" required aria-required="true" pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
                       </div>
                     </div>
                     
                     <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-field_72b7372 elementor-col-100">
-                      <textarea class="elementor-field-textual elementor-field  elementor-size-sm" name="form_fields[field_72b7372]" id="form-field-field_72b7372" rows="4" placeholder="Tu consulta"></textarea>
+                      <textarea class="elementor-field-textual elementor-field  elementor-size-sm" name="message" id="form-field-message" rows="4" placeholder="Tu consulta"></textarea>
                     </div>
                     <div class="elementor-field-type-acceptance elementor-field-group elementor-column elementor-field-group-field_24cb135 elementor-col-100 elementor-field-required">
                       <div class="elementor-field-subgroup">
                         <span class="elementor-field-option">
-                          <input type="checkbox" name="form_fields[field_24cb135]" id="form-field-field_24cb135" class="elementor-field elementor-size-sm  elementor-acceptance-field" required aria-required="true">
-                          <label for="form-field-field_24cb135">Acepto los términos y condiciones</label>
+                          <input type="checkbox" name="acceptedTerms" id="form-field-terms" class="elementor-field elementor-size-sm  elementor-acceptance-field" required aria-required="true">
+                          <label for="form-field-terms">Acepto los términos y condiciones</label>
                         </span>
                       </div>
                     </div>
                     <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
-                      <button type="submit" class="elementor-button elementor-size-sm elementor-animation-grow" style="width: 100%; padding: 15px 40px; min-width: 200px;">
+                      <button type="submit" id="submit-btn" class="elementor-button elementor-size-sm elementor-animation-grow" style="width: 100%; padding: 15px 40px; min-width: 200px;">
                         <span>
                           <span class="elementor-button-icon"></span>
-                          <span class="elementor-button-text">Enviar</span>
+                          <span class="elementor-button-text" id="submit-text">Enviar</span>
                         </span>
                       </button>
                     </div>
+                    
+                    <!-- Messages for success/error feedback -->
+                    <div id="form-message" class="form-message" style="display: none; margin-top: 15px; padding: 10px; border-radius: 5px; text-align: center;"></div>
                   </div>
                 </form>
               </div>
@@ -273,4 +277,159 @@ import Button from '../components/ui/Button.astro';
   <a href="https://wa.me/+34656701824" target="_blank" class="whatsapp-button" title="WhatsApp - Presupuesto inmediato">
     <img src="/images/whatsapp-icon.svg" alt="WhatsApp" style="width: 35px; height: 35px;">
   </a>
+
+  <!-- Form functionality script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitText = document.getElementById('submit-text');
+      const messageDiv = document.getElementById('form-message');
+      
+      // Make webhook URL
+      const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/yo3nlh4c9mhhspc3iupjg8jpkj7ir8dk';
+      
+      // Form submission handler
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Disable submit button and show loading
+        submitBtn.disabled = true;
+        submitText.textContent = 'Enviando...';
+        submitBtn.style.opacity = '0.7';
+        
+        // Hide previous messages
+        messageDiv.style.display = 'none';
+        
+        // Get form data
+        const formData = new FormData(form);
+        
+        // Basic client-side validation
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const address = formData.get('address');
+        const phone = formData.get('phone');
+        const postalCode = formData.get('postalCode');
+        const acceptedTerms = formData.get('acceptedTerms');
+        
+        // Validation checks
+        if (!name || !email || !address || !phone || !postalCode) {
+          showMessage('Por favor, completa todos los campos obligatorios.', 'error');
+          resetSubmitButton();
+          return;
+        }
+        
+        if (!acceptedTerms) {
+          showMessage('Debes aceptar los términos y condiciones.', 'error');
+          resetSubmitButton();
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showMessage('Por favor, introduce un email válido.', 'error');
+          resetSubmitButton();
+          return;
+        }
+        
+        // Phone validation (Spanish format)
+        const phoneRegex = /^(\+34|0034|34)?[6789]\d{8}$/;
+        if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+          showMessage('Por favor, introduce un teléfono válido (ejemplo: 656701824).', 'error');
+          resetSubmitButton();
+          return;
+        }
+        
+        // Prepare data for Make
+        const dataForMake = {
+          name: name,
+          email: email,
+          address: address,
+          timeFrame: formData.get('timeFrame') || 'No especificado',
+          postalCode: postalCode,
+          phone: phone,
+          message: formData.get('message') || 'No especificado',
+          acceptedTerms: 'Sí',
+          formSource: 'Página Principal',
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+        };
+        
+        try {
+          // Send data to Make webhook
+          const response = await fetch(MAKE_WEBHOOK_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataForMake)
+          });
+          
+          if (response.ok) {
+            // Success
+            showMessage('¡Formulario enviado correctamente! Te contactaremos pronto.', 'success');
+            form.reset();
+            
+            // Optional: redirect to thank you page or scroll to top
+            // window.location.href = '/gracias';
+          } else {
+            throw new Error('Error en el servidor');
+          }
+          
+        } catch (error) {
+          console.error('Error sending form:', error);
+          showMessage('Error al enviar el formulario. Por favor, inténtalo de nuevo o contáctanos por teléfono.', 'error');
+        } finally {
+          resetSubmitButton();
+        }
+      });
+      
+      // Show message function
+      function showMessage(message, type) {
+        messageDiv.textContent = message;
+        messageDiv.style.display = 'block';
+        
+        if (type === 'success') {
+          messageDiv.style.backgroundColor = '#d4edda';
+          messageDiv.style.color = '#155724';
+          messageDiv.style.border = '1px solid #c3e6cb';
+        } else if (type === 'error') {
+          messageDiv.style.backgroundColor = '#f8d7da';
+          messageDiv.style.color = '#721c24';
+          messageDiv.style.border = '1px solid #f5c6cb';
+        }
+        
+        // Scroll to message
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      
+      // Reset submit button function
+      function resetSubmitButton() {
+        submitBtn.disabled = false;
+        submitText.textContent = 'Enviar';
+        submitBtn.style.opacity = '1';
+      }
+      
+      // Real-time phone number formatting
+      const phoneInput = document.getElementById('form-field-phone');
+      phoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 9) {
+          value = value.substring(0, 9);
+        }
+        e.target.value = value;
+      });
+      
+      // Real-time postal code validation
+      const postalInput = document.getElementById('form-field-postal');
+      postalInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 5) {
+          value = value.substring(0, 5);
+        }
+        e.target.value = value;
+      });
+    });
+  </script>
 </BaseLayout>

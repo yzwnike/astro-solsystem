@@ -34,6 +34,7 @@ const { transparent = true } = Astro.props;
               <li><a href="#cuadros-electricos">Cuadros eléctricos & control</a></li>
               <li><a href="#instalaciones-electricas">Instalaciones eléctricas</a></li>
               <li><a href="#aerotermia">Aerotermia</a></li>
+              <li><a href="/" class="active-service">Legalización eléctrica</a></li>
             </ul>
           </li>
           <li class="nav-item has-dropdown">
@@ -386,6 +387,9 @@ const { transparent = true } = Astro.props;
     margin-left: 8px;
     transition: transform 0.3s;
     color: var(--text-dark);
+    vertical-align: top;
+    position: relative;
+    top: -2px;
   }
 
   .has-dropdown:hover .dropdown-link::after {
@@ -493,6 +497,14 @@ const { transparent = true } = Astro.props;
   .dropdown-menu a:hover {
     background: var(--green-primary);
     color: white !important;
+  }
+
+  /* Active service styling - always highlighted */
+  .dropdown-menu a.active-service {
+    background: var(--green-primary) !important;
+    color: white !important;
+    font-weight: 600;
+    position: relative;
   }
 
   .header-cta-container {
@@ -663,6 +675,13 @@ const { transparent = true } = Astro.props;
     .dropdown-menu a:hover {
       background: var(--green-primary);
       color: white !important;
+    }
+
+    /* Active service styling for mobile */
+    .dropdown-menu a.active-service {
+      background: var(--green-primary) !important;
+      color: white !important;
+      font-weight: 600;
     }
   }
 
