@@ -25,7 +25,7 @@ import Button from '../components/ui/Button.astro';
     subtitle="¿Necesitas un boletín eléctrico? ¿Te han pedido legalizar una instalación? Estás en el lugar adecuado."
     ctaText="Solicitar presupuesto"
     price="Desde 99€"
-    heroImage="/images/fondo.png"
+    heroImage={import.meta.env.BASE_URL + "images/fondo.png"}
   />
 
   <!-- Servicios de legalización específicos - Movidos al hero -->
@@ -42,7 +42,7 @@ import Button from '../components/ui/Button.astro';
 
     <div class="proceso-row">
       <div class="proceso-imagen">
-        <img src="/images/sol.jpg" alt="Contacto inicial - SolSystems">
+        <img src={import.meta.env.BASE_URL + "images/sol.jpg"} alt="Contacto inicial - SolSystems">
       </div>
       <div class="proceso-content">
         <div class="proceso-feature">
@@ -66,13 +66,13 @@ import Button from '../components/ui/Button.astro';
         </div>
       </div>
       <div class="proceso-imagen">
-        <img src="/images/sol.jpg" alt="Inspección técnica - SolSystems">
+        <img src={import.meta.env.BASE_URL + "images/sol.jpg"} alt="Inspección técnica - SolSystems">
       </div>
     </div>
 
     <div class="proceso-row">
       <div class="proceso-imagen">
-        <img src="/images/sol.jpg" alt="Tramitación oficial - SolSystems">
+        <img src={import.meta.env.BASE_URL + "images/sol.jpg"} alt="Tramitación oficial - SolSystems">
       </div>
       <div class="proceso-content">
         <div class="proceso-feature">
@@ -96,7 +96,7 @@ import Button from '../components/ui/Button.astro';
         </div>
       </div>
       <div class="proceso-imagen">
-        <img src="/images/sol.jpg" alt="Atención personalizada - SolSystems">
+        <img src={import.meta.env.BASE_URL + "images/sol.jpg"} alt="Atención personalizada - SolSystems">
       </div>
     </div>
   </section>
@@ -186,7 +186,7 @@ import Button from '../components/ui/Button.astro';
           
           <!-- Mapa de España -->
           <div class="spain-map" style="max-width: 500px; margin-top: 40px;">
-            <img src="/images/mapa.webp" alt="Mapa de España" class="map-image" style="width: 100%; height: auto;">
+            <img src={import.meta.env.BASE_URL + "images/mapa.webp"} alt="Mapa de España" class="map-image" style="width: 100%; height: auto;">
           </div>
         </div>
       </div>
@@ -275,7 +275,7 @@ import Button from '../components/ui/Button.astro';
 
   <!-- WhatsApp Button -->
   <a href="https://wa.me/+34656701824" target="_blank" class="whatsapp-button" title="WhatsApp - Presupuesto inmediato">
-    <img src="/images/whatsapp-icon.svg" alt="WhatsApp" style="width: 35px; height: 35px;">
+    <img src={import.meta.env.BASE_URL + "images/whatsapp-icon.svg"} alt="WhatsApp" style="width: 35px; height: 35px;">
   </a>
 
   <!-- Form functionality script -->

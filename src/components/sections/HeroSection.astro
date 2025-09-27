@@ -14,7 +14,7 @@ const {
   ctaText = "Solicitar presupuesto",
   ctaAction = "document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})",
   showIcons = true,
-  backgroundImage = "/images/fondo.png"
+  backgroundImage = import.meta.env.BASE_URL + "images/fondo.png"
 } = Astro.props;
 
 const icons = [

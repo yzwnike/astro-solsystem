@@ -21,38 +21,8 @@ const {
     <!-- Pricing Cards Grid -->
     <div class="pricing-grid">
       
-      <!-- Certificado Vivienda -->
-      <div class="pricing-card">
-        <div class="pricing-card-header">
-          <div class="pricing-icon">
-            <span class="material-icons">home</span>
-          </div>
-          <h3>Certificado eléctrico Vivienda</h3>
-          <div class="pricing-price">
-            <span class="price-from">Desde</span>
-            <span class="price-amount">150€</span>
-            <span class="price-note">*Precio final según características</span>
-          </div>
-        </div>
-        <div class="pricing-card-body">
-          <ul class="pricing-features">
-            <li><span class="material-icons">check</span>Aumentos de potencia</li>
-            <li><span class="material-icons">check</span>Cambios de titular</li>
-            <li><span class="material-icons">check</span>Nuevos suministros</li>
-            <li><span class="material-icons">check</span>Inspección completa</li>
-            <li><span class="material-icons">check</span>Tramitación incluida</li>
-          </ul>
-        </div>
-        <div class="pricing-card-footer">
-          <button class="pricing-btn" onclick="document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})">
-            Solicitar presupuesto
-          </button>
-        </div>
-      </div>
-
       <!-- Certificado Local Comercial -->
-      <div class="pricing-card featured">
-        <div class="pricing-badge">Más Popular</div>
+      <div class="pricing-card">
         <div class="pricing-card-header">
           <div class="pricing-icon">
             <span class="material-icons">business</span>
@@ -71,6 +41,36 @@ const {
             <li><span class="material-icons">check</span>Aumentos de potencia</li>
             <li><span class="material-icons">check</span>Inspección OCA</li>
             <li><span class="material-icons">check</span>Gestión completa</li>
+          </ul>
+        </div>
+        <div class="pricing-card-footer">
+          <button class="pricing-btn" onclick="document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})">
+            Solicitar presupuesto
+          </button>
+        </div>
+      </div>
+
+      <!-- Certificado Vivienda -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Más Popular</div>
+        <div class="pricing-card-header">
+          <div class="pricing-icon">
+            <span class="material-icons">home</span>
+          </div>
+          <h3>Certificado eléctrico Vivienda</h3>
+          <div class="pricing-price">
+            <span class="price-from">Desde</span>
+            <span class="price-amount">150€</span>
+            <span class="price-note">*Precio final según características</span>
+          </div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-features">
+            <li><span class="material-icons">check</span>Aumentos de potencia</li>
+            <li><span class="material-icons">check</span>Cambios de titular</li>
+            <li><span class="material-icons">check</span>Nuevos suministros</li>
+            <li><span class="material-icons">check</span>Inspección completa</li>
+            <li><span class="material-icons">check</span>Tramitación incluida</li>
           </ul>
         </div>
         <div class="pricing-card-footer">
@@ -191,18 +191,20 @@ const {
 
   .pricing-badge {
     position: absolute;
-    top: -15px;
+    top: -10px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, #00AD2E, #00BF33);
     color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 14px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-size: 8px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(0, 173, 46, 0.4);
+    letter-spacing: 0.1px;
+    box-shadow: 0 1px 3px rgba(0, 173, 46, 0.2);
+    white-space: nowrap;
+    z-index: 10;
   }
 
   /* Card Header */

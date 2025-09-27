@@ -83,7 +83,7 @@ a {
 /* Hero Section with Background - Forest background image */
 .hero-section {
 	/* Forest background simple sin degradado */
-	background: url('/images/fondo.png') center/cover no-repeat;
+	background: url('../images/fondo.png') center/cover no-repeat;
 	min-height: 100vh;
 	position: relative;
 	display: flex;
@@ -1539,6 +1539,8 @@ textarea.elementor-field-textual {
 	width: calc(50% - 9px);
 	flex: 0 0 calc(50% - 9px);
 	box-sizing: border-box;
+	min-width: 0; /* Permite que los elementos se contraigan */
+	overflow: hidden; /* Evita desbordamiento */
 }
 
 /* Campos de anchura completa */
@@ -1638,8 +1640,33 @@ textarea.elementor-field-textual {
 	
 	/* Form fields en mobile van todos a ancho completo */
 	.footer-form-card .elementor-form-fields-wrapper .elementor-field-group.elementor-col-50 {
-		width: 100%;
-		flex: 0 0 100%;
+		width: 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* Form-row en mobile se apila verticalmente SIEMPRE */
+	.footer-form-card .form-row {
+		flex-direction: column !important;
+		gap: 18px !important;
+		width: 100% !important;
+	}
+
+	/* Dentro de form-row, cada campo toma el 100% del ancho */
+	.footer-form-card .form-row .elementor-field-group {
+		width: 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+	}
+
+	/* Asegurar que campos individuales no se desborden */
+	.footer-form-card .elementor-field {
+		max-width: 100% !important;
+		width: 100% !important;
+		box-sizing: border-box !important;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
 	}
 }
 
