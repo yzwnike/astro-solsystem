@@ -1605,13 +1605,22 @@ textarea.elementor-field-textual {
 	transition: all 0.2s;
 	width: auto;
 	max-width: 150px;
-	margin: 0 auto;
+	margin: 0;
 	display: block;
+	align-self: flex-start;
 }
-.footer-form-card .elementor-button:hover {
+}.footer-form-card .elementor-button:hover {
 	background: var(--green-hover);
 	transform: translateY(-1px);
 	box-shadow: 0 4px 12px rgba(83, 195, 7, 0.25);
+}
+
+/* Contenedor del botón: alineado a la izquierda */
+.footer-form-card .e-form__buttons {
+	text-align: left !important;
+	display: flex !important;
+	justify-content: flex-start !important;
+	align-items: center !important;
 }
 /* Form headers */
 #form .elementor-heading-title { 
@@ -1638,26 +1647,45 @@ textarea.elementor-field-textual {
 	.footer-form-card { padding: 24px; border-radius: 10px; }
 	#form .elementor-heading-title { font-size: 20px; } /* Más pequeño en mobile */
 	
-	/* Form fields en mobile van todos a ancho completo */
-	.footer-form-card .elementor-form-fields-wrapper .elementor-field-group.elementor-col-50 {
-		width: 100% !important;
-		flex: 0 0 100% !important;
-		max-width: 100% !important;
-	}
-
-	/* Form-row en mobile se apila verticalmente SIEMPRE */
-	.footer-form-card .form-row {
+	/* FORMULARIO RESPONSIVE - FORZAR APILAMIENTO VERTICAL */
+	
+	/* Container principal del formulario - flex vertical */
+	.footer-form-card .elementor-form-fields-wrapper {
+		display: flex !important;
 		flex-direction: column !important;
 		gap: 18px !important;
 		width: 100% !important;
+		flex-wrap: nowrap !important;
 	}
-
-	/* Dentro de form-row, cada campo toma el 100% del ancho */
-	.footer-form-card .form-row .elementor-field-group {
+	
+	/* TODOS los field-groups van a ancho completo */
+	.footer-form-card .elementor-field-group,
+	.footer-form-card .elementor-field-group.elementor-col-50,
+	.footer-form-card .elementor-field-group.elementor-col-100 {
 		width: 100% !important;
 		flex: 0 0 100% !important;
 		max-width: 100% !important;
 		min-width: 0 !important;
+		margin-bottom: 0 !important;
+	}
+
+	/* Form-row TAMBIÉN se apila verticalmente */
+	.footer-form-card .form-row {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 18px !important;
+		width: 100% !important;
+		flex-wrap: nowrap !important;
+	}
+
+	/* Dentro de form-row, cada campo toma el 100% del ancho */
+	.footer-form-card .form-row .elementor-field-group,
+	.footer-form-card .form-row .elementor-field-group.elementor-col-50 {
+		width: 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		margin-bottom: 0 !important;
 	}
 
 	/* Asegurar que campos individuales no se desborden */
@@ -1667,6 +1695,15 @@ textarea.elementor-field-textual {
 		box-sizing: border-box !important;
 		word-wrap: break-word;
 		overflow-wrap: break-word;
+	}
+	
+	/* Botón submit centrado */
+	.footer-form-card .elementor-button {
+		width: auto !important;
+		max-width: 150px !important;
+		margin: 0 !important;
+		display: block !important;
+		align-self: flex-start !important;
 	}
 }
 
@@ -1690,6 +1727,7 @@ textarea.elementor-field-textual {
 
 .footer-form-card .elementor-field-option input[type="checkbox"] {
 	margin: 0 !important;
+	margin-top: 2px !important;
 	flex-shrink: 0 !important;
 	order: 1 !important;
 }
@@ -1700,6 +1738,8 @@ textarea.elementor-field-textual {
 	margin: 0 !important;
 	order: 2 !important;
 	justify-self: flex-start !important;
+	line-height: 1.5 !important;
+	font-size: 13px !important;
 }
 
 /* Eliminar cualquier centrado del campo group del checkbox */
