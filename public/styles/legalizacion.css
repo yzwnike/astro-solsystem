@@ -1605,21 +1605,21 @@ textarea.elementor-field-textual {
 	transition: all 0.2s;
 	width: auto;
 	max-width: 150px;
-	margin: 0;
+	margin: 0 auto;
 	display: block;
-	align-self: flex-start;
 }
-}.footer-form-card .elementor-button:hover {
+
+.footer-form-card .elementor-button:hover {
 	background: var(--green-hover);
 	transform: translateY(-1px);
 	box-shadow: 0 4px 12px rgba(83, 195, 7, 0.25);
 }
 
-/* Contenedor del botón: alineado a la izquierda */
+/* Contenedor del botón: centrado en desktop */
 .footer-form-card .e-form__buttons {
-	text-align: left !important;
+	text-align: center !important;
 	display: flex !important;
-	justify-content: flex-start !important;
+	justify-content: center !important;
 	align-items: center !important;
 }
 /* Form headers */
@@ -1697,13 +1697,18 @@ textarea.elementor-field-textual {
 		overflow-wrap: break-word;
 	}
 	
-	/* Botón submit centrado */
+	/* Botón submit alineado a la izquierda en mobile */
 	.footer-form-card .elementor-button {
 		width: auto !important;
 		max-width: 150px !important;
 		margin: 0 !important;
 		display: block !important;
-		align-self: flex-start !important;
+	}
+	
+	/* Contenedor del botón alineado a la izquierda en mobile */
+	.footer-form-card .e-form__buttons {
+		text-align: left !important;
+		justify-content: flex-start !important;
 	}
 }
 
