@@ -68,11 +68,6 @@ a {
 	text-decoration: none;
 }
 
-a {
-	text-decoration: none;
-	transition: color 0.3s;
-}
-
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
