@@ -157,52 +157,68 @@ a {
 	color: var(--green-primary);
 }
 
-/* Dropdown Navigation Styles */
-.nav-item {
+/* Dropdown Navigation Styles - Coincidiendo con HTML real */
+.has-dropdown {
 	position: relative;
 }
 
-.dropdown {
+.dropdown-wrapper {
+	display: flex;
+	align-items: center;
 	position: relative;
-	cursor: pointer;
 }
 
-.dropdown::after {
+.dropdown-link::after {
 	content: "▼";
 	font-size: 10px;
 	margin-left: 8px;
 	transition: transform 0.3s;
+	color: var(--text-dark);
+	vertical-align: top;
+	position: relative;
+	top: -2px;
 }
 
-.dropdown:hover::after {
+.has-dropdown:hover .dropdown-link::after {
 	transform: rotate(180deg);
 }
 
-/* Dropdown Menu */
+/* Desktop Dropdown Menu */
 .dropdown-menu {
 	position: absolute;
 	top: 100%;
-	left: 50%;
-	transform: translateX(-50%);
+	left: 0;
 	margin-top: 10px;
 	background: white;
 	border-radius: 8px;
 	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 	min-width: 280px;
+	max-width: 320px;
 	opacity: 0;
 	visibility: hidden;
-	transform: translateX(-50%) translateY(-10px);
+	transform: translateY(-10px);
 	transition: all 0.3s ease;
 	z-index: 1000;
 	padding: 0;
 	display: flex;
 	flex-direction: column;
+	list-style: none;
+	margin: 0;
 }
 
-.nav-item:hover .dropdown-menu {
+/* Position dropdown to stay within viewport */
+.has-dropdown:nth-child(2) .dropdown-menu {
+	left: -60px; /* Servicios - adjust to center better */
+}
+
+.has-dropdown:nth-child(3) .dropdown-menu {
+	left: -80px; /* Mantenimiento - adjust to center better */
+}
+
+.has-dropdown:hover .dropdown-menu {
 	opacity: 1;
 	visibility: visible;
-	transform: translateX(-50%) translateY(0);
+	transform: translateY(0);
 }
 
 .dropdown-menu::before {
@@ -226,9 +242,9 @@ a {
 .dropdown-menu a {
 	display: block;
 	padding: 12px 20px;
-	color: var(--text-dark);
+	color: var(--text-dark) !important;
 	text-decoration: none;
-	font-weight: 700;
+	font-weight: 500;
 	font-size: 14px;
 	transition: all 0.3s ease;
 	width: 100%;
@@ -238,26 +254,53 @@ a {
 	margin: 0;
 }
 
+.dropdown-menu li:first-child a {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.dropdown-menu li:last-child a {
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
 .dropdown-menu a:hover {
-	background: #53C307;
-}
-
-/* Header CTA Button */
-.header-cta-button {
 	background: var(--green-primary);
-	color: white;
-	padding: 12px 32px;
-	border-radius: 4px;
-	font-weight: 600;
-	font-size: 16px;
-	transition: all 0.3s;
-	border: none;
-	cursor: pointer;
+	color: var(--text-dark) !important;
 }
 
-.header-cta-button:hover {
-	background: var(--green-hover);
-	transform: scale(1.05);
+/* Active service styling */
+.dropdown-menu a.active-service {
+	background: var(--green-primary) !important;
+	color: white !important;
+	font-weight: 600;
+	position: relative;
+}
+
+/* Header CTA Button - MÁS ESPECÍFICO PARA FORZAR TAMAÑO */
+.header-cta-button,
+.header-cta-container .header-cta-button,
+.site-header .header-cta-button,
+button.header-cta-button,
+a.header-cta-button {
+	background: var(--green-primary) !important;
+	color: white !important;
+	padding: 10px 20px !important;
+	border-radius: 4px !important;
+	font-weight: 600 !important;
+	font-size: 14px !important;
+	transition: all 0.3s !important;
+	border: none !important;
+	cursor: pointer !important;
+	max-width: none !important;
+	width: auto !important;
+}
+
+.header-cta-button:hover,
+.header-cta-container .header-cta-button:hover,
+.site-header .header-cta-button:hover {
+	background: var(--green-hover) !important;
+	transform: scale(1.05) !important;
 }
 
 /* Hero Content */
@@ -1115,6 +1158,31 @@ a {
 		0 8px 30px rgba(37, 211, 102, 0.4);
 }
 
+/* Ocultar flechas del carrusel en TODAS las resoluciones */
+.swiper-button-next,
+.swiper-button-prev,
+.elementor-swiper-button-next,
+.elementor-swiper-button-prev,
+.swiper-navigation .swiper-button-next,
+.swiper-navigation .swiper-button-prev,
+.elementor-widget-image-carousel .swiper-button-next,
+.elementor-widget-image-carousel .swiper-button-prev {
+	display: none !important;
+}
+
+/* Habilitar scroll táctil en carrusel para todas las resoluciones */
+.swiper-container,
+.elementor-swiper,
+.swiper {
+	touch-action: pan-x !important;
+	-webkit-overflow-scrolling: touch !important;
+}
+
+/* Asegurar que el carrusel sea desplazable */
+.swiper-wrapper {
+	transition-timing-function: ease-out !important;
+}
+
 /* Responsive Design - Matching original breakpoints */
 @media (max-width: 921px) {
 	html {
@@ -1161,6 +1229,170 @@ a {
 	
 	.cta-button, button, .ast-button, .button {
 		padding: 14px 28px;
+	}
+	
+	/* Botón Contáctanos más pequeño en responsive */
+	.header-cta-button {
+		padding: 10px 20px !important;
+		font-size: 14px !important;
+	}
+	
+	/* ARREGLAR MENU Y DESPLEGABLES EN MÓVIL - COINCIDIENDO CON JAVASCRIPT */
+	
+	/* Mobile navigation from Header.astro */
+	.site-header {
+		background: white !important;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		position: fixed !important;
+	}
+	
+	.mobile-menu-toggle {
+		display: flex !important;
+		order: 2;
+	}
+	
+	.header-cta-container {
+		order: 1;
+		margin-right: 20px;
+		z-index: 998;
+	}
+	
+	.main-navigation {
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 300px;
+		height: 100vh;
+		background: white;
+		transition: left 0.3s ease;
+		z-index: 999;
+		padding: 100px 0 20px;
+		overflow-y: auto;
+		box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+	}
+	
+	.main-navigation.active {
+		left: 0;
+	}
+	
+	.nav-menu {
+		flex-direction: column !important;
+		gap: 0 !important;
+		align-items: stretch !important;
+		width: 100% !important;
+		padding: 0 20px !important;
+	}
+	
+	.nav-menu > li {
+		border-bottom: 1px solid #eee !important;
+	}
+	
+	.nav-menu > li:last-child {
+		border-bottom: none !important;
+	}
+	
+	.nav-menu a {
+		display: block !important;
+		padding: 15px 0 !important;
+		color: var(--text-dark) !important;
+		font-size: 16px !important;
+		font-weight: 500 !important;
+	}
+	
+	/* Mobile Dropdown Wrapper */
+	.dropdown-wrapper {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		width: 100% !important;
+	}
+	
+	.dropdown-link {
+		flex: 1 !important;
+		padding: 15px 0 !important;
+		color: var(--text-dark) !important;
+		font-size: 16px !important;
+		font-weight: 500 !important;
+	}
+	
+	/* Hide desktop dropdown arrow on mobile */
+	.dropdown-link::after {
+		display: none !important;
+	}
+	
+	.dropdown-arrow {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 30px !important;
+		height: 30px !important;
+		background: none !important;
+		border: none !important;
+		cursor: pointer !important;
+		padding: 0 !important;
+		margin-left: 8px !important;
+		position: relative !important;
+	}
+	
+	.dropdown-arrow::after {
+		content: "▼" !important;
+		font-size: 10px !important;
+		color: var(--text-dark) !important;
+		transition: transform 0.3s ease !important;
+		position: absolute !important;
+		top: 50% !important;
+		left: 50% !important;
+		transform: translate(-50%, -50%) rotate(0deg) !important;
+	}
+	
+	.has-dropdown.active .dropdown-arrow::after {
+		transform: translate(-50%, -50%) rotate(180deg) !important;
+	}
+	
+	/* Mobile Dropdown Styles */
+	.dropdown-menu {
+		position: static !important;
+		background: #f8f9fa !important;
+		box-shadow: none !important;
+		border-radius: 0 !important;
+		min-width: auto !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+		transform: none !important;
+		transition: max-height 0.3s ease, padding 0.3s ease !important;
+		max-height: 0 !important;
+		overflow: hidden !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	
+	.has-dropdown.active .dropdown-menu {
+		max-height: 300px !important;
+		padding: 10px 0 !important;
+	}
+	
+	.dropdown-menu::before {
+		display: none !important;
+	}
+	
+	.dropdown-menu a {
+		padding: 12px 20px !important;
+		font-size: 14px !important;
+		color: var(--text-dark) !important;
+		background: transparent !important;
+		border-bottom: none !important;
+	}
+	
+	.dropdown-menu a:hover {
+		background: var(--green-primary) !important;
+		color: white !important;
+	}
+	
+	/* Active service styling for mobile */
+	.dropdown-menu a.active-service {
+		background: var(--green-primary) !important;
+		color: white !important;
+		font-weight: 600 !important;
 	}
 }
 

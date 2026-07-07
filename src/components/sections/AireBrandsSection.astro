@@ -1,0 +1,88 @@
+---
+// Bloque 3 del boceto: marcas y tipos de equipos (parte de marcas)
+// Sección visual para captar búsquedas por marca y dar confianza.
+// Las marcas se muestran en un carrusel animado (marquee) infinito.
+// Nota del boceto: mostramos las marcas como texto (no logos) hasta confirmar
+// internamente las marcas reales y disponer de autorización de logos.
+const brands = [
+  "Daikin", "Mitsubishi Electric", "Fujitsu", "Panasonic",
+  "LG", "Samsung", "Hisense", "Haier",
+  "Midea", "Toshiba", "Vaillant", "Ferroli",
+];
+---
+
+<!-- ================= MARCAS DE AIRE ACONDICIONADO ================= -->
+<section class="bg-slate-100 border-y border-slate-200 py-12 overflow-hidden">
+  <div class="max-w-6xl mx-auto text-center px-4 mb-8">
+    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Marcas de aire acondicionado que instalamos</h2>
+    <p class="text-slate-600 text-sm max-w-2xl mx-auto">
+      Trabajamos con equipos inverter de primeras marcas, buscando el equilibrio entre confort, consumo, nivel sonoro y garantía.
+    </p>
+  </div>
+
+  <!-- Carrusel animado (izquierda → derecha) -->
+  <div class="marquee">
+    <div class="marquee__track">
+      {/* Dos copias consecutivas para un bucle sin saltos */}
+      {[...brands, ...brands].map((brand) => (
+        <span class="marquee__item">{brand}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Difuminado suave en los bordes */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    /* La pista mide el doble (2 copias); animamos media pista para un loop perfecto */
+    animation: marquee-rtl 40s linear infinite;
+  }
+
+  .marquee__item {
+    flex: 0 0 auto;
+    padding: 0 2.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #475569;
+    white-space: nowrap;
+    opacity: 0.75;
+    transition: color 0.3s ease, opacity 0.3s ease;
+  }
+
+  .marquee__item:hover {
+    color: #0f172a;
+    opacity: 1;
+  }
+
+  /* Pausa al pasar el ratón */
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  /* Movimiento de izquierda a derecha */
+  @keyframes marquee-rtl {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Respeta la preferencia de reducir movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 0;
+    }
+  }
+</style>

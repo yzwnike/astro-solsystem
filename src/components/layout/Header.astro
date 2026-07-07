@@ -4,9 +4,14 @@ export interface Props {
 }
 
 const { transparent = true } = Astro.props;
+
+// Detecta la página actual para marcar en verde el servicio activo en el dropdown
+const path = Astro.url.pathname;
+const isAire = path.includes('instalacion-aire-acondicionado-madrid');
+const isLegalizacion = path === '/' || path === '';
 ---
 
-<header class={`site-header ${transparent ? 'transparent' : ''}`}>
+<header class={`site-header ${transparent ? 'transparent' : ''} ${isAire ? 'on-dark' : ''}`}>
   <div class="container">
     <div class="main-header-bar">
       <div class="site-logo">
@@ -34,7 +39,8 @@ const { transparent = true } = Astro.props;
               <li><a href="https://solsystems.es/servicios/cuadros-electricos-control/">Cuadros eléctricos & control</a></li>
               <li><a href="https://solsystems.es/servicios/instalaciones-electricas/">Instalaciones eléctricas</a></li>
               <li><a href="https://solsystems.es/servicios/aerotermia/">Aerotermia</a></li>
-              <li><a href="/" class="active-service">Legalización eléctrica</a></li>
+              <li><a href="/instalacion-aire-acondicionado-madrid" class:list={[{ "active-service": isAire }]}>Instalación de aire acondicionado</a></li>
+              <li><a href="/" class:list={[{ "active-service": isLegalizacion }]}>Legalización eléctrica</a></li>
             </ul>
           </li>
           <li class="nav-item has-dropdown">
@@ -222,6 +228,13 @@ const { transparent = true } = Astro.props;
 </script>
 
 <style>
+  /* Contenedor centrado (definido aquí para no depender de legalizacion.css) */
+  .site-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
   .site-header {
     position: absolute;
     top: 0;
@@ -241,6 +254,24 @@ const { transparent = true } = Astro.props;
   }
 
   .site-header.transparent .main-navigation a:hover {
+  }
+
+  /* Header sobre hero oscuro (landing de aire): menú y logo en claro (solo escritorio) */
+  @media (min-width: 922px) {
+    .site-header.on-dark .main-navigation a,
+    .site-header.on-dark .dropdown-link {
+      color: #ffffff;
+    }
+    .site-header.on-dark .main-navigation a:hover,
+    .site-header.on-dark .dropdown-link:hover {
+      color: var(--green-primary);
+    }
+    .site-header.on-dark .dropdown-link::after {
+      color: #ffffff;
+    }
+    .site-header.on-dark .hamburger-line {
+      background: #ffffff;
+    }
   }
 
   .site-header:not(.transparent) {
@@ -309,11 +340,18 @@ const { transparent = true } = Astro.props;
   }
 
   .site-header.transparent .hamburger-line {
-    background: var(--text-dark);
+    background: var(--text-dark) !important;
   }
 
   .site-header:not(.transparent) .hamburger-line {
-    background: white;
+    background: white !important;
+  }
+
+  /* Ensure hamburger is visible in mobile */
+  @media (max-width: 921px) {
+    .hamburger-line {
+      background: #333 !important; /* Dark color for mobile */
+    }
   }
 
   /* Hamburger Animation */
@@ -550,6 +588,11 @@ const { transparent = true } = Astro.props;
       background: white !important;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       position: fixed;
+      padding: 12px 0 !important; /* Reduce header padding */
+    }
+
+    .site-logo img {
+      height: 45px !important; /* Reduce logo size significantly */
     }
 
     .mobile-menu-toggle {
@@ -559,13 +602,14 @@ const { transparent = true } = Astro.props;
 
     .header-cta-container {
       order: 1;
-      margin-right: 20px;
-      z-index: 998; /* Even lower on mobile to stay behind mobile dropdown */
+      margin-right: 15px; /* Reduce margin */
+      z-index: 998;
     }
 
     .header-cta-button {
-      padding: 8px 20px;
-      font-size: 14px;
+      padding: 8px 14px !important;
+      font-size: 12px !important;
+      min-width: 100px !important;
     }
 
     .main-navigation {
@@ -632,7 +676,7 @@ const { transparent = true } = Astro.props;
     }
 
     .dropdown-arrow {
-      display: flex !important; /* Show on mobile */
+      display: flex !important;
       align-items: center;
       justify-content: center;
       width: 30px;
@@ -649,65 +693,177 @@ const { transparent = true } = Astro.props;
       transform: translate(-50%, -50%) rotate(180deg);
     }
 
-    /* Mobile Dropdown Styles */
+    /* Mobile Dropdown Styles - ARREGLADO PARA QUE FUNCIONE */
     .dropdown-menu {
-      position: static;
-      background: #f8f9fa;
-      box-shadow: none;
-      border-radius: 0;
-      min-width: auto;
-      opacity: 1;
-      visibility: visible;
-      transform: none;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      max-height: 0;
-      overflow: hidden;
-      padding: 0;
-      margin: 0;
+      position: static !important;
+      background: #f8f9fa !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      min-width: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      transition: max-height 0.3s ease, padding 0.3s ease !important;
+      max-height: 0 !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      z-index: 1000 !important;
     }
 
     .has-dropdown.active .dropdown-menu {
-      max-height: 300px;
-      padding: 10px 0;
+      max-height: 300px !important;
+      padding: 10px 0 !important;
     }
 
     .dropdown-menu::before {
-      display: none;
+      display: none !important;
     }
 
     .dropdown-menu a {
-      padding: 12px 20px;
-      font-size: 14px;
+      padding: 12px 20px !important;
+      font-size: 14px !important;
       color: var(--text-dark) !important;
-      background: transparent;
+      background: transparent !important;
+      display: block !important;
     }
 
     .dropdown-menu a:hover {
-      background: var(--green-primary);
+      background: #53C307 !important;
       color: white !important;
     }
 
     /* Active service styling for mobile */
     .dropdown-menu a.active-service {
-      background: var(--green-primary) !important;
+      background: #53C307 !important;
       color: white !important;
-      font-weight: 600;
+      font-weight: 600 !important;
     }
   }
 
-  /* Extra small mobile devices */
-  @media (max-width: 480px) {
+  /* iPhone 12 and similar devices (390px width) */
+  @media (max-width: 430px) {
     .main-navigation {
-      width: 280px;
+      width: 85vw; /* Use viewport width for better responsiveness */
+      max-width: 320px;
+      padding: 80px 0 20px; /* Reduce top padding */
+    }
+
+    .nav-menu {
+      padding: 0 15px; /* Reduce padding for smaller screens */
+    }
+
+    .nav-menu a {
+      padding: 12px 0 !important; /* Reduce vertical padding */
+      font-size: 15px !important;
+    }
+
+    .dropdown-menu a {
+      padding: 10px 15px !important;
+      font-size: 13px !important;
+      white-space: normal !important; /* Allow text wrapping if needed */
+      line-height: 1.3 !important;
+    }
+
+    .dropdown-link {
+      font-size: 15px !important;
+      padding: 12px 0 !important;
+    }
+
+    .dropdown-arrow {
+      width: 25px !important;
+      height: 25px !important;
+      flex-shrink: 0;
+    }
+
+    .dropdown-arrow::after {
+      font-size: 9px !important;
+    }
+
+    /* Improve dropdown spacing for smaller screens */
+    .has-dropdown.active .dropdown-menu {
+      max-height: 250px !important; /* Reduce max height */
+      padding: 8px 0 !important;
+    }
+
+    /* Ensure hamburger button has proper spacing */
+    .mobile-menu-toggle {
+      width: 28px;
+      height: 22px;
+    }
+
+    .site-header {
+      padding: 15px 0 !important; /* Reduce header padding */
+    }
+  }
+
+  /* Extra small mobile devices (iPhone SE, etc.) */
+  @media (max-width: 375px) {
+    .main-navigation {
+      width: 90vw;
+      max-width: 280px;
+    }
+
+    .nav-menu {
+      padding: 0 12px;
+    }
+
+    .dropdown-menu a {
+      padding: 8px 12px !important;
+      font-size: 12px !important;
+    }
+
+    .dropdown-link {
+      font-size: 14px !important;
+      padding: 10px 0 !important;
     }
 
     .header-cta-button {
-      padding: 6px 16px;
-      font-size: 13px;
+      padding: 6px 12px !important;
+      font-size: 12px !important;
+      min-width: 90px !important;
     }
 
     .site-logo img {
-      height: 50px;
+      height: 45px;
     }
+
+    .dropdown-arrow {
+      width: 22px !important;
+      height: 22px !important;
+    }
+
+    .dropdown-arrow::after {
+      font-size: 8px !important;
+    }
+  }
+
+  /* OCULTAR FLECHAS DEL CARRUSEL EN TODAS LAS RESOLUCIONES */
+  .swiper-button-next,
+  .swiper-button-prev,
+  .elementor-swiper-button-next,
+  .elementor-swiper-button-prev,
+  .swiper-navigation .swiper-button-next,
+  .swiper-navigation .swiper-button-prev,
+  .elementor-widget-image-carousel .swiper-button-next,
+  .elementor-widget-image-carousel .swiper-button-prev,
+  .elementor-widget-slides .swiper-button-next,
+  .elementor-widget-slides .swiper-button-prev {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Habilitar scroll táctil en carrusel */
+  .swiper-container,
+  .elementor-swiper,
+  .swiper {
+    touch-action: pan-x !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Asegurar que el carrusel sea desplazable */
+  .swiper-wrapper {
+    transition-timing-function: ease-out !important;
   }
 </style>

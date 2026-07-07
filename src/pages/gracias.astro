@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+
+// Thank-you page para medición de conversión (boceto pág. 10 y 13).
+// La landing puede redirigir aquí tras enviar el formulario para registrar
+// "visita página gracias" como conversión en Google Ads / GA4.
+const title = "Gracias | Solicitud recibida | SolSystems";
+const description = "Hemos recibido tu solicitud de presupuesto de aire acondicionado. Te responderemos en un plazo máximo de 24 horas laborables.";
+---
+
+<BaseLayout title={title} description={description} includeLegalizationCSS={false}>
+  <Header transparent={true} />
+
+  <section class="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white px-4 py-24">
+    <div class="max-w-xl mx-auto text-center">
+      <div class="w-20 h-20 mx-auto mb-8 rounded-full bg-[#53C307]/15 border border-[#53C307]/30 flex items-center justify-center">
+        <svg class="w-10 h-10 text-[#53C307]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold mb-4">¡Gracias! Hemos recibido tu solicitud</h1>
+      <p class="text-slate-300 leading-relaxed mb-10">
+        Nuestro equipo técnico revisará la información y te enviará una propuesta en un plazo máximo de 24 horas laborables. Si tu instalación es urgente, puedes escribirnos directamente por WhatsApp.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/instalacion-aire-acondicionado-madrid" class="bg-[#53C307] hover:bg-[#45a006] text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5">
+          Volver a la página
+        </a>
+        <a href="https://wa.me/34656701824" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-base px-6 py-4 rounded-xl transition-all duration-300">
+          <svg class="w-5 h-5 fill-current text-[#25D366]" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evento de conversión al cargar la página de gracias -->
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'thank_you_page_view', form: 'aire_acondicionado' });
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'thank_you_page_view', { form: 'aire_acondicionado' });
+      // Google Ads (descomentar con el conversion ID/label real):
+      // window.gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/label' });
+    }
+  </script>
+</BaseLayout>

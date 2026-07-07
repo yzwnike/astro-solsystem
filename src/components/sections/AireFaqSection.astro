@@ -1,0 +1,72 @@
+---
+// Bloque 5 del boceto: SEO / FAQ
+// Preguntas frecuentes para long tail y calidad del anuncio.
+// Los acordeones usan <details>, indexables. Incluye schema FAQPage sincronizado.
+const faqs = [
+  {
+    q: "¿Cuánto cuesta instalar aire acondicionado en Madrid?",
+    a: "El precio varía según el número de estancias y el sistema elegido. Una instalación de split mural individual estándar parte de un coste muy competitivo, mientras que multisplit o conductos requieren un estudio personalizado por la complejidad de tuberías y falsos techos. Te damos tu presupuesto exacto, sin coste y en 24 horas.",
+  },
+  {
+    q: "¿Qué equipo necesito para un salón o dormitorio?",
+    a: "Como regla general para Madrid calculamos unas 100 frigorías por metro cuadrado. Para un dormitorio de 10-15 m² es ideal una máquina de 2.0 a 2.5 kW; para salones de 25-30 m² recomendamos de 3.5 a 4.2 kW. Influyen la orientación solar y el aislamiento térmico del espacio.",
+  },
+  {
+    q: "¿Cuánto tarda una instalación de split?",
+    a: "Una instalación básica de split 1x1 suele realizarse en 3 o 4 horas el mismo día. Los sistemas multisplit pueden llevar entre medio día y un día completo, y los conductos en toda una vivienda de 1 a 2 días según la preinstalación o escayola.",
+  },
+  {
+    q: "¿Necesito permiso de la comunidad?",
+    a: "Sí, la instalación de unidades exteriores en fachadas o patios comunes se rige por la Ley de Propiedad Horizontal y las normativas municipales de cada ayuntamiento de Madrid. Te asesoramos sobre ubicaciones y regulaciones habituales para que todo cumpla con la legalidad.",
+  },
+  {
+    q: "¿Es mejor split, multisplit o conductos?",
+    a: "Depende del número de estancias, la estética que busques y si hay reforma. El split es ideal para una estancia, el multisplit para climatizar varias con una sola unidad exterior, y los conductos para una vivienda completa con un resultado invisible e integrado en el falso techo.",
+  },
+  {
+    q: "¿El aire acondicionado con bomba de calor consume mucho?",
+    a: "Los equipos inverter con bomba de calor son muy eficientes: dan frío en verano y calor en invierno con un consumo contenido. Con una buena elección del equipo, un dimensionamiento correcto y, si es posible, integración con placas solares, el gasto eléctrico se controla notablemente.",
+  },
+  {
+    q: "¿Hacéis presupuesto sin compromiso?",
+    a: "Sí. Cuéntanos qué necesitas y envíanos fotos del espacio: preparamos una propuesta clara y cerrada en un máximo de 24 horas laborables, sin ningún compromiso por tu parte.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
+---
+
+<!-- ================= PREGUNTAS FRECUENTES (FAQ) ================= -->
+<section id="faq" class="py-20 px-4 bg-white scroll-mt-24">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-4">Preguntas frecuentes</h2>
+      <p class="text-slate-600 text-sm">Respondemos las dudas habituales sobre instalaciones de aire acondicionado en Madrid.</p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="group bg-slate-50 border border-slate-200 rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+            <h3 class="font-bold text-slate-900 text-base pr-4">{faq.q}</h3>
+            <span class="ml-1.5 flex-shrink-0 rounded-full bg-white p-1 text-slate-900 transition duration-300 group-open:-rotate-180 border border-slate-200">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </span>
+          </summary>
+          <p class="mt-4 text-slate-600 text-sm leading-relaxed">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Schema FAQPage sincronizado con las preguntas de arriba -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

@@ -1,0 +1,89 @@
+---
+// Bloque 2 del boceto: servicios que debe incluir
+// Cada servicio tiene un id (anchor link interno) para SEO y campañas específicas:
+// Split, Multisplit, Conductos y Mantenimiento.
+const services = [
+  {
+    id: "split",
+    anchor: "Split 1x1",
+    num: "01",
+    title: "Instalación de aire acondicionado split 1x1",
+    text: "El sistema más común y ágil de instalar. Ideal para climatizar una habitación, salón o despacho con una unidad interior y una exterior. Estudiamos tu espacio para recomendar la potencia y ubicación más adecuadas.",
+    cta: "Pedir estudio de Split",
+  },
+  {
+    id: "multisplit",
+    anchor: "Multisplit",
+    num: "02",
+    title: "Instalación multisplit para varias estancias",
+    text: "Climatiza varias estancias (salón y dormitorios) con equipos 2x1, 3x1 o más conectados a una sola unidad exterior. Optimizamos el espacio en fachada y reducimos el impacto visual con un montaje limpio y bien dimensionado.",
+    cta: "Pedir estudio Multisplit",
+  },
+  {
+    id: "conductos",
+    anchor: "Conductos",
+    num: "03",
+    title: "Aire acondicionado por conductos",
+    text: "La alternativa estética invisible para viviendas completas y reformas. La máquina se ubica en el falso techo y distribuye el aire mediante rejillas, con flujo uniforme y control de temperatura por zonas.",
+    cta: "Pedir estudio de Conductos",
+  },
+  {
+    id: "cassette",
+    anchor: "Cassette",
+    num: "04",
+    title: "Cassette para oficinas y locales",
+    text: "Distribución de aire en 360° desde el techo, ideal para oficinas, locales y comercios. Climatización uniforme de grandes superficies con una estética integrada y profesional.",
+    cta: "Pedir estudio Cassette",
+  },
+  {
+    id: "sustitucion",
+    anchor: "Sustitución",
+    num: "05",
+    title: "Sustitución de equipos antiguos",
+    text: "¿Tu equipo consume demasiado o usa gas refrigerante descatalogado? Sustituimos sistemas antiguos por equipos inverter de alta eficiencia, cuidando la parte eléctrica y la estética del montaje.",
+    cta: "Sustituir mi equipo",
+  },
+  {
+    id: "mantenimiento",
+    anchor: "Mantenimiento",
+    num: "06",
+    title: "Preinstalación y mantenimiento",
+    text: "Preinstalación, canalizaciones y desagües en obra, además de mantenimiento preventivo y revisión antes de verano. Revisamos equipos existentes para mejorar su rendimiento antes de los meses de más calor.",
+    cta: "Solicitar mantenimiento",
+  },
+];
+---
+
+<!-- ================= SERVICIOS ================= -->
+<section id="servicios" class="py-20 px-4 bg-slate-50 border-t border-slate-200 scroll-mt-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Aire acondicionado split, multisplit y conductos</h2>
+      <p class="text-slate-600">Estudiamos tu vivienda o negocio para recomendar la potencia, ubicación y tipo de equipo más adecuado. Trabajamos instalaciones eficientes, limpias y seguras, cuidando la parte eléctrica y la estética del montaje.</p>
+    </div>
+
+    <!-- Anchor links internos (recomendación SEO del boceto) -->
+    <nav aria-label="Servicios de aire acondicionado" class="flex flex-wrap justify-center gap-2 mb-14">
+      {services.map((service) => (
+        <a href={`#${service.id}`} class="bg-white border border-slate-200 text-slate-700 text-sm font-semibold px-4 py-2 rounded-full hover:border-[#53C307] hover:text-[#53C307] transition-colors">
+          {service.anchor}
+        </a>
+      ))}
+    </nav>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <div id={service.id} class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between scroll-mt-28 transition-all duration-300 hover:border-[#53C307] hover:shadow-xl hover:-translate-y-1">
+          <div>
+            <div class="text-slate-300 font-bold text-4xl mb-4">{service.num}</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">{service.text}</p>
+          </div>
+          <a href="#solicitar-presupuesto" class="text-[#046bd2] hover:text-[#53C307] font-bold text-sm inline-flex items-center gap-2 mt-auto">
+            {service.cta} →
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

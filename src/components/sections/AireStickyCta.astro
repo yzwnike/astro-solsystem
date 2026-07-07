@@ -1,0 +1,79 @@
+---
+// CTA persistente (recomendación del boceto: CTA visible en primer scroll y repetido).
+// - En móvil: barra inferior fija con "Llamar" + "WhatsApp".
+// - En escritorio: botón flotante de WhatsApp.
+export interface Props {
+  phone?: string;
+  whatsapp?: string;
+}
+
+const {
+  phone = "+34656701824",
+  whatsapp = "+34656701824",
+} = Astro.props;
+
+const telLink = `tel:${phone.replace(/\s/g, "")}`;
+const waLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hola, quiero pedir presupuesto para la instalación de aire acondicionado.")}`;
+const waIcon = import.meta.env.BASE_URL + "images/whatsapp-icon.svg";
+---
+
+<!-- Botón flotante de WhatsApp (igual que la landing de index.astro) -->
+<a href={waLink} target="_blank" rel="noopener" class="aire-whatsapp-button" title="WhatsApp - Presupuesto inmediato">
+  <img src={waIcon} alt="WhatsApp" style="width: 35px; height: 35px;" />
+</a>
+
+<!-- Barra inferior fija en móvil: Llamar + WhatsApp -->
+<div class="md:hidden fixed bottom-0 inset-x-0 z-50 grid grid-cols-2 border-t border-slate-200 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+  <a href={telLink} class="flex items-center justify-center gap-2 py-3.5 font-bold text-sm text-white bg-[#53C307]">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+    Llamar
+  </a>
+  <a href={waLink} target="_blank" rel="noopener" class="flex items-center justify-center gap-2 py-3.5 font-bold text-sm text-white bg-[#25D366]">
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<!-- Espaciador para que la barra móvil no tape el contenido final -->
+<div class="md:hidden h-14" aria-hidden="true"></div>
+
+<style>
+  /* Réplica exacta de .whatsapp-button de legalizacion.css (index.astro) */
+  .aire-whatsapp-button {
+    display: none; /* en móvil se muestra la barra inferior en su lugar */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 0.6),
+      0 0 40px rgba(255, 255, 255, 0.4),
+      0 0 60px rgba(255, 255, 255, 0.2),
+      0 5px 20px rgba(37, 211, 102, 0.3);
+    border: none;
+    z-index: 1000;
+    transition: all 0.3s;
+  }
+
+  .aire-whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow:
+      0 0 25px rgba(255, 255, 255, 0.8),
+      0 0 50px rgba(255, 255, 255, 0.6),
+      0 0 80px rgba(255, 255, 255, 0.3),
+      0 8px 30px rgba(37, 211, 102, 0.4);
+  }
+
+  @media (min-width: 768px) {
+    .aire-whatsapp-button {
+      display: flex;
+    }
+  }
+</style>

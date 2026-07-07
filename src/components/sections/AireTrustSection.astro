@@ -1,0 +1,88 @@
+---
+// Estructura punto 2: Confianza
+// Equipo técnico, experiencia en instalaciones, garantía, zona de servicio.
+// Diferenciación SolSystems: empresa instaladora eléctrica y energética.
+const advantages = [
+  {
+    title: "Técnicos de plantilla",
+    text: "Equipo propio cualificado y acreditado por Industria. Cero subcontrataciones ni sorpresas técnicas en tu instalación.",
+    path: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+  },
+  {
+    title: "Consumo inteligente",
+    text: "Calculamos la carga térmica real del espacio para evitar sobredimensionamiento y consumos excesivos de luz.",
+    path: "M13 10V3L4 14h7v7l9-11h-7z",
+  },
+  {
+    title: "Presupuesto en 24 h",
+    text: "Transparencia desde el inicio. Te enviamos una propuesta cerrada y sin costes ocultos en menos de un día laborable.",
+    path: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+  {
+    title: "Sinergia solar",
+    text: "Como instaladores eléctricos y energéticos integramos tu climatización con placas solares para enfriar a coste mínimo.",
+    path: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z",
+  },
+];
+
+// Sellos de confianza del benchmark de competencia
+const trustBadges = [
+  "Equipo propio",
+  "Técnicos certificados",
+  "Legalización eléctrica incluida",
+  "Garantía y postventa",
+];
+
+// Zona de servicio (Confianza + SEO local + campañas por zona)
+const zones = [
+  "Madrid capital", "Alcorcón", "Móstoles", "Pozuelo de Alarcón",
+  "Las Rozas", "Majadahonda", "Getafe", "Leganés", "Fuenlabrada",
+];
+---
+
+<!-- ================= CONFIANZA Y AUTORIDAD ================= -->
+<section class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">La tranquilidad de un equipo técnico experto</h2>
+      <p class="text-slate-600">No solo somos una empresa de climatización: somos instaladores eléctricos y energéticos. Eso se traduce en instalaciones limpias, seguras, eficientes y bien dimensionadas.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {advantages.map((item) => (
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:border-[#53C307] hover:shadow-xl hover:-translate-y-1">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 text-[#046bd2] flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.path}/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+          <p class="text-slate-600 text-sm">{item.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Barra de confianza (patrón del benchmark: equipo propio · técnicos certificados · legalización · postventa) -->
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+      {trustBadges.map((badge) => (
+        <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+          <svg class="w-5 h-5 text-[#53C307] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-sm font-semibold text-slate-700">{badge}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Zona de servicio -->
+    <div class="mt-12 bg-gradient-to-br from-slate-900 to-blue-950 rounded-2xl p-8 text-center">
+      <div class="inline-flex items-center gap-2 text-[#53C307] font-bold text-xs uppercase tracking-wider mb-3">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Zona de servicio
+      </div>
+      <h3 class="text-xl font-bold text-white mb-4">Instalamos aire acondicionado en Madrid y alrededores</h3>
+      <div class="flex flex-wrap justify-center gap-2">
+        {zones.map((zone) => (
+          <span class="bg-white/10 border border-white/15 text-slate-200 text-xs font-medium px-3 py-1.5 rounded-full">{zone}</span>
+        ))}
+        <span class="bg-[#53C307]/15 border border-[#53C307]/25 text-[#53C307] text-xs font-semibold px-3 py-1.5 rounded-full">y toda la Comunidad de Madrid</span>
+      </div>
+    </div>
+  </div>
+</section>

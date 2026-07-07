@@ -1,0 +1,41 @@
+---
+// Estructura punto 4: Proceso
+// Solicitud → asesoramiento → presupuesto 24 h → instalación → postventa
+const steps = [
+  { num: "1", title: "Solicitud fácil", text: "Rellena el formulario web o envía fotos de tu espacio por WhatsApp." },
+  { num: "2", title: "Asesoramiento técnico", text: "Calculamos las frigorías y analizamos la viabilidad eléctrica y el desagüe." },
+  { num: "3", title: "Presupuesto en 24 h", text: "Te enviamos una oferta cerrada en un plazo máximo de 24 horas laborables." },
+  { num: "4", title: "Instalación profesional", text: "Montaje rápido por nuestros técnicos autorizados. Dejamos todo impecable." },
+  { num: "5", title: "Garantía y postventa", text: "Te acompañamos tras la instalación con garantía, revisiones y mantenimiento." },
+];
+---
+
+<!-- ================= PROCESO DE INSTALACIÓN ================= -->
+<section class="py-20 px-4 bg-gradient-to-br from-slate-900 to-blue-950 text-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(83,195,7,0.1),transparent_40%)]"></div>
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Cómo trabajamos la instalación</h2>
+      <p class="text-slate-300 text-sm">Un proceso sencillo, ágil y transparente desde tu primer contacto hasta el confort total en tu espacio.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
+      {steps.map((step) => (
+        <div class="flex flex-col items-center text-center">
+          <div class={`w-14 h-14 rounded-full font-extrabold text-lg flex items-center justify-center mb-6 ${step.num === "1" ? "bg-[#53C307] text-white shadow-lg shadow-[#53C307]/30" : "bg-slate-800 text-white border-2 border-slate-700"}`}>
+            {step.num}
+          </div>
+          <h3 class="text-lg font-bold mb-2">{step.title}</h3>
+          <p class="text-slate-300 text-xs px-2">{step.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA repetido antes del FAQ (recomendación del boceto) -->
+    <div class="text-center mt-16">
+      <a href="#solicitar-presupuesto" class="inline-block bg-[#53C307] hover:bg-[#45a006] text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-[#53C307]/20 transition-all duration-300 hover:-translate-y-0.5">
+        Solicitar presupuesto en 24 h
+      </a>
+    </div>
+  </div>
+</section>
