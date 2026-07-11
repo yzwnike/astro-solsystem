@@ -2,6 +2,16 @@
 // Bloque 2 del boceto: servicios que debe incluir
 // Cada servicio tiene un id (anchor link interno) para SEO y campañas específicas:
 // Split, Multisplit, Conductos y Mantenimiento.
+// Una imagen por tarjeta: la primera es la que ya había, el resto las nuevas (aire1..aire5)
+const base = import.meta.env.BASE_URL + "images/";
+const serviceImages = [
+  base + "aire-acondicionado1.jpeg",
+  base + "aire1.jpeg",
+  base + "aire2.jpeg",
+  base + "aire3.jpeg",
+  base + "aire6.jpeg",
+  base + "aire5.jpeg",
+];
 const services = [
   {
     id: "split",
@@ -55,7 +65,7 @@ const services = [
 ---
 
 <!-- ================= SERVICIOS ================= -->
-<section id="servicios" class="py-20 px-4 bg-slate-50 border-t border-slate-200 scroll-mt-24">
+<section id="servicios" class="py-14 px-4 bg-slate-50 border-t border-slate-200 scroll-mt-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-10">
       <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Aire acondicionado split, multisplit y conductos</h2>
@@ -72,16 +82,19 @@ const services = [
     </nav>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {services.map((service) => (
-        <div id={service.id} class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between scroll-mt-28 transition-all duration-300 hover:border-[#53C307] hover:shadow-xl hover:-translate-y-1">
-          <div>
-            <div class="text-slate-300 font-bold text-4xl mb-4">{service.num}</div>
-            <h3 class="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-            <p class="text-slate-600 text-sm mb-6 leading-relaxed">{service.text}</p>
+      {services.map((service, i) => (
+        <div id={service.id} class="group bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col overflow-hidden scroll-mt-28 transition-all duration-300 hover:border-[#53C307] hover:shadow-xl hover:-translate-y-1">
+          <div class="relative h-44 overflow-hidden">
+            <img src={serviceImages[i]} alt={service.title} loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2.5 py-1 rounded-lg">{service.num}</span>
           </div>
-          <a href="#solicitar-presupuesto" class="text-[#046bd2] hover:text-[#53C307] font-bold text-sm inline-flex items-center gap-2 mt-auto">
-            {service.cta} →
-          </a>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{service.title}</h3>
+            <p class="text-slate-600 text-sm mb-5 leading-relaxed">{service.text}</p>
+            <a href="#solicitar-presupuesto" class="text-[#046bd2] hover:text-[#53C307] font-bold text-sm inline-flex items-center gap-2 mt-auto">
+              {service.cta} →
+            </a>
+          </div>
         </div>
       ))}
     </div>

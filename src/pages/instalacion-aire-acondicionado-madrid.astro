@@ -12,6 +12,7 @@ import AireFaqSection from '../components/sections/AireFaqSection.astro';
 import AireContactSection from '../components/sections/AireContactSection.astro';
 import AireStickyCta from '../components/sections/AireStickyCta.astro';
 import AireTracking from '../components/sections/AireTracking.astro';
+import AireVisualBand from '../components/sections/AireVisualBand.astro';
 
 // SEO on-page (página 12 del boceto)
 const title = "Instalación de Aire Acondicionado en Madrid | Presupuesto 24h | SolSystems";
@@ -85,7 +86,18 @@ const serviceSchema = {
   <!-- 3. Marcas, confianza y tipos de equipo -->
   <AireBrandsSection />
   <AireTrustSection />
+
+  <!-- Línea separadora (degradado azul → verde, como la barra de las tarjetas) -->
+  <div class="bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="h-1 rounded-full bg-gradient-to-r from-[#046bd2] to-[#53C307]"></div>
+    </div>
+  </div>
+
   <AireEquipmentSection />
+
+  <!-- Banda visual + CTA -->
+  <AireVisualBand />
 
   <!-- 4. Proceso (incluye CTA repetido antes del FAQ) -->
   <AireProcessSection />

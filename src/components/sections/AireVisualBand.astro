@@ -1,0 +1,37 @@
+---
+// Banda visual con imagen de fondo + CTA. Aporta imagen y refuerza la conversión.
+const image = import.meta.env.BASE_URL + "images/aire5.jpeg";
+---
+
+<section class="relative px-4 py-16 overflow-hidden">
+  <!-- Imagen de fondo -->
+  <img
+    src={image}
+    alt="Instalación de aire acondicionado en vivienda por SolSystems"
+    loading="lazy"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <!-- Capa oscura para legibilidad -->
+  <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/70 to-slate-900/40"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto text-left text-white">
+    <span class="inline-flex items-center gap-2 bg-[#53C307]/20 text-[#53C307] font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full mb-4 border border-[#53C307]/30">
+      Instalación en 24-48 h
+    </span>
+    <h2 class="text-2xl md:text-3xl font-bold max-w-xl mb-4 leading-tight">
+      Prepara tu casa para el verano con una instalación limpia y eficiente
+    </h2>
+    <p class="text-slate-300 text-sm max-w-lg mb-8">
+      Técnicos propios, equipos inverter de primeras marcas y presupuesto cerrado en 24 h. Sin sorpresas.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a href="#solicitar-presupuesto" class="bg-[#53C307] hover:bg-[#45a006] text-white font-bold text-sm px-7 py-3.5 rounded-xl transition-all duration-300 hover:-translate-y-0.5">
+        Pedir presupuesto gratis
+      </a>
+      <a href="tel:+34656701824" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-6 py-3.5 rounded-xl transition-all duration-300">
+        <svg class="w-4 h-4 text-[#53C307]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Llamar ahora
+      </a>
+    </div>
+  </div>
+</section>

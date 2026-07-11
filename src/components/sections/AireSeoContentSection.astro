@@ -1,37 +1,51 @@
 ---
-// Copy SEO listo para maquetar (página 8 del boceto)
-// 4 bloques de texto con H2 recomendados para posicionamiento orgánico.
+// Copy SEO (página 8 del boceto) con formato visual: imagen + bloques compactos.
+const image = import.meta.env.BASE_URL + "images/aire4.jpeg";
+
 const blocks = [
   {
-    title: "Instaladores de aire acondicionado en Madrid",
-    text: "En SolSystems, empresa de aire acondicionado en Madrid, realizamos el montaje e instalación de equipos para viviendas, oficinas y locales. Nuestro equipo analiza el espacio, la orientación, el uso de cada estancia y la instalación eléctrica existente para recomendarte una solución eficiente y segura.",
+    title: "Instaladores de aire acondicionado en Madrid y Barcelona",
+    text: "Empresa de aire acondicionado que analiza el espacio, la orientación y la instalación eléctrica existente para recomendarte la solución más eficiente y segura, en viviendas, oficinas y locales.",
   },
   {
-    title: "Presupuesto de aire acondicionado en 24 horas",
-    text: "Cuéntanos qué necesitas y envíanos fotos del espacio. Te prepararemos una propuesta clara con equipo recomendado, alcance de instalación y plazos. Si es necesario, coordinamos visita técnica para cerrar el presupuesto.",
+    title: "Presupuesto en 24 horas",
+    text: "Cuéntanos qué necesitas y envíanos fotos: preparamos una propuesta clara con equipo recomendado, alcance y plazos. Si hace falta, coordinamos visita técnica.",
   },
   {
     title: "Instalación profesional, limpia y con garantía",
-    text: "Cuidamos la ubicación de la unidad interior y exterior, la canalización, el desagüe, el aislamiento de tuberías y la protección eléctrica. Nuestro objetivo es que el equipo rinda bien desde el primer día y que la instalación quede integrada en tu vivienda o negocio.",
+    text: "Cuidamos la ubicación de las unidades, la canalización, el desagüe, el aislamiento y la protección eléctrica. Que el equipo rinda desde el primer día y quede integrado.",
   },
   {
     title: "Soluciones eficientes para ahorrar energía",
-    text: "Recomendamos equipos inverter y sistemas con bomba de calor cuando encajan con el uso del cliente. Una buena elección del equipo y una instalación correcta ayudan a mejorar el confort y controlar el consumo eléctrico.",
+    text: "Equipos inverter y bomba de calor cuando encajan con tu uso. Una buena elección y una instalación correcta mejoran el confort y controlan el consumo eléctrico.",
   },
 ];
 ---
 
-<!-- ================= COPY SEO / CONTENIDO ================= -->
-<section class="py-20 px-4 bg-slate-50 border-t border-slate-200">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-x-12 gap-y-12">
+<!-- ================= COPY SEO / CONTENIDO (VISUAL) ================= -->
+<section class="py-16 px-4 bg-slate-50 border-t border-slate-200">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+    <!-- Imagen -->
+    <div class="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 order-1 lg:order-none">
+      <img
+        src={image}
+        alt="Instalación de aire acondicionado split en vivienda en Madrid por SolSystems"
+        width="640"
+        height="520"
+        loading="lazy"
+        class="w-full h-full max-h-[460px] object-cover"
+      />
+    </div>
+
+    <!-- Bloques de texto compactos -->
+    <div class="space-y-6">
       {blocks.map((block) => (
         <div>
-          <h2 class="text-2xl font-bold text-slate-900 mb-3 flex items-start gap-3">
-            <span class="w-1.5 h-6 bg-[#53C307] rounded-full flex-shrink-0 mt-1"></span>
+          <h2 class="text-lg font-bold text-slate-900 mb-1.5 flex items-start gap-2.5">
+            <span class="w-1.5 h-5 bg-[#53C307] rounded-full flex-shrink-0 mt-0.5"></span>
             {block.title}
           </h2>
-          <p class="text-slate-600 text-sm leading-relaxed pl-[18px]">{block.text}</p>
+          <p class="text-slate-600 text-sm leading-relaxed pl-4">{block.text}</p>
         </div>
       ))}
     </div>

@@ -32,18 +32,12 @@ const trustBadges = [
   "Legalización eléctrica incluida",
   "Garantía y postventa",
 ];
-
-// Zona de servicio (Confianza + SEO local + campañas por zona)
-const zones = [
-  "Madrid capital", "Alcorcón", "Móstoles", "Pozuelo de Alarcón",
-  "Las Rozas", "Majadahonda", "Getafe", "Leganés", "Fuenlabrada",
-];
 ---
 
 <!-- ================= CONFIANZA Y AUTORIDAD ================= -->
-<section class="py-20 px-4 bg-white">
+<section class="py-14 px-4 bg-white">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-16">
+    <div class="text-center max-w-2xl mx-auto mb-10">
       <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">La tranquilidad de un equipo técnico experto</h2>
       <p class="text-slate-600">No solo somos una empresa de climatización: somos instaladores eléctricos y energéticos. Eso se traduce en instalaciones limpias, seguras, eficientes y bien dimensionadas.</p>
     </div>
@@ -70,19 +64,5 @@ const zones = [
       ))}
     </div>
 
-    <!-- Zona de servicio -->
-    <div class="mt-12 bg-gradient-to-br from-slate-900 to-blue-950 rounded-2xl p-8 text-center">
-      <div class="inline-flex items-center gap-2 text-[#53C307] font-bold text-xs uppercase tracking-wider mb-3">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Zona de servicio
-      </div>
-      <h3 class="text-xl font-bold text-white mb-4">Instalamos aire acondicionado en Madrid y alrededores</h3>
-      <div class="flex flex-wrap justify-center gap-2">
-        {zones.map((zone) => (
-          <span class="bg-white/10 border border-white/15 text-slate-200 text-xs font-medium px-3 py-1.5 rounded-full">{zone}</span>
-        ))}
-        <span class="bg-[#53C307]/15 border border-[#53C307]/25 text-[#53C307] text-xs font-semibold px-3 py-1.5 rounded-full">y toda la Comunidad de Madrid</span>
-      </div>
-    </div>
   </div>
 </section>

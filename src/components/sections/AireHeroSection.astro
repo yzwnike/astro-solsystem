@@ -1,17 +1,17 @@
 ---
 // Bloque 1 del boceto: Hero + CTA
 // Título SEO, propuesta de valor, "presupuesto en 24 h", llamada/WhatsApp
+import AireLeadForm from './AireLeadForm.astro';
+
 export interface Props {
   phone?: string;
   whatsapp?: string;
 }
 
 const {
-  phone = "+34656701824",
   whatsapp = "+34656701824",
 } = Astro.props;
 
-const heroImage = import.meta.env.BASE_URL + "images/aire-acondicionado1.jpeg";
 const waLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hola, quiero pedir presupuesto para la instalación de aire acondicionado. Os envío unas fotos del espacio.")}`;
 ---
 
@@ -21,12 +21,12 @@ const waLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}?text=${encodeUR
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(83,195,7,0.15),transparent_45%)]"></div>
   <div class="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl"></div>
 
-  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-12 gap-12 items-center relative z-10">
+  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-10 lg:gap-12 items-center relative z-10">
     <!-- Texto Principal -->
-    <div class="md:col-span-7 flex flex-col justify-center text-left">
+    <div class="flex flex-col justify-center text-left">
       <span class="inline-flex items-center gap-2 bg-[#53C307]/15 text-[#53C307] font-bold text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-6 w-fit border border-[#53C307]/20">
         <span class="w-2 h-2 bg-[#53C307] rounded-full animate-pulse"></span>
-        Instaladores en Madrid · Presupuesto en 24 h
+        Instaladores en Madrid y Barcelona · Presupuesto en 24 h
       </span>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
         Instalación de <span class="text-[#53C307]">aire acondicionado</span> en Madrid
@@ -66,29 +66,27 @@ const waLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}?text=${encodeUR
         </a>
       </div>
 
-      <!-- Teléfono directo visible en el primer scroll -->
-      <a href={`tel:${phone.replace(/\s/g, "")}`} class="mt-6 inline-flex items-center gap-2 text-slate-300 hover:text-white text-sm w-fit transition-colors">
-        <svg class="w-4 h-4 text-[#53C307]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        ¿Prefieres llamar? <span class="font-bold text-white">656 701 824</span>
-      </a>
+      <!-- Teléfonos directos visibles en el primer scroll -->
+      <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-slate-300 text-sm">
+        <span class="inline-flex items-center gap-2">
+          <svg class="w-4 h-4 text-[#53C307]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          ¿Prefieres llamar?
+        </span>
+        <a href="tel:+34656701824" class="inline-flex items-center gap-1.5 hover:text-white transition-colors">
+          Madrid <span class="font-bold text-white">656 701 824</span>
+        </a>
+        <a href="tel:+34695047081" class="inline-flex items-center gap-1.5 hover:text-white transition-colors">
+          Barcelona <span class="font-bold text-white">695 047 081</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Visual sugerido: split instalado en vivienda moderna -->
-    <div class="md:col-span-5 relative flex justify-center">
-      <div class="relative w-full max-w-sm rounded-3xl overflow-hidden border border-slate-700 shadow-2xl shadow-black/50 bg-slate-800">
-        <img
-          src={heroImage}
-          alt="Instalación de aire acondicionado split en vivienda en Madrid por SolSystems"
-          width="400"
-          height="320"
-          loading="eager"
-          class="w-full h-80 object-cover opacity-95"
-        />
-        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent p-6 text-left">
-          <p class="text-xs text-[#53C307] font-bold tracking-wider uppercase mb-1">Último proyecto</p>
-          <h2 class="text-white font-bold text-base mb-1">Split Inverter instalado en Alcorcón</h2>
-          <p class="text-slate-300 text-xs">Clase A+++ con integración de paneles solares.</p>
-        </div>
+    <!-- Formulario principal (captación en el primer scroll) -->
+    <div id="presupuesto-hero" class="relative">
+      <div class="bg-white rounded-3xl shadow-2xl shadow-black/40 p-6 sm:p-8 border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900 mb-1">Pide tu presupuesto en 24 h</h2>
+        <p class="text-slate-500 text-sm mb-6">Déjanos tus datos y te asesoramos sin compromiso.</p>
+        <AireLeadForm id="lead-form-hero" compact={true} submitLabel="Solicitar presupuesto gratis" />
       </div>
     </div>
   </div>

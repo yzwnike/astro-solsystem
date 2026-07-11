@@ -1,6 +1,8 @@
 ---
-// Bloque 6 del boceto: Formulario y conversión
-// Campos mínimos + fotos + urgencia + consentimiento. Datos de contacto y mapa al final.
+// Bloque 6 del boceto: Formulario y conversión (formulario final).
+// Usa el mismo componente reutilizable AireLeadForm que el hero.
+import AireLeadForm from './AireLeadForm.astro';
+
 export interface Props {
   phone?: string;
   webhook?: string;
@@ -16,7 +18,7 @@ const waLink = `https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=${encodeURICo
 ---
 
 <!-- ================= FORMULARIO Y CONTACTO ================= -->
-<section id="solicitar-presupuesto" class="py-20 px-4 bg-slate-50 border-t border-slate-200 scroll-mt-10">
+<section id="solicitar-presupuesto" class="py-16 px-4 bg-slate-50 border-t border-slate-200 scroll-mt-10">
   <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 items-start justify-between">
 
     <!-- Bloque de texto + datos de contacto -->
@@ -27,17 +29,30 @@ const waLink = `https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=${encodeURICo
       </p>
 
       <div class="space-y-6">
-        <a href={`tel:${phone.replace(/\s/g, "")}`} class="flex items-start gap-4 group">
+        <!-- Teléfono Madrid -->
+        <a href="tel:+34656701824" class="flex items-start gap-4 group">
           <div class="w-6 h-6 text-[#53C307] mt-1 flex-shrink-0">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
           </div>
           <div>
-            <h3 class="text-slate-900 font-medium text-sm group-hover:text-[#53C307] transition-colors">Teléfono directo</h3>
-            <p class="text-slate-500 text-xs mt-1">Madrid: +34 656 701 824</p>
+            <h3 class="text-slate-900 font-medium text-sm group-hover:text-[#53C307] transition-colors">Teléfono Madrid</h3>
+            <p class="text-slate-500 text-xs mt-1">+34 656 701 824</p>
           </div>
         </a>
 
-        <div class="flex items-start gap-4">
+        <!-- Teléfono Barcelona -->
+        <a href="tel:+34695047081" class="flex items-start gap-4 group">
+          <div class="w-6 h-6 text-[#53C307] mt-1 flex-shrink-0">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div>
+            <h3 class="text-slate-900 font-medium text-sm group-hover:text-[#53C307] transition-colors">Teléfono Barcelona</h3>
+            <p class="text-slate-500 text-xs mt-1">+34 695 047 081</p>
+          </div>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href={waLink} target="_blank" rel="noopener" class="flex items-start gap-4">
           <div class="w-6 h-6 text-[#25D366] mt-1 flex-shrink-0">
             <svg class="fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
           </div>
@@ -45,26 +60,28 @@ const waLink = `https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=${encodeURICo
             <h3 class="text-slate-900 font-medium text-sm">WhatsApp</h3>
             <p class="text-slate-500 text-xs mt-1">Envíanos fotos: +34 656 701 824</p>
           </div>
-        </div>
+        </a>
 
+        <!-- Sedes -->
         <div class="flex items-start gap-4">
           <div class="w-6 h-6 text-[#53C307] mt-1 flex-shrink-0">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
           <div>
-            <h3 class="text-slate-900 font-medium text-sm">Sede Alcorcón</h3>
-            <p class="text-slate-500 text-xs mt-1">Calle Físicas 40, 28923 Alcorcón, Madrid</p>
+            <h3 class="text-slate-900 font-medium text-sm">Sedes</h3>
+            <p class="text-slate-500 text-xs mt-1">Alcorcón (Madrid): Calle Físicas 40, 28923</p>
+            <p class="text-slate-500 text-xs mt-1">Montgat (Barcelona): Passeig de les Vilares 14 B</p>
           </div>
         </div>
       </div>
 
       <!-- Mapa al final para no distraer de la conversión -->
       <div class="mt-10 max-w-sm rounded-xl overflow-hidden border border-slate-200">
-        <img src={mapImage} alt="Cobertura de SolSystems en Madrid" loading="lazy" class="w-full opacity-80" />
+        <img src={mapImage} alt="Cobertura de SolSystems en Madrid y Barcelona" loading="lazy" class="w-full opacity-80" />
       </div>
     </div>
 
-    <!-- Formulario -->
+    <!-- Formulario completo (mismo componente que el hero) -->
     <div class="w-full lg:w-1/2 flex flex-col">
       <h3 class="text-2xl font-medium text-slate-900 mb-3 tracking-tight">Cuéntanos sobre tu instalación</h3>
       <p class="text-slate-600 text-sm leading-relaxed mb-8">
@@ -72,208 +89,12 @@ const waLink = `https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=${encodeURICo
       </p>
 
       <div class="border border-black rounded-2xl p-8 bg-transparent">
-        <form id="contact-form" class="space-y-6">
-          <input type="hidden" name="form_source" value="landing_aire"/>
-
-          <div class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input type="text" name="name" placeholder="Nombre*" required class="w-full border-b border-black rounded-none bg-transparent py-3 text-slate-900 text-sm placeholder-slate-600 focus:outline-none focus:border-[#53C307] transition-colors" />
-              <input type="tel" id="form-field-phone" name="phone" placeholder="Teléfono*" required class="w-full border-b border-black rounded-none bg-transparent py-3 text-slate-900 text-sm placeholder-slate-600 focus:outline-none focus:border-[#53C307] transition-colors" />
-            </div>
-
-            <input type="email" name="email" placeholder="Correo electrónico*" required class="w-full border-b border-black rounded-none bg-transparent py-3 text-slate-900 text-sm placeholder-slate-600 focus:outline-none focus:border-[#53C307] transition-colors" />
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input type="text" id="form-field-postal" name="postalCode" placeholder="Código postal / zona*" required class="w-full border-b border-black rounded-none bg-transparent py-3 text-slate-900 text-sm placeholder-slate-600 focus:outline-none focus:border-[#53C307] transition-colors" />
-              <input type="text" name="rooms" placeholder="Nº de estancias o m² aprox." class="w-full border-b border-black rounded-none bg-transparent py-3 text-slate-900 text-sm placeholder-slate-600 focus:outline-none focus:border-[#53C307] transition-colors" />
-            </div>
-
-            <!-- Tipo de inmueble -->
-            <div class="pt-2">
-              <label class="block text-slate-700 text-xs font-semibold mb-2">Tipo de inmueble</label>
-              <select name="propertyType" class="w-full border-b border-black rounded-none bg-transparent py-2 text-slate-900 text-sm focus:outline-none focus:border-[#53C307]">
-                <option value="Vivienda">Vivienda</option>
-                <option value="Local">Local</option>
-                <option value="Oficina">Oficina</option>
-              </select>
-            </div>
-
-            <!-- Sistema -->
-            <div class="pt-2">
-              <label class="block text-slate-700 text-xs font-semibold mb-2">¿Qué tipo de instalación necesitas?</label>
-              <select name="system" class="w-full border-b border-black rounded-none bg-transparent py-2 text-slate-900 text-sm focus:outline-none focus:border-[#53C307]">
-                <option value="Split mural 1x1">Split mural individual (1 estancia)</option>
-                <option value="Multisplit">Multisplit (varias estancias)</option>
-                <option value="Conductos">Centralizado por conductos</option>
-                <option value="Cassette">Cassette (oficina / local)</option>
-                <option value="Sustitución de equipo">Sustitución de equipo antiguo</option>
-                <option value="Mantenimiento">Mantenimiento / revisión</option>
-                <option value="No lo sé">No lo sé, necesito asesoramiento</option>
-              </select>
-            </div>
-
-            <!-- Urgencia -->
-            <div class="pt-2">
-              <label class="block text-slate-700 text-xs font-semibold mb-2">¿Para cuándo lo necesitas?</label>
-              <select name="urgency" class="w-full border-b border-black rounded-none bg-transparent py-2 text-slate-900 text-sm focus:outline-none focus:border-[#53C307]">
-                <option value="Esta semana">Esta semana</option>
-                <option value="Este mes">Este mes</option>
-                <option value="Solo información">Solo información</option>
-              </select>
-            </div>
-
-            <!-- Subida de fotos o enlace WhatsApp -->
-            <div class="pt-2">
-              <label class="block text-slate-700 text-xs font-semibold mb-2">Fotos del espacio (opcional, acelera el presupuesto)</label>
-              <input type="text" name="photosLink" placeholder="Pega aquí un enlace a tus fotos (Drive, Fotos…)" class="w-full border-b border-black rounded-none bg-transparent py-3 text-slate-900 text-sm placeholder-slate-600 focus:outline-none focus:border-[#53C307] transition-colors" />
-              <a href={waLink} target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#25D366] hover:text-[#1da851] transition-colors">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
-                O envíanoslas directamente por WhatsApp
-              </a>
-            </div>
-
-            <!-- Aceptación de términos -->
-            <div class="flex items-start gap-2 pt-4">
-              <input type="checkbox" name="acceptedTerms" id="form-field-terms" required class="mt-1 flex-shrink-0" />
-              <label for="form-field-terms" class="text-xs text-slate-700 leading-tight">
-                Acepto la <a href="https://solsystems.es/politica-de-privacidad/" target="_blank" rel="noopener" class="underline hover:text-[#53C307]">política de privacidad</a> de SolSystems para tramitar mi solicitud de presupuesto.
-              </label>
-            </div>
-          </div>
-
-          <div class="pt-4 text-center lg:text-left">
-            <button type="submit" id="submit-btn" class="bg-[#53C307] hover:bg-[#45a006] text-white font-bold text-sm px-10 py-3.5 rounded-full inline-flex items-center justify-center transition-all duration-300">
-              <span id="submit-text">Solicitar presupuesto en 24 h</span>
-            </button>
-          </div>
-
-          <div id="form-message" class="hidden mt-4 p-3 rounded-lg text-sm text-center"></div>
-        </form>
+        <AireLeadForm id="lead-form-final" compact={false} webhook={webhook} submitLabel="Solicitar presupuesto en 24 h" />
+        <a href={waLink} target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#25D366] hover:text-[#1da851] transition-colors">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
+          ¿Prefieres enviarnos fotos por WhatsApp?
+        </a>
       </div>
     </div>
   </div>
 </section>
-
-<script is:inline define:vars={{ webhook, baseUrl: import.meta.env.BASE_URL }}>
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-    const submitBtn = document.getElementById('submit-btn');
-    const submitText = document.getElementById('submit-text');
-    const messageDiv = document.getElementById('form-message');
-    const defaultLabel = submitText.textContent;
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      submitBtn.disabled = true;
-      submitText.textContent = 'Enviando...';
-      submitBtn.style.opacity = '0.7';
-      messageDiv.classList.add('hidden');
-
-      const formData = new FormData(form);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const phone = formData.get('phone');
-      const postalCode = formData.get('postalCode');
-      const acceptedTerms = formData.get('acceptedTerms');
-
-      if (!name || !email || !phone || !postalCode) {
-        showFormMessage('Por favor, completa todos los campos obligatorios.', 'error');
-        resetSubmitState();
-        return;
-      }
-      if (!acceptedTerms) {
-        showFormMessage('Debes aceptar la política de privacidad.', 'error');
-        resetSubmitState();
-        return;
-      }
-
-      const propertyType = formData.get('propertyType');
-      const system = formData.get('system');
-      const urgency = formData.get('urgency');
-      const rooms = formData.get('rooms') || 'No especificado';
-      const photosLink = formData.get('photosLink') || 'No adjuntado';
-
-      // Mismo webhook que index.astro. Incluimos TODAS las claves que ya usa el
-      // escenario de Make (name, email, address, timeFrame, postalCode, phone,
-      // message, acceptedTerms, formSource, timestamp, userAgent) + extras de aire.
-      // Todo el detalle va también en "message" por si el escenario solo mapea eso.
-      const payload = {
-        name: name,
-        email: email,
-        phone: phone,
-        address: `CP/Zona: ${postalCode} · Inmueble: ${propertyType}`,
-        timeFrame: 'No especificado',
-        postalCode: postalCode,
-        rooms: rooms,
-        photosLink: photosLink,
-        propertyType: propertyType,
-        system: system,
-        urgency: urgency,
-        message: `Solicitud de AIRE ACONDICIONADO — Inmueble: ${propertyType} · Sistema: ${system} · Urgencia: ${urgency} · Tamaño: ${rooms} · Fotos: ${photosLink}`,
-        acceptedTerms: 'Sí',
-        formSource: 'Landing Aire Acondicionado Madrid',
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent
-      };
-
-      try {
-        const response = await fetch(webhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (response.ok) {
-          // Conversión: envío de formulario (boceto pág. 10/12)
-          if (typeof window.ssTrack === 'function') {
-            window.ssTrack('generate_lead', {
-              form: 'aire_acondicionado',
-              system: payload.system,
-              urgency: payload.urgency
-            });
-          }
-          showFormMessage('¡Gracias! Hemos recibido tu solicitud. Nuestro equipo técnico revisará la información y te enviará una propuesta en un plazo máximo de 24 horas laborables.', 'success');
-          form.reset();
-          // Redirección a la página de gracias para registrar "visita página gracias"
-          setTimeout(function () {
-            window.location.href = baseUrl + 'gracias';
-          }, 1500);
-        } else {
-          throw new Error('Server side error');
-        }
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        showFormMessage('Ocurrió un error al enviar tu consulta. Por favor, llámanos directamente o escríbenos por WhatsApp.', 'error');
-      } finally {
-        resetSubmitState();
-      }
-    });
-
-    function showFormMessage(msg, type) {
-      messageDiv.textContent = msg;
-      messageDiv.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
-      messageDiv.classList.add(type === 'success' ? 'bg-green-100' : 'bg-red-100', type === 'success' ? 'text-green-800' : 'text-red-800');
-    }
-
-    function resetSubmitState() {
-      submitBtn.disabled = false;
-      submitText.textContent = defaultLabel;
-      submitBtn.style.opacity = '1';
-    }
-
-    // Formateo teléfono y código postal
-    const phoneInput = document.getElementById('form-field-phone');
-    phoneInput?.addEventListener('input', function (e) {
-      let value = e.target.value.replace(/\D/g, '');
-      if (value.length > 9) value = value.substring(0, 9);
-      e.target.value = value;
-    });
-    const postalInput = document.getElementById('form-field-postal');
-    postalInput?.addEventListener('input', function (e) {
-      let value = e.target.value.replace(/\D/g, '');
-      if (value.length > 5) value = value.substring(0, 5);
-      e.target.value = value;
-    });
-  });
-</script>
