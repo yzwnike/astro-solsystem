@@ -2,15 +2,15 @@
 // Bloque 2 del boceto: servicios que debe incluir
 // Cada servicio tiene un id (anchor link interno) para SEO y campañas específicas:
 // Split, Multisplit, Conductos y Mantenimiento.
-// Una imagen por tarjeta: la primera es la que ya había, el resto las nuevas (aire1..aire5)
-const base = import.meta.env.BASE_URL + "images/";
+// Una imagen por tarjeta, servidas desde el CDN (webp).
+import { CDN_IMAGES } from '../../consts';
 const serviceImages = [
-  base + "aire-acondicionado1.jpeg",
-  base + "aire1.jpeg",
-  base + "aire2.jpeg",
-  base + "aire3.jpeg",
-  base + "aire6.jpeg",
-  base + "aire5.jpeg",
+  `${CDN_IMAGES}/aire-acondicionado1.webp`,
+  `${CDN_IMAGES}/aire1.webp`,
+  `${CDN_IMAGES}/aire2.webp`,
+  `${CDN_IMAGES}/aire3.webp`,
+  `${CDN_IMAGES}/aire6.webp`,
+  `${CDN_IMAGES}/aire8.webp`,
 ];
 const services = [
   {

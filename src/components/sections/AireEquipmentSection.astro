@@ -1,21 +1,10 @@
 ---
-// Bloque 3 del boceto: tipos de equipo + guía rápida de selección
-// Ayuda a captar búsquedas por tipo de sistema y actúa como mini lead magnet
-// ("¿Qué aire acondicionado necesito según m²?").
-const types = [
-  { name: "Split mural", use: "Habitaciones, salones y pisos" },
-  { name: "Multisplit", use: "Varias estancias con una unidad exterior" },
-  { name: "Conductos", use: "Viviendas completas y reforma" },
-  { name: "Cassette", use: "Oficinas, locales y comercios" },
-  { name: "Bomba de calor", use: "Frío en verano y calor en invierno" },
-];
-
+// Guía rápida de selección ("¿Qué aire acondicionado necesito según m²?").
 const guide = [
   {
     space: "Dormitorio o despacho",
     system: "Split mural 1x1",
     power: "2.0 – 2.5 kW",
-    brands: ["Fujitsu", "Daikin"],
     advantage: "Ultra silencioso para dormir",
     icon: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z",
   },
@@ -23,23 +12,20 @@ const guide = [
     space: "Salón mediano (< 35 m²)",
     system: "Split mural inverter",
     power: "3.5 – 4.2 kW",
-    brands: ["Mitsubishi", "LG"],
-    advantage: "Enfriamiento rápido del espacio principal",
+    advantage: "Enfriamiento rápido del salón",
     icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
   },
   {
-    space: "Vivienda completa (reformada)",
-    system: "Centralizado por conductos",
+    space: "Vivienda completa",
+    system: "Conductos",
     power: "7.1 – 10.0 kW",
-    brands: ["Toshiba", "Haier"],
-    advantage: "Invisible, integrado en falso techo",
+    advantage: "Invisible, en falso techo",
     icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
   },
   {
-    space: "Oficinas y locales comerciales",
+    space: "Oficinas y locales",
     system: "Cassette en techo",
     power: "10.0 – 12.5 kW",
-    brands: ["Midea", "Panasonic"],
     advantage: "Distribución de aire a 360°",
     icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
   },
@@ -49,19 +35,9 @@ const guide = [
 <!-- ================= TIPOS DE EQUIPO + GUÍA DE SELECCIÓN ================= -->
 <section class="py-14 px-4 bg-white">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-12">
+    <div class="text-center max-w-2xl mx-auto mb-10">
       <h2 class="text-3xl font-bold text-slate-900 mb-4">¿Qué aire acondicionado necesito según m²?</h2>
-      <p class="text-slate-600">Elige el tipo de sistema y la potencia orientativa según tu espacio. En el estudio técnico ajustamos la elección a la orientación, el aislamiento y el uso real.</p>
-    </div>
-
-    <!-- Tipos de equipo -->
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-14">
-      {types.map((type) => (
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-center hover:border-[#53C307] transition-colors">
-          <h3 class="text-base font-bold text-slate-900 mb-1">{type.name}</h3>
-          <p class="text-slate-500 text-xs leading-relaxed">{type.use}</p>
-        </div>
-      ))}
+      <p class="text-slate-600">La potencia orientativa según tu espacio. En el estudio técnico ajustamos la elección al aislamiento, la orientación y el uso real.</p>
     </div>
 
     <!-- Guía de selección en tarjetas -->
@@ -87,19 +63,9 @@ const guide = [
             </div>
 
             <!-- Sistema recomendado -->
-            <div class="mb-4">
+            <div class="mb-5">
               <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Sistema recomendado</span>
               <span class="inline-block bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg">{row.system}</span>
-            </div>
-
-            <!-- Marcas sugeridas -->
-            <div class="mb-5">
-              <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Marcas sugeridas</span>
-              <div class="flex flex-wrap gap-1.5">
-                {row.brands.map((brand) => (
-                  <span class="bg-slate-100 text-slate-600 text-xs font-medium px-2.5 py-1 rounded-full">{brand}</span>
-                ))}
-              </div>
             </div>
 
             <!-- Ventaja principal -->
