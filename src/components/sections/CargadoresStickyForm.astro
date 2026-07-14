@@ -1,0 +1,189 @@
+---
+// Formulario de contacto SIEMPRE PRESENTE como sticky en la esquina inferior izquierda.
+// Colapsable: en móvil arranca cerrado; en escritorio, abierto. Mismo webhook de Make.
+---
+
+<div id="sticky-form" class="sticky-form">
+  <!-- Pestaña/botón para abrir-cerrar -->
+  <button type="button" class="sticky-toggle" id="sticky-toggle" aria-expanded="true">
+    <span class="material-icons sticky-toggle-icon">bolt</span>
+    <span class="sticky-toggle-text">Solicita tu estudio gratis</span>
+    <span class="material-icons sticky-chevron">expand_more</span>
+  </button>
+
+  <!-- Panel del formulario -->
+  <div class="sticky-panel" id="sticky-panel">
+    <p class="sticky-lead">Déjanos tus datos y te llamamos sin compromiso.</p>
+    <form id="sticky-contact-form">
+      <input type="hidden" name="form_source" value="cargadores_sticky" />
+      <input type="text" name="name" placeholder="Nombre*" required class="sticky-input" />
+      <input type="tel" name="phone" inputmode="numeric" placeholder="Teléfono*" required class="sticky-input" />
+      <label class="sticky-terms">
+        <input type="checkbox" name="acceptedTerms" required />
+        <span>Acepto la <a href="https://solsystems.es/politica-de-privacidad/" target="_blank" rel="noopener">política de privacidad</a></span>
+      </label>
+      <button type="submit" id="sticky-submit" class="sticky-submit"><span id="sticky-submit-text">Solicitar estudio GRATIS</span></button>
+      <div id="sticky-msg" class="sticky-msg" style="display:none;"></div>
+    </form>
+  </div>
+</div>
+
+<script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
+  document.addEventListener('DOMContentLoaded', function () {
+    var wrap = document.getElementById('sticky-form');
+    var toggle = document.getElementById('sticky-toggle');
+    if (!wrap || !toggle) return;
+
+    // Estado inicial: cerrado en móvil, abierto en escritorio
+    if (window.innerWidth <= 768) wrap.classList.add('collapsed');
+
+    toggle.addEventListener('click', function () {
+      wrap.classList.toggle('collapsed');
+      toggle.setAttribute('aria-expanded', wrap.classList.contains('collapsed') ? 'false' : 'true');
+    });
+
+    var form = document.getElementById('sticky-contact-form');
+    var btn = document.getElementById('sticky-submit');
+    var btnText = document.getElementById('sticky-submit-text');
+    var msg = document.getElementById('sticky-msg');
+    var WEBHOOK = 'https://hook.eu2.make.com/yo3nlh4c9mhhspc3iupjg8jpkj7ir8dk';
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var fd = new FormData(form);
+      var name = fd.get('name'), phone = fd.get('phone'), terms = fd.get('acceptedTerms');
+      if (!name || !phone) { show('Completa nombre y teléfono.', 'error'); return; }
+      if (!terms) { show('Debes aceptar la política de privacidad.', 'error'); return; }
+
+      btn.disabled = true; btn.style.opacity = '0.7'; btnText.textContent = 'Enviando...';
+      var data = {
+        name: name, phone: phone, email: 'No especificado',
+        address: 'No especificado', timeFrame: 'No especificado', postalCode: 'No especificado',
+        message: 'Lead rápido desde formulario STICKY de cargadores',
+        acceptedTerms: 'Sí', formSource: 'Landing Cargadores Eléctricos (sticky)',
+        timestamp: new Date().toISOString(), userAgent: navigator.userAgent
+      };
+      try {
+        var res = await fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        if (res.ok) {
+          if (typeof window.ssTrack === 'function') window.ssTrack('generate_lead', { form: 'cargadores_sticky' });
+          show('¡Gracias! Te llamamos enseguida.', 'success');
+          form.reset();
+          setTimeout(function () { window.location.href = baseUrl + 'gracias'; }, 1400);
+        } else { throw new Error('err'); }
+      } catch (err) {
+        show('Error al enviar. Llámanos o escríbenos por WhatsApp.', 'error');
+        btn.disabled = false; btn.style.opacity = '1'; btnText.textContent = 'Solicitar estudio GRATIS';
+      }
+    });
+
+    function show(t, type) {
+      msg.textContent = t; msg.style.display = 'block';
+      msg.style.background = type === 'success' ? '#d4edda' : '#f8d7da';
+      msg.style.color = type === 'success' ? '#155724' : '#721c24';
+    }
+  });
+</script>
+
+<style>
+  .sticky-form {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+
+  .sticky-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  .sticky-toggle-icon { font-size: 20px; }
+  .sticky-toggle-text { flex: 1; text-align: left; }
+  .sticky-chevron { transition: transform 0.3s ease; }
+  .sticky-form.collapsed .sticky-chevron { transform: rotate(180deg); }
+
+  .sticky-panel {
+    max-height: 460px;
+    padding: 16px;
+    transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.25s ease;
+    opacity: 1;
+  }
+  .sticky-form.collapsed .sticky-panel {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+  }
+
+  .sticky-lead { font-size: 13px; color: #64748b; margin: 0 0 12px; }
+
+  .sticky-input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  .sticky-input:focus { outline: none; border-color: var(--green-primary); }
+
+  .sticky-terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 11px;
+    color: #64748b;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .sticky-terms a { color: var(--green-primary); }
+
+  .sticky-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #00AD2E, #00BF33);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 173, 46, 0.35);
+  }
+  .sticky-submit:hover { background: linear-gradient(135deg, #009426, #00A52E); }
+
+  .sticky-msg {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .sticky-form { left: 12px; bottom: 12px; width: 260px; }
+  }
+</style>

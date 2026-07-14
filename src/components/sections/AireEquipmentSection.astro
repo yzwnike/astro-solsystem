@@ -37,6 +37,7 @@ const guide = [
   <div class="max-w-6xl mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-10">
       <h2 class="text-3xl font-bold text-slate-900 mb-4">¿Qué aire acondicionado necesito según m²?</h2>
+      <span class="block w-16 h-1 rounded-full bg-[#53C307] mx-auto mb-6"></span>
       <p class="text-slate-600">La potencia orientativa según tu espacio. En el estudio técnico ajustamos la elección al aislamiento, la orientación y el uso real.</p>
     </div>
 
@@ -50,7 +51,7 @@ const guide = [
           <div class="p-6 flex flex-col flex-1">
             <!-- Icono + espacio -->
             <div class="flex items-center gap-3 mb-5">
-              <div class="w-11 h-11 rounded-xl bg-blue-50 text-[#046bd2] flex items-center justify-center flex-shrink-0 transition-colors duration-300 group-hover:bg-[#53C307]/10 group-hover:text-[#53C307]">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#00AD2E] to-[#00BF33] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-[#00AD2E]/25">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d={row.icon}/></svg>
               </div>
               <h3 class="text-sm font-bold text-slate-900 leading-tight">{row.space}</h3>

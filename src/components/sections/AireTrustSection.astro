@@ -31,14 +31,29 @@ const advantages = [
   <div class="max-w-6xl mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-10">
       <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">La tranquilidad de un equipo técnico experto</h2>
+      <span class="block w-16 h-1 rounded-full bg-[#53C307] mx-auto mb-6"></span>
       <p class="text-slate-600">No solo somos una empresa de climatización: somos instaladores eléctricos y energéticos. Eso se traduce en instalaciones limpias, seguras, eficientes y bien dimensionadas.</p>
+    </div>
+
+    <!-- Badge de reseñas de Google -->
+    <div class="flex items-center justify-center gap-2.5 flex-wrap mb-12">
+      <span class="text-xl font-bold tracking-tight"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>
+      <span class="font-extrabold text-slate-900">5,0</span>
+      <span class="inline-flex text-[#FBBC05]">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.17c.969 0 1.371 1.24.588 1.81l-3.376 2.455a1 1 0 00-.363 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.175 0l-3.376 2.454c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.363-1.118L2.98 9.393c-.783-.57-.38-1.81.588-1.81h4.17a1 1 0 00.95-.69l1.286-3.966z"/></svg>
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.17c.969 0 1.371 1.24.588 1.81l-3.376 2.455a1 1 0 00-.363 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.175 0l-3.376 2.454c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.363-1.118L2.98 9.393c-.783-.57-.38-1.81.588-1.81h4.17a1 1 0 00.95-.69l1.286-3.966z"/></svg>
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.17c.969 0 1.371 1.24.588 1.81l-3.376 2.455a1 1 0 00-.363 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.175 0l-3.376 2.454c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.363-1.118L2.98 9.393c-.783-.57-.38-1.81.588-1.81h4.17a1 1 0 00.95-.69l1.286-3.966z"/></svg>
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.17c.969 0 1.371 1.24.588 1.81l-3.376 2.455a1 1 0 00-.363 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.175 0l-3.376 2.454c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.363-1.118L2.98 9.393c-.783-.57-.38-1.81.588-1.81h4.17a1 1 0 00.95-.69l1.286-3.966z"/></svg>
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.17c.969 0 1.371 1.24.588 1.81l-3.376 2.455a1 1 0 00-.363 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.175 0l-3.376 2.454c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.363-1.118L2.98 9.393c-.783-.57-.38-1.81.588-1.81h4.17a1 1 0 00.95-.69l1.286-3.966z"/></svg>
+      </span>
+      <span class="text-slate-500 text-sm">Reseñas verificadas</span>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       {advantages.map((item) => (
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:border-[#53C307] hover:shadow-xl hover:-translate-y-1">
-          <div class="w-12 h-12 rounded-xl bg-blue-100 text-[#046bd2] flex items-center justify-center mb-6">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.path}/></svg>
+        <div class="bg-white border-2 border-[#046bd2] rounded-xl p-6 text-center transition-all duration-300 shadow-[0_8px_25px_rgba(4,107,210,0.12)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(4,107,210,0.22)]">
+          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#00AD2E] to-[#00BF33] text-white flex items-center justify-center mb-5 mx-auto shadow-lg shadow-[#00AD2E]/30">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.path}/></svg>
           </div>
           <h3 class="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
           <p class="text-slate-600 text-sm">{item.text}</p>

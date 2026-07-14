@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import CargadoresTracking from '../components/sections/CargadoresTracking.astro';
+import CargadoresHero from '../components/sections/CargadoresHero.astro';
+import CargadoresVentajas from '../components/sections/CargadoresVentajas.astro';
+import CargadoresUbicaciones from '../components/sections/CargadoresUbicaciones.astro';
+import CargadoresTestimonios from '../components/sections/CargadoresTestimonios.astro';
+import CargadoresFaq from '../components/sections/CargadoresFaq.astro';
+import CargadoresInstalaciones from '../components/sections/CargadoresInstalaciones.astro';
+import CargadoresContacto from '../components/sections/CargadoresContacto.astro';
+import CargadoresStickyForm from '../components/sections/CargadoresStickyForm.astro';
+
+const title = "Instalación de Cargadores de Coches Eléctricos en Madrid y Barcelona | SolSystems";
+const description = "Instalamos tu cargador de coche eléctrico llave en mano: instalación, cuadro de protecciones y boletín. Subvención Plan Moves III hasta el 80%. Estudio gratis.";
+---
+
+<BaseLayout title={title} description={description} includeLegalizationCSS={true}>
+  <Header transparent={true} />
+
+  <CargadoresTracking />
+
+  <!-- Hero -->
+  <CargadoresHero />
+
+  <!-- Ventajas -->
+  <CargadoresVentajas />
+
+  <!-- Tu punto de recarga donde quieras -->
+  <CargadoresUbicaciones />
+
+  <!-- Testimonios -->
+  <CargadoresTestimonios />
+
+  <!-- FAQ -->
+  <CargadoresFaq />
+
+  <!-- Instalaciones finalizadas (sustituye "Creemos que esto es para ti") -->
+  <CargadoresInstalaciones />
+
+  <!-- Charlemos + formulario -->
+  <CargadoresContacto />
+
+  <!-- Formulario sticky siempre presente (esquina inferior izquierda) -->
+  <CargadoresStickyForm />
+
+  <!-- WhatsApp flotante (estilo legalizacion.css) -->
+  <a href="https://wa.me/34656701824" target="_blank" class="whatsapp-button" title="WhatsApp - Presupuesto inmediato">
+    <img src={import.meta.env.BASE_URL + "images/whatsapp-icon.svg"} alt="WhatsApp" style="width: 35px; height: 35px;">
+  </a>
+</BaseLayout>

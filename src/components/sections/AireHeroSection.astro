@@ -2,6 +2,7 @@
 // Bloque 1 del boceto: Hero + CTA
 // Título SEO, propuesta de valor, "presupuesto en 24 h", llamada/WhatsApp
 import AireLeadForm from './AireLeadForm.astro';
+import { CDN_IMAGES } from '../../consts';
 
 export interface Props {
   phone?: string;
@@ -12,11 +13,16 @@ const {
   whatsapp = "+34656701824",
 } = Astro.props;
 
+const heroBg = `${CDN_IMAGES}/aire-acondicionado1.webp`;
 const waLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hola, quiero pedir presupuesto para la instalación de aire acondicionado. Os envío unas fotos del espacio.")}`;
 ---
 
 <!-- ================= HERO SECTION ================= -->
-<section class="relative min-h-[90vh] flex items-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white overflow-hidden py-20 px-4">
+<section class="relative min-h-[90vh] flex items-center bg-slate-900 text-white overflow-hidden py-20 px-4">
+  <!-- Foto de fondo (CDN) -->
+  <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${heroBg}');`}></div>
+  <!-- Overlay oscuro para legibilidad del texto y el formulario -->
+  <div class="absolute inset-0 bg-gradient-to-br from-slate-900/92 via-blue-950/88 to-slate-900/82"></div>
   <!-- Efecto visual de fondo (Abstract Shapes) -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(83,195,7,0.15),transparent_45%)]"></div>
   <div class="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl"></div>
@@ -57,7 +63,7 @@ const waLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}?text=${encodeUR
 
       <!-- Botones de Acción: CTA principal + CTA secundario (WhatsApp) -->
       <div class="flex flex-wrap gap-4">
-        <a href="#solicitar-presupuesto" class="bg-[#53C307] hover:bg-[#45a006] text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-[#53C307]/20 transition-all duration-300 hover:-translate-y-0.5">
+        <a href="#solicitar-presupuesto" class="bg-gradient-to-br from-[#00AD2E] to-[#00BF33] hover:from-[#009426] hover:to-[#00A52E] text-white font-bold text-sm uppercase tracking-wide px-8 py-4 rounded-full shadow-lg shadow-[#00AD2E]/40 transition-all duration-300 hover:-translate-y-0.5">
           Solicitar presupuesto en 24 h
         </a>
         <a href={waLink} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-base px-6 py-4 rounded-xl transition-all duration-300">

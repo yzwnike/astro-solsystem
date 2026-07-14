@@ -1,0 +1,185 @@
+---
+// Footer "Charlemos" + formulario "Solicita un presupuesto personalizado".
+// Calco del footer de index.astro (estilos en legalizacion.css). Mismo webhook de Make.
+const mapImg = import.meta.env.BASE_URL + "images/mapa.webp";
+---
+
+<div data-elementor-type="footer" class="elementor elementor-3471 elementor-location-footer">
+  <div class="footer-container" id="contacto" style="min-height: 700px !important;">
+    <div class="footer-flex" style="align-items: flex-start !important; min-height: 800px; padding: 60px 40px;">
+      <div class="footer-left" style="margin-left: 30px; display: flex; flex-direction: column; justify-content: flex-start;">
+        <div class="charlemos-section">
+          <h2 class="charlemos-title" style="font-weight: 550 !important; font-family: 'Montserrat', sans-serif !important;">Charlemos</h2>
+          <p class="charlemos-subtitle">Démonos el tiempo necesario para descubrir todas las posibilidades para ayudarte a instalar tu punto de recarga.</p>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M6.54 5C6.6 5.89 6.75 6.76 6.99 7.59L5.79 8.79C5.38 7.59 5.12 6.32 5.03 5H6.54ZM16.4 17.02C17.25 17.26 18.12 17.41 19 17.47V18.96C17.68 18.87 16.41 18.61 15.2 18.21L16.4 17.02ZM7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.51C21 15.96 20.55 15.51 20 15.51C18.76 15.51 17.55 15.31 16.43 14.94C16.33 14.9 16.22 14.89 16.12 14.89C15.86 14.89 15.61 14.99 15.41 15.18L13.21 17.38C10.38 15.93 8.06 13.62 6.62 10.79L8.82 8.59C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3Z" fill="#53C307"/>
+              </svg>
+            </div>
+            <div class="contact-content">
+              <h3 class="contact-title">Teléfono</h3>
+              <p class="contact-description">Madrid: +34 656 701 824<br>Barcelona: +34 695 047 081</p>
+            </div>
+          </div>
+
+          <div class="footer-direccion" style="gap: 10px;">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none"><path d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+              <div class="contact-content">
+                <h3 class="contact-title"><a href="https://maps.app.goo.gl/RrjkScc9ZkntvZkUA" target="_blank">Dirección:</a></h3>
+                <p class="contact-description">Calle Físicas 40, 28923<br>Alcorcón, Madrid</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none"><path d="M9.99949 21.9971C8.3757 20.9076 6.86864 19.6676 5.50026 18.2953C4.29588 17.111 3.25611 15.7837 2.40652 14.3462C1.5268 12.8984 1.0431 11.2626 1 9.58947C1 7.3114 1.94821 5.12664 3.63604 3.5158C5.32387 1.90496 7.61305 1 10 1C12.3869 1 14.6761 1.90496 16.364 3.5158C18.0518 5.12664 19 7.3114 19 9.58947C18.9569 11.2626 18.4732 12.8984 17.5935 14.3462C16.7441 15.7847 15.7043 17.113 14.4997 18.2983C13.1314 19.6705 11.6243 20.9105 10.0005 22L9.99949 21.9971ZM9.91273 6.29396C9.23483 6.29396 8.57216 6.48581 8.00851 6.84525C7.44486 7.20469 7.00555 7.71557 6.74613 8.3133C6.48671 8.91103 6.41884 9.56875 6.55109 10.2033C6.68334 10.8378 7.00978 11.4207 7.48912 11.8782C7.96846 12.3357 8.57919 12.6472 9.24406 12.7734C9.90893 12.8996 10.5981 12.8349 11.2244 12.5873C11.8507 12.3397 12.386 11.9204 12.7626 11.3825C13.1392 10.8445 13.3402 10.2121 13.3402 9.56512C13.3392 8.69787 12.9777 7.86644 12.3351 7.2532C11.6926 6.63996 10.8214 6.29499 9.91273 6.29396Z" fill="#53C307" stroke="#53C307" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+              <div class="contact-content">
+                <h3 class="contact-title"><a href="https://maps.app.goo.gl/eHtQZwjHxps3XAxe7" target="_blank">Dirección:</a></h3>
+                <p class="contact-description">Passeig de les Vilares 14 B, 1-1,<br>08390 Montgat, Barcelona</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="spain-map" style="max-width: 500px; margin-top: 40px;">
+            <img src={mapImg} alt="Mapa de cobertura SolSystems" class="map-image" style="width: 100%; height: auto;">
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-right" style="display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: stretch !important;">
+        <div class="elementor-element e-con-full e-flex e-con e-child" id="form">
+          <div class="elementor-widget-container">
+            <h2 class="elementor-heading-title elementor-size-default" style="font-weight: 550 !important; font-family: 'Montserrat', sans-serif !important;">Solicita un presupuesto personalizado</h2>
+          </div>
+          <div class="elementor-widget-container">
+            <p>Rellena los datos del formulario para ponernos en contacto contigo lo antes posible, con un presupuesto adaptado a tus necesidades.</p>
+          </div>
+          <div class="elementor-widget-container">
+            <div class="footer-form-card">
+              <form class="elementor-form" method="post" id="cargadores-contact-form">
+                <input type="hidden" name="form_source" value="cargadores"/>
+                <div class="elementor-form-fields-wrapper elementor-labels-above">
+                  <div class="elementor-field-type-text elementor-field-group elementor-column elementor-col-100 elementor-field-required">
+                    <input size="1" type="text" name="name" id="cf-name" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Nombre*" required>
+                  </div>
+                  <div class="elementor-field-type-email elementor-field-group elementor-column elementor-col-100 elementor-field-required">
+                    <input size="1" type="email" name="email" id="cf-email" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Correo electrónico*" required>
+                  </div>
+                  <div class="form-row">
+                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-col-50 elementor-field-required">
+                      <input size="1" type="text" name="address" id="cf-address" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Dirección*" required>
+                    </div>
+                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-col-50">
+                      <input size="1" type="text" name="timeFrame" id="cf-timeframe" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Franja horaria">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-col-50 elementor-field-required">
+                      <input size="1" type="text" name="postalCode" id="cf-postal" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Cód. Postal*" required>
+                    </div>
+                    <div class="elementor-field-type-tel elementor-field-group elementor-column elementor-col-50 elementor-field-required">
+                      <input size="1" type="tel" name="phone" id="cf-phone" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Teléfono*" required>
+                    </div>
+                  </div>
+                  <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-col-100">
+                    <textarea class="elementor-field-textual elementor-field elementor-size-sm" name="message" id="cf-message" rows="4" placeholder="Cuéntanos sobre tu instalación (tipo de inmueble, plaza de garaje, Moves III…)"></textarea>
+                  </div>
+                  <div class="elementor-field-type-acceptance elementor-field-group elementor-column elementor-col-100 elementor-field-required">
+                    <div class="elementor-field-subgroup">
+                      <span class="elementor-field-option">
+                        <input type="checkbox" name="acceptedTerms" id="cf-terms" class="elementor-field elementor-size-sm elementor-acceptance-field" required>
+                        <label for="cf-terms">Acepto los términos y condiciones</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+                    <button type="submit" id="cf-submit" class="elementor-button elementor-size-sm elementor-animation-grow">
+                      <span><span class="elementor-button-text" id="cf-submit-text">Enviar</span></span>
+                    </button>
+                  </div>
+                  <div id="cf-message-box" class="form-message" style="display: none; margin-top: 15px; padding: 10px; border-radius: 5px; text-align: center;"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('cargadores-contact-form');
+    if (!form) return;
+    const submitBtn = document.getElementById('cf-submit');
+    const submitText = document.getElementById('cf-submit-text');
+    const messageDiv = document.getElementById('cf-message-box');
+    const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/yo3nlh4c9mhhspc3iupjg8jpkj7ir8dk';
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitText.textContent = 'Enviando...';
+      submitBtn.style.opacity = '0.7';
+      messageDiv.style.display = 'none';
+
+      const fd = new FormData(form);
+      const name = fd.get('name'), email = fd.get('email'), address = fd.get('address');
+      const phone = fd.get('phone'), postalCode = fd.get('postalCode'), acceptedTerms = fd.get('acceptedTerms');
+
+      if (!name || !email || !address || !phone || !postalCode) { showMessage('Por favor, completa todos los campos obligatorios.', 'error'); resetBtn(); return; }
+      if (!acceptedTerms) { showMessage('Debes aceptar los términos y condiciones.', 'error'); resetBtn(); return; }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) { showMessage('Por favor, introduce un email válido.', 'error'); resetBtn(); return; }
+
+      const data = {
+        name: name, email: email, address: address,
+        timeFrame: fd.get('timeFrame') || 'No especificado',
+        postalCode: postalCode, phone: phone,
+        message: fd.get('message') || 'No especificado',
+        acceptedTerms: 'Sí',
+        formSource: 'Landing Cargadores Eléctricos',
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      };
+
+      try {
+        const res = await fetch(MAKE_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        if (res.ok) {
+          if (typeof window.ssTrack === 'function') window.ssTrack('generate_lead', { form: 'cargadores' });
+          showMessage('¡Formulario enviado correctamente! Te contactaremos pronto.', 'success');
+          form.reset();
+          setTimeout(function () { window.location.href = baseUrl + 'gracias'; }, 1400);
+        } else { throw new Error('Server error'); }
+      } catch (err) {
+        console.error('Error sending form:', err);
+        showMessage('Error al enviar el formulario. Inténtalo de nuevo o contáctanos por teléfono.', 'error');
+        resetBtn();
+      }
+    });
+
+    function showMessage(msg, type) {
+      messageDiv.textContent = msg;
+      messageDiv.style.display = 'block';
+      if (type === 'success') { messageDiv.style.backgroundColor = '#d4edda'; messageDiv.style.color = '#155724'; messageDiv.style.border = '1px solid #c3e6cb'; }
+      else { messageDiv.style.backgroundColor = '#f8d7da'; messageDiv.style.color = '#721c24'; messageDiv.style.border = '1px solid #f5c6cb'; }
+    }
+    function resetBtn() { submitBtn.disabled = false; submitText.textContent = 'Enviar'; submitBtn.style.opacity = '1'; }
+
+    const phoneInput = document.getElementById('cf-phone');
+    phoneInput.addEventListener('input', function (e) { let v = e.target.value.replace(/\D/g, ''); if (v.length > 9) v = v.substring(0, 9); e.target.value = v; });
+    const postalInput = document.getElementById('cf-postal');
+    postalInput.addEventListener('input', function (e) { let v = e.target.value.replace(/\D/g, ''); if (v.length > 5) v = v.substring(0, 5); e.target.value = v; });
+  });
+</script>

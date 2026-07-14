@@ -1,0 +1,105 @@
+---
+// FAQ de cargadores (del original) + schema FAQPage.
+const faqs = [
+  { q: "¿Tengo que pagar toda la instalación al contado?", a: "No. En SolSystems ofrecemos planes de financiación para que puedas pagar tu cargador de vehículo eléctrico en cómodas cuotas." },
+  { q: "¿Hay alguna ayuda o subvención para la instalación del cargador?", a: "Sí, y te ayudamos a tramitarla. El programa Moves III permite obtener hasta un 80% del total de tu presupuesto para el punto de recarga." },
+  { q: "¿Qué es un punto de recarga para vehículo eléctrico?", a: "Son todas las instalaciones que permiten la carga de coches enchufables, ya sean híbridos o 100% eléctricos." },
+  { q: "¿Cuánto tiempo tardan en instalar mi punto de carga?", a: "Normalmente ejecutamos la instalación en el mismo día, dependiendo de la complejidad de cada caso." },
+  { q: "Vivo en una comunidad, ¿puedo instalar mi punto de recarga?", a: "Sí. Por ley solo debes avisar a tu comunidad, sin necesidad de ningún permiso. Si necesitas un esquema para presentarlo al presidente, SolSystems te lo facilita." },
+  { q: "¿Qué garantía tiene la instalación?", a: "SolSystems ofrece 2 años de garantía en la mano de obra de la instalación." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
+---
+
+<section class="cargadores-faq">
+  <div class="faq-container">
+    <h2 class="section-title">Preguntas frecuentes</h2>
+
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <details class="faq-item">
+          <summary class="faq-q">
+            <span>{f.q}</span>
+            <span class="material-icons faq-chevron">expand_more</span>
+          </summary>
+          <p class="faq-a">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+  .cargadores-faq { padding: 80px 20px; background: #f4f6f9; }
+  .faq-container { max-width: 820px; margin: 0 auto; }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--green-primary);
+    border-radius: 2px;
+  }
+
+  .faq-list { display: flex; flex-direction: column; gap: 14px; }
+
+  .faq-item {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: box-shadow 0.3s ease;
+  }
+  .faq-item[open] { box-shadow: 0 8px 25px rgba(4, 107, 210, 0.1); }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 17px;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+
+  .faq-chevron {
+    color: var(--green-primary);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+
+  .faq-a {
+    margin: 16px 0 0;
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  @media (max-width: 921px) {
+    .section-title { font-size: 28px; }
+    .faq-q { font-size: 15px; }
+  }
+</style>

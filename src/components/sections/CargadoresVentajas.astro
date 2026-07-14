@@ -1,0 +1,118 @@
+---
+// "Instalar un cargador con SolSystems está lleno de ventajas" (5 ventajas numeradas).
+const advantages = [
+  { icon: "savings", title: "Ahorras dinero", text: "Te asesoramos con la tarifa más competitiva para cargar tu vehículo." },
+  { icon: "battery_charging_full", title: "Cuidas tu batería", text: "Si eliges el cargador correcto, cuidas la salud de la batería de tu coche." },
+  { icon: "bolt", title: "Ahorras tiempo", text: "La carga nunca ha sido tan rápida y cómoda, sin necesidad de desplazarte." },
+  { icon: "schedule", title: "Agilidad en la instalación", text: "Dejamos tu cargador listo y funcionando en el mismo día." },
+  { icon: "verified", title: "Plan Moves III", text: "Tramitamos tu subvención: hasta el 80% del punto de carga." },
+];
+---
+
+<section class="cargadores-ventajas">
+  <div class="ventajas-container">
+    <h2 class="section-title">Instalar un cargador con SolSystems está lleno de ventajas</h2>
+
+    <div class="ventajas-grid">
+      {advantages.map((a, i) => (
+        <div class="ventaja-card">
+          <div class="ventaja-icon"><span class="material-icons">{a.icon}</span></div>
+          <div class="ventaja-num">0{i + 1}</div>
+          <h3 class="ventaja-title">{a.title}</h3>
+          <p class="ventaja-text">{a.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cargadores-ventajas {
+    padding: 80px 20px;
+    background: #fff;
+  }
+  .ventajas-container { max-width: 1200px; margin: 0 auto; }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--green-primary);
+    border-radius: 2px;
+  }
+
+  .ventajas-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+
+  .ventaja-card {
+    background: #fff;
+    border: 2px solid #046bd2;
+    border-radius: 12px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(4, 107, 210, 0.12);
+    transition: all 0.3s ease;
+  }
+  .ventaja-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(4, 107, 210, 0.22);
+  }
+
+  .ventaja-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--green-primary), #00BF33);
+  }
+  .ventaja-icon .material-icons { color: #fff; font-size: 26px; }
+
+  .ventaja-num {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--green-primary);
+    margin-bottom: 6px;
+  }
+  .ventaja-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+  .ventaja-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .ventajas-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 921px) {
+    .section-title { font-size: 28px; }
+  }
+  @media (max-width: 544px) {
+    .cargadores-ventajas { padding: 60px 15px; }
+    .ventajas-grid { grid-template-columns: 1fr; }
+  }
+</style>

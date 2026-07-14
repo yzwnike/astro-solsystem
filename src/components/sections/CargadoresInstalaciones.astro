@@ -1,0 +1,125 @@
+---
+// SUSTITUYE a "Creemos que esto también es para ti".
+// Instalaciones de cargadores FINALIZADAS en chalets y garajes comunitarios.
+// Mismo estilo de tarjeta que el bloque original (imagen + título + botón).
+// PLACEHOLDER: imágenes locales; se conectan al CDN cuando haya fotos reales.
+const base = import.meta.env.BASE_URL + "images/";
+const projects = [
+  { title: "Cargador instalado en chalet unifamiliar", location: "Pozuelo de Alarcón, Madrid", img: base + "sol.jpg" },
+  { title: "Punto de recarga en garaje comunitario", location: "Alcorcón, Madrid", img: base + "bosque.jpg" },
+  { title: "Instalación en plaza de garaje comunitario", location: "Montgat, Barcelona", img: base + "fondo.png" },
+];
+---
+
+<section class="cargadores-instalaciones">
+  <div class="inst-container">
+    <h2 class="section-title">Instalaciones finalizadas en chalets y garajes comunitarios</h2>
+
+    <div class="inst-grid">
+      {projects.map((p) => (
+        <div class="inst-card">
+          <div class="inst-img" style={`background-image: url('${p.img}');`}></div>
+          <div class="inst-body">
+            <span class="inst-loc"><span class="material-icons">location_on</span>{p.location}</span>
+            <h3 class="inst-title">{p.title}</h3>
+            <a href="#form" class="inst-btn">Más información</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cargadores-instalaciones { padding: 80px 20px; background: #fff; }
+  .inst-container { max-width: 1200px; margin: 0 auto; }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--green-primary);
+    border-radius: 2px;
+  }
+
+  .inst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+  .inst-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .inst-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(4, 107, 210, 0.18);
+  }
+
+  .inst-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .inst-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+
+  .inst-loc {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--green-primary);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .inst-loc .material-icons { font-size: 16px; }
+
+  .inst-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 18px;
+    line-height: 1.35;
+    flex: 1;
+  }
+
+  .inst-btn {
+    display: inline-block;
+    text-align: center;
+    background: linear-gradient(135deg, #00AD2E, #00BF33);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 12px 22px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 173, 46, 0.35);
+  }
+  .inst-btn:hover { background: linear-gradient(135deg, #009426, #00A52E); transform: translateY(-2px); }
+
+  @media (max-width: 921px) {
+    .section-title { font-size: 28px; }
+    .inst-grid { grid-template-columns: 1fr; }
+  }
+</style>

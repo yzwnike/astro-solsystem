@@ -1,0 +1,122 @@
+---
+// Hero de cargadores (calco de WordPress): fondo con overlay oscuro,
+// título centrado en blanco y botón verde "Solicitar Estudio GRATIS".
+const bg = import.meta.env.BASE_URL + "images/fondo.png";
+const waLink = `https://wa.me/34656701824?text=${encodeURIComponent("Hola, quiero información para instalar un cargador de coche eléctrico.")}`;
+---
+
+<section class="cargadores-hero" style={`background-image: url('${bg}');`}>
+  <div class="cargadores-hero-overlay"></div>
+  <div class="cargadores-hero-content">
+    <h1 class="cargadores-hero-title">Instalación de Cargadores de Coches Eléctricos</h1>
+    <p class="cargadores-hero-subtitle">
+      Instala tu cargador de coche eléctrico con SolSystems y no te preocupes por nada. Proyecto completamente llave en mano. Ahorra hasta un 80% en el cargador de tu vehículo con el Plan Moves III.
+    </p>
+    <div class="cargadores-hero-cta">
+      <a href="#form" class="btn-green">Solicitar Estudio GRATIS</a>
+      <a href={waLink} target="_blank" rel="noopener" class="btn-whatsapp-outline">
+        <span class="material-icons">chat</span> WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cargadores-hero {
+    position: relative;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    padding: 140px 20px 90px;
+    text-align: center;
+  }
+
+  .cargadores-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.7));
+  }
+
+  .cargadores-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .cargadores-hero-title {
+    font-size: 52px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0 0 22px;
+  }
+
+  .cargadores-hero-subtitle {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    max-width: 720px;
+    margin: 0 auto 36px;
+  }
+
+  .cargadores-hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-green {
+    background: linear-gradient(135deg, #00AD2E, #00BF33);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 34px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 173, 46, 0.4);
+  }
+  .btn-green:hover {
+    background: linear-gradient(135deg, #009426, #00A52E);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 173, 46, 0.5);
+  }
+
+  .btn-whatsapp-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 16px 26px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
+  }
+  .btn-whatsapp-outline:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .btn-whatsapp-outline .material-icons {
+    color: #25D366;
+    font-size: 20px;
+  }
+
+  @media (max-width: 921px) {
+    .cargadores-hero-title { font-size: 38px; }
+    .cargadores-hero-subtitle { font-size: 17px; }
+  }
+  @media (max-width: 544px) {
+    .cargadores-hero { min-height: 70vh; padding: 120px 16px 70px; }
+    .cargadores-hero-title { font-size: 30px; }
+  }
+</style>

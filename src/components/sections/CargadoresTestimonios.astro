@@ -1,0 +1,277 @@
+---
+// "Nuestros clientes opinan" — carrusel coverflow: la reseña activa al frente
+// y la anterior/siguiente asomando detrás. Animación fluida, flechas, puntos y swipe.
+const reviews = [
+  { name: "Daniel Gallego", text: "Instalación limpia, rápida y exactamente como quería. Ha funcionado sin un solo problema día tras día. Una implicación y un compromiso espectacular. ¡Seguid así!" },
+  { name: "Guillermo Cegarra", text: "Serios y profesionales a un precio competitivo. Lo han instalado todo muy rápido y eficazmente, dando soluciones a mis necesidades. Francamente recomendables." },
+  { name: "Joao Paulo de Oliveira", text: "Los instaladores, profesionales y muy educados, trato 10 y no se demoraron en instalarlas. 100% recomendables." },
+  { name: "Jacinto Gómez", text: "Muy satisfecho con la instalación y con la profesionalidad de quienes la realizaron, especialmente con Alberto." },
+  { name: "José Luis López", text: "Muy profesionales. En el mismo día terminaron la instalación. Y además súper agradables. Yo les recomendaré." },
+];
+---
+
+<section class="cargadores-testimonios">
+  <div class="test-container">
+    <h2 class="section-title">Nuestros clientes opinan</h2>
+
+    <div class="google-badge">
+      <span class="google-g"><b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#4285F4">g</b><b style="color:#34A853">l</b><b style="color:#EA4335">e</b></span>
+      <span class="google-score">5,0</span>
+      <span class="google-stars">
+        <span class="material-icons">star</span><span class="material-icons">star</span><span class="material-icons">star</span><span class="material-icons">star</span><span class="material-icons">star</span>
+      </span>
+      <span class="google-text">Reseñas verificadas</span>
+    </div>
+
+    <div class="test-carousel" id="test-carousel">
+      <button class="test-arrow test-prev" id="test-prev" aria-label="Anterior"><span class="material-icons">chevron_left</span></button>
+
+      <div class="test-stage" id="test-stage">
+        {reviews.map((r) => (
+          <article class="test-card">
+            <div class="test-stars">
+              {[0,1,2,3,4].map(() => (<span class="material-icons">star</span>))}
+            </div>
+            <p class="test-text">"{r.text}"</p>
+            <div class="test-author">
+              <div class="test-avatar">{r.name.charAt(0)}</div>
+              <span class="test-name">{r.name}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <button class="test-arrow test-next" id="test-next" aria-label="Siguiente"><span class="material-icons">chevron_right</span></button>
+    </div>
+
+    <div class="test-dots" id="test-dots">
+      {reviews.map((_, i) => (<button class="test-dot" data-i={i} aria-label={`Reseña ${i + 1}`}></button>))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var stage = document.getElementById('test-stage');
+    if (!stage) return;
+    var cards = Array.prototype.slice.call(stage.querySelectorAll('.test-card'));
+    var dots = Array.prototype.slice.call(document.querySelectorAll('#test-dots .test-dot'));
+    var n = cards.length;
+    var half = Math.floor(n / 2);
+    var active = 0;
+    var autoplay;
+
+    function update() {
+      cards.forEach(function (card, i) {
+        var diff = i - active;
+        if (diff > half) diff -= n;
+        if (diff < -half) diff += n;
+        var abs = Math.abs(diff);
+        // Poca separación -> la tarjeta central tapa parte de las laterales
+        var x = diff * 38;                       // desplazamiento lateral (%)
+        var scale = abs === 0 ? 1 : 1 - abs * 0.12;
+        var blur = abs === 0 ? 0 : (abs === 1 ? 4 : 7);
+        var opacity = abs > 2 ? 0 : (abs === 0 ? 1 : (abs === 1 ? 0.92 : 0.5));
+        card.style.transform = 'translate(-50%, -50%) translateX(' + x + '%) scale(' + scale + ')';
+        card.style.filter = 'blur(' + blur + 'px)';
+        card.style.opacity = opacity;
+        card.style.zIndex = String(30 - abs);
+        card.style.pointerEvents = diff === 0 ? 'auto' : 'none';
+        card.classList.toggle('is-active', diff === 0);
+      });
+      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === active); });
+    }
+
+    function go(dir) { active = (active + dir + n) % n; update(); }
+    function goTo(i) { active = ((i % n) + n) % n; update(); }
+
+    // Autoplay: startAuto SIEMPRE limpia el intervalo previo (evita que se acumulen)
+    function stopAuto() { clearInterval(autoplay); }
+    function startAuto() { stopAuto(); autoplay = setInterval(function () { go(1); }, 6000); }
+
+    document.getElementById('test-next').addEventListener('click', function () { go(1); startAuto(); });
+    document.getElementById('test-prev').addEventListener('click', function () { go(-1); startAuto(); });
+    dots.forEach(function (d) { d.addEventListener('click', function () { goTo(parseInt(d.getAttribute('data-i'), 10)); startAuto(); }); });
+
+    // Swipe / arrastre
+    var startX = null;
+    function down(x) { startX = x; }
+    function up(x) {
+      if (startX === null) return;
+      var dx = x - startX;
+      if (Math.abs(dx) > 40) { go(dx < 0 ? 1 : -1); startAuto(); }
+      startX = null;
+    }
+    stage.addEventListener('touchstart', function (e) { down(e.touches[0].clientX); }, { passive: true });
+    stage.addEventListener('touchend', function (e) { up(e.changedTouches[0].clientX); });
+    stage.addEventListener('mousedown', function (e) { down(e.clientX); });
+    window.addEventListener('mouseup', function (e) { if (startX !== null) up(e.clientX); });
+
+    // Pausa al pasar el ratón
+    var carousel = document.getElementById('test-carousel');
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+
+    update();
+    startAuto();
+  });
+</script>
+
+<style>
+  .cargadores-testimonios { padding: 80px 20px; background: #fff; overflow: hidden; }
+  .test-container { max-width: 1100px; margin: 0 auto; }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--green-primary);
+    border-radius: 2px;
+  }
+
+  .google-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: -36px 0 40px;
+  }
+  .google-g { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .google-score { font-weight: 800; color: var(--text-dark); font-size: 18px; }
+  .google-stars { display: inline-flex; }
+  .google-stars .material-icons { color: #FBBC05; font-size: 20px; }
+  .google-text { color: #64748b; font-size: 14px; }
+
+  .test-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .test-stage {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    perspective: 1200px;
+    cursor: grab;
+    user-select: none;
+  }
+  .test-stage:active { cursor: grabbing; }
+
+  .test-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    max-width: 82vw;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 18px 45px rgba(4, 107, 210, 0.14);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
+    will-change: transform, opacity, filter;
+  }
+  .test-card.is-active {
+    border: 2px solid var(--green-primary);
+    box-shadow: 0 26px 60px rgba(4, 107, 210, 0.25);
+  }
+
+  .test-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+  .test-stars .material-icons { color: #FFB800; font-size: 22px; }
+
+  .test-text {
+    color: #475569;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0 0 22px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .test-author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .test-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(83, 195, 7, 0.12);
+    color: var(--green-primary);
+    font-weight: 700;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .test-name { font-weight: 700; color: var(--text-dark); font-size: 15px; }
+
+  .test-arrow {
+    position: relative;
+    z-index: 40;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #e2e8f0;
+    background: #fff;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .test-arrow:hover {
+    border-color: var(--green-primary);
+    color: var(--green-primary);
+    transform: scale(1.08);
+  }
+  .test-prev { margin-right: -10px; }
+  .test-next { margin-left: -10px; }
+
+  .test-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 36px;
+  }
+  .test-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  .test-dot.is-active { background: var(--green-primary); width: 26px; border-radius: 5px; }
+
+  @media (max-width: 921px) {
+    .section-title { font-size: 28px; }
+    .test-card { padding: 26px; }
+    .test-stage { height: 380px; }
+  }
+  @media (max-width: 544px) {
+    .test-arrow { width: 40px; height: 40px; }
+    .test-prev { margin-right: -6px; }
+    .test-next { margin-left: -6px; }
+  }
+</style>

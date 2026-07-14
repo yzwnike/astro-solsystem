@@ -1,0 +1,24 @@
+---
+// Medición de conversiones: expone window.ssTrack y engancha clics de teléfono y WhatsApp.
+---
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  window.ssTrack = window.ssTrack || function (eventName, params) {
+    params = params || {};
+    try { window.dataLayer.push(Object.assign({ event: eventName }, params)); } catch (e) {}
+    if (typeof window.gtag === 'function') {
+      try { window.gtag('event', eventName, params); } catch (e) {}
+      // Google Ads (poner el conversion ID/label real):
+      // window.gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/label' });
+    }
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+      el.addEventListener('click', function () { window.ssTrack('contact_phone_click', { method: 'phone' }); });
+    });
+    document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"]').forEach(function (el) {
+      el.addEventListener('click', function () { window.ssTrack('contact_whatsapp_click', { method: 'whatsapp' }); });
+    });
+  });
+</script>

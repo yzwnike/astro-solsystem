@@ -8,10 +8,12 @@ const { transparent = true } = Astro.props;
 // Detecta la página actual para marcar en verde el servicio activo en el dropdown
 const path = Astro.url.pathname;
 const isAire = path.includes('instalacion-aire-acondicionado-madrid');
+const isCargadores = path.includes('cargadores-de-coches-electricos');
 const isLegalizacion = path === '/' || path === '';
+const onDark = isAire || isCargadores;
 ---
 
-<header class={`site-header ${transparent ? 'transparent' : ''} ${isAire ? 'on-dark' : ''}`}>
+<header class={`site-header ${transparent ? 'transparent' : ''} ${onDark ? 'on-dark' : ''}`}>
   <div class="container">
     <div class="main-header-bar">
       <a href="https://solsystems.es/">
@@ -37,7 +39,7 @@ const isLegalizacion = path === '/' || path === '';
             </div>
             <ul class="dropdown-menu">
               <li><a href="https://solsystems.es/energia-solar-fotovoltaica/">Energía solar fotovoltaica</a></li>
-              <li><a href="https://solsystems.es/cargadores-de-coches-electricos/">Cargadores de coches eléctricos</a></li>
+              <li><a href="/cargadores-de-coches-electricos" class:list={[{ "active-service": isCargadores }]}>Cargadores de coches eléctricos</a></li>
               <li><a href="https://solsystems.es/diseno-y-ensamblaje-de-cuadros-electricos/">Cuadros eléctricos & control</a></li>
               <li><a href="https://solsystems.es/instalaciones-electricas/">Instalaciones eléctricas</a></li>
               <li><a href="https://solsystems.es/aerotermia/">Aerotermia</a></li>

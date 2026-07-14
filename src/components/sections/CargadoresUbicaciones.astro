@@ -1,0 +1,118 @@
+---
+// "Tu punto de recarga donde quieras" — 3 opciones con imagen de fondo + overlay.
+// PLACEHOLDER de imágenes locales; se conectan al CDN cuando haya fotos reales.
+const base = import.meta.env.BASE_URL + "images/";
+const options = [
+  { title: "Cargadores para viviendas", text: "Chalets, adosados y unifamiliares. Tu punto de carga propio en el garaje.", img: base + "sol.jpg" },
+  { title: "Cargadores para comunidades", text: "Plaza individual o instalación compartida en garajes comunitarios.", img: base + "bosque.jpg" },
+  { title: "Cargadores para empresas", text: "Puntos de recarga para negocios, parkings y flotas de vehículos.", img: base + "fondo.png" },
+];
+---
+
+<section class="cargadores-ubicaciones">
+  <div class="ubi-container">
+    <h2 class="section-title-light">Tu punto de recarga donde quieras</h2>
+    <p class="ubi-intro">
+      Elige dónde quieres tu punto de recarga y nuestro equipo de expertos estudiará de forma personalizada cada proyecto para ofrecerte la mejor y más viable solución del mercado.
+    </p>
+
+    <div class="ubi-grid">
+      {options.map((o) => (
+        <div class="ubi-card" style={`background-image: url('${o.img}');`}>
+          <div class="ubi-overlay"></div>
+          <div class="ubi-content">
+            <h3 class="ubi-title">{o.title}</h3>
+            <p class="ubi-text">{o.text}</p>
+            <a href="#form" class="ubi-link">Más información <span class="material-icons">arrow_forward</span></a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cargadores-ubicaciones {
+    padding: 80px 20px;
+    background: #f4f6f9;
+  }
+  .ubi-container { max-width: 1200px; margin: 0 auto; }
+
+  .section-title-light {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .section-title-light::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--green-primary);
+    border-radius: 2px;
+  }
+
+  .ubi-intro {
+    text-align: center;
+    color: #666;
+    max-width: 720px;
+    margin: 28px auto 48px;
+    line-height: 1.6;
+  }
+
+  .ubi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .ubi-card {
+    position: relative;
+    min-height: 340px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.3s ease;
+  }
+  .ubi-card:hover { transform: translateY(-6px); }
+
+  .ubi-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15,23,42,0.15), rgba(15,23,42,0.85));
+  }
+
+  .ubi-content {
+    position: relative;
+    z-index: 2;
+    padding: 26px;
+    color: #fff;
+  }
+  .ubi-title { font-size: 22px; font-weight: 700; margin: 0 0 10px; }
+  .ubi-text { font-size: 14px; color: #e2e8f0; line-height: 1.5; margin: 0 0 14px; }
+  .ubi-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--green-primary);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .ubi-link .material-icons { font-size: 18px; transition: transform 0.3s ease; }
+  .ubi-link:hover .material-icons { transform: translateX(4px); }
+
+  @media (max-width: 921px) {
+    .section-title-light { font-size: 28px; }
+    .ubi-grid { grid-template-columns: 1fr; }
+  }
+</style>
