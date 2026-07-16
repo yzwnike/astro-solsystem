@@ -2,18 +2,16 @@
 // CTA persistente (recomendación del boceto: CTA visible en primer scroll y repetido).
 // - En móvil: barra inferior fija con "Llamar" + "WhatsApp".
 // - En escritorio: botón flotante de WhatsApp.
+import { CITY_MADRID, type CityInfo } from '../../consts';
+
 export interface Props {
-  phone?: string;
-  whatsapp?: string;
+  city?: CityInfo;
 }
 
-const {
-  phone = "+34656701824",
-  whatsapp = "+34656701824",
-} = Astro.props;
+const { city = CITY_MADRID } = Astro.props;
 
-const telLink = `tel:${phone.replace(/\s/g, "")}`;
-const waLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hola, quiero pedir presupuesto para la instalación de aire acondicionado.")}`;
+const telLink = `tel:${city.phone}`;
+const waLink = `https://wa.me/${city.whatsapp}?text=${encodeURIComponent("Hola, quiero pedir presupuesto para la instalación de aire acondicionado.")}`;
 const waIcon = import.meta.env.BASE_URL + "images/whatsapp-icon.svg";
 ---
 

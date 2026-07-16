@@ -1,0 +1,247 @@
+---
+// Testimonios: badge de Google con dato real (4,5 · 69 reseñas), dato de
+// experiencia por ciudad y 3 reseñas reales de Google (nombre + extracto).
+import { CITY_MADRID, type CityInfo } from '../../consts';
+
+export interface Props {
+  city?: CityInfo;
+}
+const { city = CITY_MADRID } = Astro.props;
+
+// Reseñas REALES de Google (extractos). Todas 5★.
+const reviews = [
+  {
+    name: "Jessica Schnieper",
+    when: "Hace 3 meses",
+    text: "Grandes profesionales. Desde que contactamos con ellos por primera vez, nos han resuelto todo con gran rapidez y profesionalidad, además de un trato excelente.",
+  },
+  {
+    name: "Sergio Falcón",
+    when: "Hace 2 meses",
+    text: "Les llamas, les pides presupuesto y vienen a ver qué instalación deberían hacer. Te pasan un presupuesto justo (ni el más barato ni el más caro). Todo muy correcto.",
+  },
+  {
+    name: "Alberto Sánchez Bernal",
+    when: "Hace 1 mes",
+    text: "Muy buen trabajo: profesionales, limpios y puntuales. Me explicaron todo el proceso de instalación de principio a fin. Gracias.",
+  },
+];
+
+const googleG = [
+  { l: "G", c: "#4285F4" }, { l: "o", c: "#EA4335" }, { l: "o", c: "#FBBC05" },
+  { l: "g", c: "#4285F4" }, { l: "l", c: "#34A853" }, { l: "e", c: "#EA4335" },
+];
+---
+
+<section class="py-14 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Lo que dicen nuestros clientes</h2>
+      <span class="block w-16 h-1 rounded-full bg-[#53C307] mx-auto mb-6"></span>
+    </div>
+
+    <!-- Barra de confianza: Google + experiencia -->
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-10">
+      <div class="flex items-center gap-2">
+        <span class="text-xl font-bold tracking-tight">
+          {googleG.map((g) => (<span style={`color:${g.c}`}>{g.l}</span>))}
+        </span>
+        <span class="font-extrabold text-slate-900 text-lg">4,5</span>
+        <span class="inline-flex text-[#FBBC05] items-center">
+          <span class="material-icons text-xl">star</span>
+          <span class="material-icons text-xl">star</span>
+          <span class="material-icons text-xl">star</span>
+          <span class="material-icons text-xl">star</span>
+          <span class="material-icons text-xl">star_half</span>
+        </span>
+        <a href="https://www.google.com/search?q=SolSystems+Alcorc%C3%B3n+rese%C3%B1as" target="_blank" rel="noopener" class="text-slate-500 text-sm underline decoration-slate-300 hover:text-[#046bd2]">69 reseñas verificadas</a>
+      </div>
+
+      <span class="hidden sm:block w-px h-6 bg-slate-200"></span>
+
+      <div class="flex items-center gap-2 text-slate-700">
+        <svg class="w-5 h-5 text-[#53C307]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span class="text-sm font-semibold">+500 instalaciones realizadas en {city.name}</span>
+      </div>
+    </div>
+
+    <!-- ESCRITORIO: grid de reseñas -->
+    <div class="hidden md:grid md:grid-cols-3 gap-6">
+      {reviews.map((r) => (
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col">
+          <div class="flex text-[#FBBC05] mb-3">
+            <span class="material-icons text-xl">star</span>
+            <span class="material-icons text-xl">star</span>
+            <span class="material-icons text-xl">star</span>
+            <span class="material-icons text-xl">star</span>
+            <span class="material-icons text-xl">star</span>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5 flex-1">"{r.text}"</p>
+          <div class="flex items-center gap-3 mt-auto">
+            <div class="w-10 h-10 rounded-full bg-[#046bd2]/10 text-[#046bd2] font-bold flex items-center justify-center">{r.name.charAt(0)}</div>
+            <div>
+              <p class="text-slate-900 font-semibold text-sm leading-tight">{r.name}</p>
+              <p class="text-slate-400 text-xs flex items-center gap-1">
+                Reseña de
+                <span class="font-bold">{googleG.map((g) => (<span style={`color:${g.c}`}>{g.l}</span>))}</span>
+                · {r.when}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- MÓVIL: coverflow de reseñas -->
+    <div class="md:hidden">
+      <div class="aire-tcf-stage" id="aire-tcf-stage">
+        {reviews.map((r) => (
+          <article class="aire-tcf-card">
+            <div class="flex text-[#FBBC05] mb-3">
+              <span class="material-icons text-xl">star</span>
+              <span class="material-icons text-xl">star</span>
+              <span class="material-icons text-xl">star</span>
+              <span class="material-icons text-xl">star</span>
+              <span class="material-icons text-xl">star</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-5 flex-1">"{r.text}"</p>
+            <div class="flex items-center gap-3 mt-auto">
+              <div class="w-10 h-10 rounded-full bg-[#046bd2]/10 text-[#046bd2] font-bold flex items-center justify-center">{r.name.charAt(0)}</div>
+              <div>
+                <p class="text-slate-900 font-semibold text-sm leading-tight">{r.name}</p>
+                <p class="text-slate-400 text-xs flex items-center gap-1">
+                  Reseña de
+                  <span class="font-bold">{googleG.map((g) => (<span style={`color:${g.c}`}>{g.l}</span>))}</span>
+                  · {r.when}
+                </p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="flex items-center justify-center gap-5 mt-5">
+        <button class="aire-tcf-arrow" id="aire-tcf-prev" aria-label="Anterior">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="flex gap-2" id="aire-tcf-dots">
+          {reviews.map((_, i) => (<button class="aire-tcf-dot" data-i={i} aria-label={`Reseña ${i + 1}`}></button>))}
+        </div>
+        <button class="aire-tcf-arrow" id="aire-tcf-next" aria-label="Siguiente">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    if (window.__aireTestimCf) return;
+    window.__aireTestimCf = true;
+    document.addEventListener('DOMContentLoaded', function () {
+      var stage = document.getElementById('aire-tcf-stage');
+      if (!stage) return;
+      var cards = Array.prototype.slice.call(stage.querySelectorAll('.aire-tcf-card'));
+      var dots = Array.prototype.slice.call(document.querySelectorAll('#aire-tcf-dots .aire-tcf-dot'));
+      var n = cards.length;
+      var half = Math.floor(n / 2);
+      var active = 0;
+
+      function update() {
+        cards.forEach(function (card, i) {
+          var diff = i - active;
+          if (diff > half) diff -= n;
+          if (diff < -half) diff += n;
+          var abs = Math.abs(diff);
+          var x = diff * 42;
+          var scale = abs === 0 ? 1 : 1 - abs * 0.12;
+          var blur = abs === 0 ? 0 : 5;
+          var opacity = abs > 1 ? 0 : (abs === 0 ? 1 : 0.85);
+          card.style.transform = 'translate(-50%, -50%) translateX(' + x + '%) scale(' + scale + ')';
+          card.style.filter = 'blur(' + blur + 'px)';
+          card.style.opacity = opacity;
+          card.style.zIndex = String(30 - abs);
+          card.style.pointerEvents = diff === 0 ? 'auto' : 'none';
+          card.classList.toggle('is-active', diff === 0);
+        });
+        dots.forEach(function (d, i) { d.classList.toggle('is-active', i === active); });
+      }
+      function go(dir) { active = (active + dir + n) % n; update(); }
+      function goTo(i) { active = ((i % n) + n) % n; update(); }
+
+      document.getElementById('aire-tcf-next').addEventListener('click', function () { go(1); });
+      document.getElementById('aire-tcf-prev').addEventListener('click', function () { go(-1); });
+      dots.forEach(function (d) { d.addEventListener('click', function () { goTo(parseInt(d.getAttribute('data-i'), 10)); }); });
+
+      var startX = null;
+      stage.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        if (startX === null) return;
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+        startX = null;
+      });
+
+      update();
+    });
+  })();
+</script>
+
+<style>
+  .aire-tcf-stage {
+    position: relative;
+    height: 320px;
+    perspective: 1200px;
+    overflow: hidden;
+  }
+  .aire-tcf-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 82%;
+    max-width: 340px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 16px 40px rgba(4, 107, 210, 0.12);
+    transform: translate(-50%, -50%);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s ease, filter 0.55s ease;
+    will-change: transform, opacity, filter;
+    box-sizing: border-box;
+  }
+  .aire-tcf-card.is-active {
+    background: #fff;
+    border-color: rgba(83, 195, 7, 0.4);
+    box-shadow: 0 22px 55px rgba(4, 107, 210, 0.2);
+  }
+  .aire-tcf-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #e2e8f0;
+    background: #fff;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+  .aire-tcf-arrow:active { transform: scale(0.92); border-color: #53C307; color: #53C307; }
+  .aire-tcf-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: #cbd5e1;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+  .aire-tcf-dot.is-active { background: #53C307; width: 26px; border-radius: 5px; }
+</style>

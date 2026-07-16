@@ -2,14 +2,21 @@
 // Bloque 5 del boceto: SEO / FAQ
 // Preguntas frecuentes para long tail y calidad del anuncio.
 // Los acordeones usan <details>, indexables. Incluye schema FAQPage sincronizado.
+import { CITY_MADRID, type CityInfo } from '../../consts';
+
+export interface Props {
+  city?: CityInfo;
+}
+const { city = CITY_MADRID } = Astro.props;
+
 const faqs = [
   {
-    q: "¿Cuánto cuesta instalar aire acondicionado en Madrid?",
-    a: "El precio varía según el número de estancias y el sistema elegido. Una instalación de split mural individual estándar parte de un coste muy competitivo, mientras que multisplit o conductos requieren un estudio personalizado por la complejidad de tuberías y falsos techos. Te damos tu presupuesto exacto, sin coste y en 24 horas.",
+    q: `¿Cuánto cuesta instalar aire acondicionado en ${city.name}?`,
+    a: "El precio depende del tipo de instalación y del número de estancias. Como referencia orientativa, un split 1x1 suele situarse entre 600 € y 900 € ya instalado; el multisplit y los conductos requieren un estudio personalizado por la complejidad de tuberías y falsos techos. Te damos tu presupuesto exacto, gratis y sin compromiso.",
   },
   {
     q: "¿Qué equipo necesito para un salón o dormitorio?",
-    a: "Como regla general para Madrid calculamos unas 100 frigorías por metro cuadrado. Para un dormitorio de 10-15 m² es ideal una máquina de 2.0 a 2.5 kW; para salones de 25-30 m² recomendamos de 3.5 a 4.2 kW. Influyen la orientación solar y el aislamiento térmico del espacio.",
+    a: "Como regla general calculamos unas 100 frigorías por metro cuadrado. Para un dormitorio de 10-15 m² es ideal una máquina de 2.0 a 2.5 kW; para salones de 25-30 m² recomendamos de 3.5 a 4.2 kW. Influyen la orientación solar y el aislamiento térmico del espacio.",
   },
   {
     q: "¿Cuánto tarda una instalación de split?",
@@ -17,7 +24,7 @@ const faqs = [
   },
   {
     q: "¿Necesito permiso de la comunidad?",
-    a: "Sí, la instalación de unidades exteriores en fachadas o patios comunes se rige por la Ley de Propiedad Horizontal y las normativas municipales de cada ayuntamiento de Madrid. Te asesoramos sobre ubicaciones y regulaciones habituales para que todo cumpla con la legalidad.",
+    a: `Sí, la instalación de unidades exteriores en fachadas o patios comunes se rige por la Ley de Propiedad Horizontal y las normativas municipales de cada ayuntamiento de ${city.name}. Te asesoramos sobre ubicaciones y regulaciones habituales para que todo cumpla con la legalidad.`,
   },
   {
     q: "¿Es mejor split, multisplit o conductos?",

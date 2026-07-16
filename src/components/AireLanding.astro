@@ -1,0 +1,115 @@
+---
+// Cuerpo completo de la landing de aire acondicionado, parametrizado por ciudad.
+// Se reutiliza en las páginas de Madrid y Barcelona pasando la CityInfo.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './layout/Header.astro';
+import AireHeroSection from './sections/AireHeroSection.astro';
+import AireBrandsSection from './sections/AireBrandsSection.astro';
+import AireTrustSection from './sections/AireTrustSection.astro';
+import AireServicesSection from './sections/AireServicesSection.astro';
+import AireEquipmentSection from './sections/AireEquipmentSection.astro';
+import AireSeoContentSection from './sections/AireSeoContentSection.astro';
+import AireProcessSection from './sections/AireProcessSection.astro';
+import AireFaqSection from './sections/AireFaqSection.astro';
+import AireContactSection from './sections/AireContactSection.astro';
+import AireStickyCta from './sections/AireStickyCta.astro';
+import AireTracking from './sections/AireTracking.astro';
+import AireVisualBand from './sections/AireVisualBand.astro';
+import AireTestimonials from './sections/AireTestimonials.astro';
+import { type CityInfo } from '../consts';
+
+export interface Props {
+  city: CityInfo;
+}
+const { city } = Astro.props;
+
+const title = `Instalación de Aire Acondicionado en ${city.name} | Técnicos Propios en 24-48h | SolSystems`;
+const description = `Instaladores de aire acondicionado en ${city.name}: split, multisplit y conductos. Técnicos propios, sin subcontratas, e instalación en 24-48 h. Presupuesto gratis.`;
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `SolSystems · Aire acondicionado ${city.name}`,
+  "image": "https://solsystems.es/images/logo.png",
+  "url": city.url,
+  "telephone": city.phone,
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": city.street,
+    "addressLocality": city.locality,
+    "addressRegion": city.region,
+    "postalCode": city.postalCode,
+    "addressCountry": "ES"
+  },
+  "areaServed": { "@type": "City", "name": city.name }
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Instalación de aire acondicionado",
+  "provider": { "@type": "LocalBusiness", "name": "SolSystems" },
+  "areaServed": { "@type": "City", "name": city.name },
+  "description": `Instalación de aire acondicionado split, multisplit y por conductos en ${city.name}, con técnicos propios e instalación en 24-48 horas.`,
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de aire acondicionado",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instalación de aire acondicionado split 1x1" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instalación multisplit" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aire acondicionado por conductos" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sustitución de equipos antiguos" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mantenimiento y revisión de aire acondicionado" } }
+    ]
+  }
+};
+---
+
+<BaseLayout title={title} description={description} includeLegalizationCSS={false}>
+  <Header transparent={true} />
+
+  <AireTracking />
+
+  <!-- 1. Hero + CTA -->
+  <AireHeroSection city={city} />
+
+  <!-- 2. Servicios -->
+  <AireServicesSection />
+
+  <!-- 3. Marcas, confianza y tipos de equipo -->
+  <AireBrandsSection />
+  <AireTrustSection />
+
+  <!-- Línea separadora (degradado azul → verde) -->
+  <div class="bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="h-1 rounded-full bg-gradient-to-r from-[#046bd2] to-[#53C307]"></div>
+    </div>
+  </div>
+
+  <AireEquipmentSection />
+
+  <!-- Banda visual + CTA -->
+  <AireVisualBand />
+
+  <!-- 4. Proceso -->
+  <AireProcessSection />
+
+  <!-- 5. SEO / FAQ -->
+  <AireSeoContentSection />
+  <AireFaqSection city={city} />
+
+  <!-- Testimonios (Google + reseñas reales + experiencia) -->
+  <AireTestimonials city={city} />
+
+  <!-- 6. Formulario (solo datos de la ciudad) -->
+  <AireContactSection city={city} />
+
+  <!-- CTA persistente -->
+  <AireStickyCta city={city} />
+
+  <!-- Schema -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</BaseLayout>

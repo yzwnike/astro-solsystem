@@ -7,7 +7,7 @@ const { transparent = true } = Astro.props;
 
 // Detecta la página actual para marcar en verde el servicio activo en el dropdown
 const path = Astro.url.pathname;
-const isAire = path.includes('instalacion-aire-acondicionado-madrid');
+const isAire = path.includes('instalacion-aire-acondicionado');
 const isCargadores = path.includes('cargadores-de-coches-electricos');
 const isLegalizacion = path === '/' || path === '';
 const onDark = isAire || isCargadores;
