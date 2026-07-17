@@ -95,7 +95,7 @@ const services = [
       <div class="aire-cf-stage" id="aire-cf-stage">
         {services.map((service, i) => (
           <article class="aire-cf-card" data-id={service.id}>
-            <div class="relative h-40 overflow-hidden">
+            <div class="relative h-40">
               <img src={serviceImages[i]} alt={service.title} loading="lazy" class="w-full h-full object-cover" />
               <span class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2.5 py-1 rounded-lg">{service.num}</span>
             </div>

@@ -6,7 +6,11 @@
       "Bash(npx playwright *)",
       "Bash(node shot.mjs)",
       "Bash(pkill -f \"astro dev\")",
-      "Bash(python3 -)"
+      "Bash(python3 -)",
+      "Bash(node movil.mjs)",
+      "Bash(node -e ' *)",
+      "Bash(grep -iA6 \"error\\\\|failed\")",
+      "Bash(node drop-fix2.mjs)"
     ]
   }
 }

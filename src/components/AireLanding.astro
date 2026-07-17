@@ -13,7 +13,6 @@ import AireProcessSection from './sections/AireProcessSection.astro';
 import AireFaqSection from './sections/AireFaqSection.astro';
 import AireContactSection from './sections/AireContactSection.astro';
 import AireStickyCta from './sections/AireStickyCta.astro';
-import AireTracking from './sections/AireTracking.astro';
 import AireTestimonials from './sections/AireTestimonials.astro';
 import { type CityInfo } from '../consts';
 
@@ -67,8 +66,6 @@ const serviceSchema = {
 
 <BaseLayout title={title} description={description} includeLegalizationCSS={false} useMontserrat={true}>
   <Header transparent={true} />
-
-  <AireTracking />
 
   <!-- 1. Hero + CTA -->
   <AireHeroSection city={city} />

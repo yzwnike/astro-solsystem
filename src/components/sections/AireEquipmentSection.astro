@@ -35,16 +35,24 @@ const guide = [
 <!-- ================= TIPOS DE EQUIPO + GUÍA DE SELECCIÓN ================= -->
 <section class="py-14 px-4 bg-white">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-10">
+    <div class="text-center max-w-3xl mx-auto mb-10">
       <h2 class="text-3xl font-bold text-slate-900 mb-4">¿Qué aire acondicionado necesito según m²?</h2>
       <span class="block w-16 h-1 rounded-full bg-[#53C307] mx-auto mb-6"></span>
       <p class="text-slate-600">La potencia orientativa según tu espacio. En el estudio técnico ajustamos la elección al aislamiento, la orientación y el uso real.</p>
     </div>
 
-    <!-- Guía de selección en tarjetas -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Pista de deslizamiento (solo móvil), igual que en la sección de servicios -->
+    <p class="sm:hidden text-center text-slate-400 text-xs mb-4 flex items-center justify-center gap-1.5">
+      Desliza para ver más opciones
+      <span class="inline-block animate-pulse">→</span>
+    </p>
+
+    <!-- Guía de selección en tarjetas.
+         Móvil: carrusel horizontal con scroll snap (el -mx-4/px-4 lo sangra hasta
+         el borde de la pantalla). A partir de sm: vuelve a ser un grid. -->
+    <div class="aire-eq-scroller flex snap-x snap-mandatory overflow-x-auto gap-4 -mx-4 px-4 pb-4 sm:mx-0 sm:px-0 sm:pb-0 sm:gap-6 sm:overflow-x-visible sm:grid sm:snap-none sm:grid-cols-2 lg:grid-cols-4">
       {guide.map((row) => (
-        <div class="group relative flex flex-col bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[#53C307]/40">
+        <div class="group relative flex flex-col snap-center shrink-0 w-[85%] max-w-[320px] sm:w-auto sm:max-w-none bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[#53C307]/40">
           <!-- Franja superior de color -->
           <div class="h-1.5 bg-gradient-to-r from-[#046bd2] to-[#53C307]"></div>
 
@@ -81,3 +89,16 @@ const guide = [
     <p class="text-slate-400 text-xs text-center mt-6">Valores orientativos. Calculamos las frigorías exactas en el estudio técnico gratuito.</p>
   </div>
 </section>
+
+<style>
+  /* Carrusel sin barra de scroll visible (solo donde hay scroll horizontal) */
+  @media (max-width: 639px) {
+    .aire-eq-scroller {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* Edge antiguo */
+    }
+    .aire-eq-scroller::-webkit-scrollbar {
+      display: none; /* Safari y Chrome */
+    }
+  }
+</style>

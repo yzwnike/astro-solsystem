@@ -11,6 +11,10 @@ const isAire = path.includes('instalacion-aire-acondicionado');
 const isCargadores = path.includes('cargadores-de-coches-electricos');
 const isLegalizacion = path === '/' || path === '';
 const onDark = isAire || isCargadores;
+
+// El CTA y el enlace "Contacto" apuntan a #form, que existe en index y cargadores
+// pero no en las landings de aire: allí el formulario final es #solicitar-presupuesto.
+const contactId = isAire ? 'solicitar-presupuesto' : 'form';
 ---
 
 <header class={`site-header ${transparent ? 'transparent' : ''} ${onDark ? 'on-dark' : ''} ${isAire ? 'is-aire' : ''}`}>
@@ -18,7 +22,16 @@ const onDark = isAire || isCargadores;
     <div class="main-header-bar">
       <a href="https://solsystems.es/">
         <div class="site-logo">
-          <img src={isAire ? "https://lanzadera-digital.b-cdn.net/solsystems.es/solsystems.png" : import.meta.env.BASE_URL + "images/logo.png"} alt="SolSystems">
+          {/* En aire el header es transparente sobre el hero oscuro (logo claro),
+              pero por debajo de 921px pasa a fondo blanco y ahí hace falta el negro. */}
+          {isAire ? (
+            <picture>
+              <source media="(max-width: 921px)" srcset={import.meta.env.BASE_URL + "images/logo.png"} />
+              <img src="https://lanzadera-digital.b-cdn.net/solsystems.es/solsystems.png" alt="SolSystems" />
+            </picture>
+          ) : (
+            <img src={import.meta.env.BASE_URL + "images/logo.png"} alt="SolSystems" />
+          )}
         </div>
       </a>
       
@@ -58,15 +71,15 @@ const onDark = isAire || isCargadores;
             </ul>
           </li>
           <li><a href="https://solsystems.es/proyectos/">Proyectos</a></li>
-          <li><a href="#form">Contacto</a></li>
+          <li><a href={`#${contactId}`}>Contacto</a></li>
           <li><a href="https://solsystems.es/blog-solsystems/">Blog</a></li>
         </ul>
       </nav>
       
       <div class="header-cta-container">
-        <button 
-          class="header-cta-button" 
-          onclick="document.getElementById('form')?.scrollIntoView({behavior: 'smooth'})"
+        <button
+          class="header-cta-button"
+          onclick={`document.getElementById('${contactId}')?.scrollIntoView({behavior: 'smooth'})`}
         >
           Contáctanos
         </button>
@@ -80,7 +93,47 @@ const onDark = isAire || isCargadores;
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNavigation = document.querySelector('.main-navigation');
     const dropdownArrows = document.querySelectorAll('.dropdown-arrow');
-    
+
+    // El CSS anima el desplegable con un max-height fijo que cortaba los menús
+    // largos (Servicios tiene 7 opciones). Se calcula desde el contenido real,
+    // así no vuelve a romperse al añadir servicios. Con 'important' porque la
+    // regla del CSS también lo lleva.
+    function syncDropdownHeight(item) {
+      const menu = item.querySelector('.dropdown-menu');
+      if (!menu) return;
+      if (item.classList.contains('active') && window.innerWidth <= 921) {
+        // El CSS anima también el padding (0 -> 8px), así que medir scrollHeight
+        // recién abierto lo pilla a mitad y devuelve 16px de menos. Se mide con
+        // la transición desactivada y el estado final ya aplicado.
+        // La transición del CSS lleva !important, así que hay que pisarla con
+        // important o el padding sigue animándose mientras medimos.
+        menu.style.setProperty('transition', 'none', 'important');
+        menu.style.setProperty('max-height', 'none', 'important');
+        const alturaReal = menu.scrollHeight;
+        menu.style.removeProperty('max-height');
+        void menu.offsetHeight; // reflow: evita que el navegador funda ambos estados
+        menu.style.removeProperty('transition');
+        menu.style.setProperty('max-height', alturaReal + 'px', 'important');
+      } else {
+        menu.style.removeProperty('max-height');
+      }
+    }
+
+    // Observar la clase .active cubre todos los sitios que la togglean
+    // (wrapper, flecha, cierre del menú y resize) sin duplicar la llamada.
+    const dropdownItems = document.querySelectorAll('.has-dropdown');
+    const dropdownObserver = new MutationObserver(function (muts) {
+      muts.forEach(function (m) { syncDropdownHeight(m.target); });
+    });
+    dropdownItems.forEach(function (item) {
+      dropdownObserver.observe(item, { attributes: true, attributeFilter: ['class'] });
+    });
+
+    // Al rotar el móvil el texto puede reflowear y cambiar la altura necesaria
+    window.addEventListener('resize', function () {
+      document.querySelectorAll('.has-dropdown.active').forEach(syncDropdownHeight);
+    });
+
     // Mobile menu toggle functionality
     function toggleMobileMenu() {
       mobileMenuToggle.classList.toggle('active');
@@ -770,8 +823,10 @@ const onDark = isAire || isCargadores;
       z-index: 1000 !important;
     }
 
+    /* Respaldo por si el JS no llega a fijar la altura exacta del contenido:
+       holgado a propósito para no cortar opciones. */
     .has-dropdown.active .dropdown-menu {
-      max-height: 300px !important;
+      max-height: 500px !important;
       padding: 10px 0 !important;
     }
 
@@ -841,7 +896,7 @@ const onDark = isAire || isCargadores;
 
     /* Improve dropdown spacing for smaller screens */
     .has-dropdown.active .dropdown-menu {
-      max-height: 250px !important; /* Reduce max height */
+      max-height: 500px !important;
       padding: 8px 0 !important;
     }
 

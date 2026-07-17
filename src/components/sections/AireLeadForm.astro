@@ -18,8 +18,6 @@ const {
   dark = false,
 } = Astro.props;
 
-const baseUrl = import.meta.env.BASE_URL;
-
 // Clases de input según el fondo
 const inputBase = "w-full rounded-none bg-transparent py-2 text-sm focus:outline-none transition-colors";
 const inputCls = dark
@@ -27,7 +25,7 @@ const inputCls = dark
   : `${inputBase} border-b border-black text-slate-900 placeholder-slate-600 focus:border-[#53C307]`;
 ---
 
-<form id={id} class="js-aire-lead-form space-y-3" data-webhook={webhook} data-base={baseUrl}>
+<form id={id} class="js-aire-lead-form space-y-3" data-webhook={webhook}>
   <input type="hidden" name="form_source" value="landing_aire" />
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
@@ -35,7 +33,10 @@ const inputCls = dark
     <input type="email" name="email" placeholder="Correo electrónico*" required class={inputCls} />
   </div>
 
-  <input type="text" name="address" placeholder="Dirección*" required class={inputCls} />
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+    <input type="text" name="address" placeholder="Dirección*" required class={inputCls} />
+    <input type="tel" name="phone" inputmode="numeric" placeholder="Teléfono*" required class={inputCls} />
+  </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
     <select name="timeFrame" required class={inputCls}>
@@ -47,20 +48,17 @@ const inputCls = dark
     <input type="text" name="postalCode" inputmode="numeric" placeholder="Código postal*" required class={inputCls} />
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
-    <input type="tel" name="phone" inputmode="numeric" placeholder="Teléfono*" required class={inputCls} />
-    <input type="password" name="password" placeholder="Tu contraseña*" required autocomplete="new-password" class={inputCls} />
-  </div>
+  <textarea name="consulta" placeholder="Tu consulta*" required rows="2" class={`${inputCls} resize-none`}></textarea>
 
   <div class="flex items-start gap-2 pt-1">
     <input type="checkbox" name="acceptedTerms" required class="mt-0.5 flex-shrink-0" />
     <label class={`text-xs leading-tight ${dark ? "text-slate-300" : "text-slate-700"}`}>
-      Acepto los <a href="https://solsystems.es/politica-de-privacidad/" target="_blank" rel="noopener" class="underline hover:text-[#53C307]">términos y condiciones</a> y la política de privacidad.
+      Acepto los términos y condiciones y la política de privacidad.
     </label>
   </div>
 
   <div class="pt-1">
-    <button type="submit" class="js-form-submit w-full bg-gradient-to-br from-[#00AD2E] to-[#00BF33] hover:from-[#009426] hover:to-[#00A52E] text-white font-bold text-sm uppercase tracking-wide px-8 py-3 rounded-full shadow-lg shadow-[#00AD2E]/40 inline-flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5">
+    <button type="submit" class="js-form-submit w-full cursor-pointer disabled:cursor-not-allowed bg-gradient-to-br from-[#00AD2E] to-[#00BF33] hover:from-[#009426] hover:to-[#00A52E] text-white font-bold text-sm uppercase tracking-wide px-8 py-3 rounded-full shadow-lg shadow-[#00AD2E]/40 inline-flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5">
       <span class="js-form-submit-text">{submitLabel}</span>
     </button>
   </div>
@@ -68,10 +66,90 @@ const inputCls = dark
   <div class="js-form-message hidden mt-1 p-3 rounded-lg text-sm text-center"></div>
 </form>
 
+<!-- Global: el banner lo inyecta el script en <body>, fuera del scope de Astro. -->
+<style is:global>
+  .aire-lead-banner {
+    position: fixed;
+    /* Centrado con left/right + margin auto, no con left:50% + translateX:
+       con left:50% el ancho disponible se reduce a media pantalla y en móvil
+       el texto rompía en una línea por palabra. */
+    left: 16px;
+    right: 16px;
+    margin: 0 auto;
+    width: fit-content;
+    /* Por encima de la barra fija de móvil (Llamar / WhatsApp) */
+    bottom: 68px;
+    transform: translateY(150%);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: calc(100vw - 32px);
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: #0f172a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    border: 1px solid rgba(83, 195, 7, 0.4);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+  }
+
+  .aire-lead-banner.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (min-width: 768px) {
+    .aire-lead-banner {
+      /* Ya no hay barra inferior; se reserva ancho para el botón flotante de WhatsApp. */
+      bottom: 24px;
+      max-width: min(560px, calc(100vw - 220px));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aire-lead-banner {
+      transition: opacity 0.2s ease;
+      transform: none;
+    }
+  }
+</style>
+
 <script is:inline>
   (function () {
     if (window.__aireFormBound) return;
     window.__aireFormBound = true;
+
+    // Banner de confirmación: uno solo para los dos formularios de la página.
+    // Se crea al primer envío correcto y se reutiliza después.
+    function showBanner(text) {
+      var el = document.getElementById('aire-lead-banner');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'aire-lead-banner';
+        el.className = 'aire-lead-banner';
+        el.setAttribute('role', 'status');
+        el.setAttribute('aria-live', 'polite');
+        el.innerHTML =
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#53C307"' +
+          ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">' +
+          '<path d="M5 13l4 4L19 7"/></svg><span></span>';
+        document.body.appendChild(el);
+      }
+      el.querySelector('span').textContent = text;
+      // Fuerza reflow para poder reiniciar la animación si ya estaba visible.
+      void el.offsetWidth;
+      el.classList.add('is-visible');
+      clearTimeout(el.__hideTimer);
+      el.__hideTimer = setTimeout(function () {
+        el.classList.remove('is-visible');
+      }, 6000);
+    }
 
     document.addEventListener('submit', async function (e) {
       var form = e.target.closest ? e.target.closest('.js-aire-lead-form') : null;
@@ -79,7 +157,6 @@ const inputCls = dark
       e.preventDefault();
 
       var webhook = form.getAttribute('data-webhook');
-      var baseUrl = form.getAttribute('data-base') || '/';
       var btn = form.querySelector('.js-form-submit');
       var btnText = form.querySelector('.js-form-submit-text');
       var msg = form.querySelector('.js-form-message');
@@ -103,10 +180,10 @@ const inputCls = dark
       var email = fd.get('email');
       var address = fd.get('address');
       var timeFrame = fd.get('timeFrame');
-      var password = fd.get('password');
+      var consulta = fd.get('consulta');
       var acceptedTerms = fd.get('acceptedTerms');
 
-      if (!name || !email || !address || !timeFrame || !postalCode || !phone || !password) {
+      if (!name || !email || !address || !timeFrame || !postalCode || !phone || !consulta) {
         showMsg('Por favor, completa todos los campos obligatorios.', 'error');
         return;
       }
@@ -126,10 +203,11 @@ const inputCls = dark
         address: address,
         timeFrame: timeFrame,
         postalCode: postalCode,
-        password: password,
-        message: 'Solicitud de AIRE ACONDICIONADO — Dirección: ' + address + ' · CP: ' + postalCode + ' · Franja horaria: ' + timeFrame,
+        consulta: consulta,
+        message: 'Solicitud de AIRE ACONDICIONADO — Dirección: ' + address + ' · CP: ' + postalCode + ' · Franja horaria: ' + timeFrame + ' · Consulta: ' + consulta,
         acceptedTerms: 'Sí',
         formSource: 'Landing Aire Acondicionado (' + form.id + ')',
+        path: window.location.pathname,
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent
       };
@@ -141,12 +219,12 @@ const inputCls = dark
           body: JSON.stringify(payload)
         });
         if (res.ok) {
-          if (typeof window.ssTrack === 'function') {
-            window.ssTrack('generate_lead', { form: form.id, postalCode: postalCode });
-          }
-          showMsg('¡Gracias! Hemos recibido tu solicitud. Te enviaremos una propuesta en un plazo máximo de 24 horas laborables.', 'success');
+          // La confirmación se da en el banner inferior; el aviso en línea
+          // queda reservado para los errores, que sí se leen junto al campo.
+          if (msg) msg.classList.add('hidden');
           form.reset();
-          setTimeout(function () { window.location.href = baseUrl + 'gracias'; }, 1400);
+          reset();
+          showBanner('¡Gracias! Hemos recibido tu solicitud. Te respondemos en menos de 24 h laborables.');
         } else {
           throw new Error('Server error');
         }

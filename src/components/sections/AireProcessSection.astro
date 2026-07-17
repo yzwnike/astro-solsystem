@@ -61,7 +61,9 @@ const steps = [
           <div class={`w-14 h-14 rounded-full font-extrabold text-lg flex items-center justify-center mb-6 ${step.num === "1" ? "bg-[#53C307] text-white shadow-lg shadow-[#53C307]/30" : "bg-slate-800/80 text-white border-2 border-slate-700"}`}>
             {step.num}
           </div>
-          <h4 class="text-lg font-bold mb-2">{step.title}</h4>
+          <!-- Altura de 2 líneas reservada (text-lg = line-height 1.75rem) para que
+               todos los títulos ocupen lo mismo y los textos arranquen alineados. -->
+          <h4 class="text-lg font-bold mb-2 min-h-[3.5rem] flex items-start justify-center">{step.title}</h4>
           <p class="text-slate-300 text-xs px-2">{step.text}</p>
         </div>
       ))}
