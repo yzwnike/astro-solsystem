@@ -1,11 +1,19 @@
 ---
 // Copy SEO (página 8 del boceto) con formato visual: imagen + bloques compactos.
-import { CDN_IMAGES } from '../../consts';
+import { CDN_IMAGES, type CityInfo } from '../../consts';
+
+export interface Props {
+  city?: CityInfo; // sin ciudad => landing general: no se nombra ninguna
+}
+const { city } = Astro.props;
+
 const image = `${CDN_IMAGES}/aire4.webp`;
 
 const blocks = [
   {
-    title: "Instaladores de aire acondicionado en Madrid y Barcelona",
+    title: city
+      ? "Instaladores de aire acondicionado en Madrid y Barcelona"
+      : "Instaladores de aire acondicionado con técnicos propios",
     text: "Empresa de aire acondicionado que analiza el espacio, la orientación y la instalación eléctrica existente para recomendarte la solución más eficiente y segura, en viviendas, oficinas y locales.",
   },
   {
@@ -30,7 +38,7 @@ const blocks = [
     <div class="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 order-1 lg:order-none">
       <img
         src={image}
-        alt="Instalación de aire acondicionado split en vivienda en Madrid por SolSystems"
+        alt={city ? `Instalación de aire acondicionado split en vivienda en ${city.name} por SolSystems` : 'Instalación de aire acondicionado split en vivienda por SolSystems'}
         width="640"
         height="520"
         loading="lazy"

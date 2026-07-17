@@ -10,7 +10,9 @@
       "Bash(node movil.mjs)",
       "Bash(node -e ' *)",
       "Bash(grep -iA6 \"error\\\\|failed\")",
-      "Bash(node drop-fix2.mjs)"
+      "Bash(node drop-fix2.mjs)",
+      "Bash(bash /tmp/claude-501/-Users-loickstark-Documents-Dev-astro-solsystem/09f136da-440e-4608-8132-7653d32435dd/scratchpad/check-gen.sh)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

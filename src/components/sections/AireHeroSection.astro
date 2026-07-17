@@ -2,12 +2,12 @@
 // Hero: orientado a beneficio (instalación en 24-48h por técnicos propios),
 // gancho de verano arriba, y específico por ciudad (Madrid / Barcelona).
 import AireLeadForm from './AireLeadForm.astro';
-import { CDN_IMAGES, CITY_MADRID, type CityInfo } from '../../consts';
+import { CDN_IMAGES, type CityInfo } from '../../consts';
 
 export interface Props {
-  city?: CityInfo;
+  city?: CityInfo; // sin ciudad => copy general
 }
-const { city = CITY_MADRID } = Astro.props;
+const { city } = Astro.props;
 
 const heroBg = `${CDN_IMAGES}/aire-acondicionado1.webp`;
 
@@ -33,10 +33,10 @@ const chips = [
     <!-- Texto Principal -->
     <div class="flex flex-col justify-center text-left">
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] tracking-tight mb-6">
-        Tu <span class="text-[#53C307]">aire acondicionado</span> instalado en <span class="text-[#53C307]">24-48h</span> por técnicos propios en {city.name}
+        Tu <span class="text-[#53C307]">aire acondicionado</span> instalado en <span class="text-[#53C307]">24-48h</span> por técnicos propios{city ? ` en ${city.name}` : ''}
       </h1>
       <p class="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
-        Climatiza tu vivienda, oficina o local en {city.name} con nuestro equipo propio de técnicos, sin subcontratas. Estudio y presupuesto sin compromiso, e instalación en 24-48 horas.
+        Climatiza tu vivienda, oficina o local{city ? ` en ${city.name}` : ''} con nuestro equipo propio de técnicos, sin subcontratas. Estudio y presupuesto sin compromiso, e instalación en 24-48 horas.
       </p>
 
       <!-- Microcopy de confianza -->

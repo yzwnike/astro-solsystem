@@ -50,3 +50,10 @@ export const CITY_BARCELONA: CityInfo = {
   postalCode: "08390",
   url: "https://solsystems.es/instalacion-aire-acondicionado-barcelona/",
 };
+
+// Landing general (sin ciudad): no puede atarse a una sede, así que muestra las
+// dos y deja que el usuario elija con quién contacta.
+export const CITIES: CityInfo[] = [CITY_MADRID, CITY_BARCELONA];
+
+export const AIRE_GENERAL_URL =
+  "https://solsystems.es/instalacion-aire-acondicionado/";

@@ -14,42 +14,63 @@ import AireFaqSection from './sections/AireFaqSection.astro';
 import AireContactSection from './sections/AireContactSection.astro';
 import AireStickyCta from './sections/AireStickyCta.astro';
 import AireTestimonials from './sections/AireTestimonials.astro';
-import { type CityInfo } from '../consts';
+import { CITIES, AIRE_GENERAL_URL, type CityInfo } from '../consts';
 
 export interface Props {
-  city: CityInfo;
+  city?: CityInfo; // sin ciudad => landing general
 }
 const { city } = Astro.props;
 
-const title = `Instalación de Aire Acondicionado en ${city.name} | Técnicos Propios en 24-48h | SolSystems`;
-const description = `Instaladores de aire acondicionado en ${city.name}: split, multisplit y conductos. Técnicos propios, sin subcontratas, e instalación en 24-48 h. Presupuesto gratis.`;
+const title = city
+  ? `Instalación de Aire Acondicionado en ${city.name} | Técnicos Propios en 24-48h | SolSystems`
+  : `Instalación de Aire Acondicionado | Técnicos Propios en 24-48h | SolSystems`;
+const description = city
+  ? `Instaladores de aire acondicionado en ${city.name}: split, multisplit y conductos. Técnicos propios, sin subcontratas, e instalación en 24-48 h. Presupuesto gratis.`
+  : `Instaladores de aire acondicionado: split, multisplit y conductos. Técnicos propios, sin subcontratas, e instalación en 24-48 h. Presupuesto gratis.`;
 
-const businessSchema = {
-  "@context": "https://schema.org",
+// Ficha de sede reutilizable: una sola en las landings de ciudad, las dos en la general.
+const sedeSchema = (c: CityInfo) => ({
   "@type": "LocalBusiness",
-  "name": `SolSystems · Aire acondicionado ${city.name}`,
+  "name": `SolSystems · Aire acondicionado ${c.name}`,
   "image": "https://solsystems.es/images/logo.png",
-  "url": city.url,
-  "telephone": city.phone,
+  "url": c.url,
+  "telephone": c.phone,
   "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": city.street,
-    "addressLocality": city.locality,
-    "addressRegion": city.region,
-    "postalCode": city.postalCode,
+    "streetAddress": c.street,
+    "addressLocality": c.locality,
+    "addressRegion": c.region,
+    "postalCode": c.postalCode,
     "addressCountry": "ES"
   },
-  "areaServed": { "@type": "City", "name": city.name }
-};
+  "areaServed": { "@type": "City", "name": c.name }
+});
+
+// Sin ciudad no cabe un LocalBusiness (exige una dirección concreta):
+// se declara la organización con sus dos sedes.
+const businessSchema = city
+  ? { "@context": "https://schema.org", ...sedeSchema(city) }
+  : {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SolSystems · Aire acondicionado",
+      "image": "https://solsystems.es/images/logo.png",
+      "url": AIRE_GENERAL_URL,
+      "location": CITIES.map(sedeSchema)
+    };
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": "Instalación de aire acondicionado",
   "provider": { "@type": "LocalBusiness", "name": "SolSystems" },
-  "areaServed": { "@type": "City", "name": city.name },
-  "description": `Instalación de aire acondicionado split, multisplit y por conductos en ${city.name}, con técnicos propios e instalación en 24-48 horas.`,
+  "areaServed": city
+    ? { "@type": "City", "name": city.name }
+    : CITIES.map((c) => ({ "@type": "City", "name": c.name })),
+  "description": city
+    ? `Instalación de aire acondicionado split, multisplit y por conductos en ${city.name}, con técnicos propios e instalación en 24-48 horas.`
+    : `Instalación de aire acondicionado split, multisplit y por conductos, con técnicos propios e instalación en 24-48 horas.`,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Servicios de aire acondicionado",
@@ -83,7 +104,7 @@ const serviceSchema = {
   <AireProcessSection city={city} />
 
   <!-- 5. SEO / FAQ -->
-  <AireSeoContentSection />
+  <AireSeoContentSection city={city} />
   <AireFaqSection city={city} />
 
   <!-- Testimonios (Google + reseñas reales + experiencia) -->

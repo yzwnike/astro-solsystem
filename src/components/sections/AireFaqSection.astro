@@ -2,16 +2,16 @@
 // Bloque 5 del boceto: SEO / FAQ
 // Preguntas frecuentes para long tail y calidad del anuncio.
 // Los acordeones usan <details>, indexables. Incluye schema FAQPage sincronizado.
-import { CITY_MADRID, type CityInfo } from '../../consts';
+import { type CityInfo } from '../../consts';
 
 export interface Props {
   city?: CityInfo;
 }
-const { city = CITY_MADRID } = Astro.props;
+const { city } = Astro.props;
 
 const faqs = [
   {
-    q: `¿Cuánto cuesta instalar aire acondicionado en ${city.name}?`,
+    q: city ? `¿Cuánto cuesta instalar aire acondicionado en ${city.name}?` : `¿Cuánto cuesta instalar aire acondicionado?`,
     a: "El precio depende del tipo de instalación y del número de estancias. Como referencia orientativa, un split 1x1 suele situarse entre 600 € y 900 € ya instalado; el multisplit y los conductos requieren un estudio personalizado por la complejidad de tuberías y falsos techos. Te damos tu presupuesto exacto, gratis y sin compromiso.",
   },
   {
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: "¿Necesito permiso de la comunidad?",
-    a: `Sí, la instalación de unidades exteriores en fachadas o patios comunes se rige por la Ley de Propiedad Horizontal y las normativas municipales de cada ayuntamiento de ${city.name}. Te asesoramos sobre ubicaciones y regulaciones habituales para que todo cumpla con la legalidad.`,
+    a: `Sí, la instalación de unidades exteriores en fachadas o patios comunes se rige por la Ley de Propiedad Horizontal y las normativas municipales de cada ayuntamiento${city ? ` de ${city.name}` : ''}. Te asesoramos sobre ubicaciones y regulaciones habituales para que todo cumpla con la legalidad.`,
   },
   {
     q: "¿Es mejor split, multisplit o conductos?",
@@ -57,7 +57,7 @@ const faqSchema = {
     <div class="text-center mb-10">
       <h2 class="text-3xl font-bold text-slate-900 mb-4">Preguntas frecuentes</h2>
       <span class="block w-16 h-1 rounded-full bg-[#53C307] mx-auto mb-6"></span>
-      <p class="text-slate-600 text-sm">Respondemos las dudas habituales sobre instalaciones de aire acondicionado en Madrid.</p>
+      <p class="text-slate-600 text-sm">Respondemos las dudas habituales sobre instalaciones de aire acondicionado{city ? ` en ${city.name}` : ''}.</p>
     </div>
 
     <div class="space-y-4">

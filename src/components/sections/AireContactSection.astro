@@ -2,20 +2,23 @@
 // Bloque 6 del boceto: Formulario y conversión (formulario final).
 // Usa el mismo componente reutilizable AireLeadForm que el hero.
 import AireLeadForm from './AireLeadForm.astro';
-import { CITY_MADRID, type CityInfo } from '../../consts';
+import { CITIES, type CityInfo } from '../../consts';
 
 export interface Props {
-  city?: CityInfo;
+  city?: CityInfo; // sin ciudad => landing general: se listan todas las sedes
   webhook?: string;
 }
 
 const {
-  city = CITY_MADRID,
+  city,
   webhook = "https://hook.eu2.make.com/yo3nlh4c9mhhspc3iupjg8jpkj7ir8dk",
 } = Astro.props;
 
 const mapImage = import.meta.env.BASE_URL + "images/mapa.webp";
-const waLink = `https://wa.me/${city.whatsapp}?text=${encodeURIComponent("Hola, os envío fotos del espacio para el presupuesto de aire acondicionado.")}`;
+// Una sede en las landings de ciudad; las dos en la general.
+const sedes = city ? [city] : CITIES;
+const waLink = (c: CityInfo) =>
+  `https://wa.me/${c.whatsapp}?text=${encodeURIComponent("Hola, os envío fotos del espacio para el presupuesto de aire acondicionado.")}`;
 ---
 
 <!-- ================= FORMULARIO Y CONTACTO ================= -->
@@ -29,44 +32,51 @@ const waLink = `https://wa.me/${city.whatsapp}?text=${encodeURIComponent("Hola, 
         Cuéntanos qué necesitas y envíanos fotos del espacio. Nuestro equipo técnico revisará la información, te enviará una propuesta clara y coordinamos la instalación en 24-48 horas.
       </p>
 
-      <div class="space-y-6">
-        <!-- Teléfono de la ciudad -->
-        <a href={`tel:${city.phone}`} class="flex items-start gap-4 group">
-          <div class="w-6 h-6 text-[#53C307] mt-1 flex-shrink-0">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          </div>
-          <div>
-            <h3 class="text-slate-900 font-medium text-sm group-hover:text-[#53C307] transition-colors">Teléfono {city.name}</h3>
-            <p class="text-slate-500 text-xs mt-1">{city.phone.replace('+34', '+34 ')}</p>
-          </div>
-        </a>
+      <div class="space-y-8">
+        {sedes.map((c, i) => (
+          <div class="space-y-6">
+            {/* Separador entre sedes: solo aparece en la landing general */}
+            {i > 0 && <div class="h-px bg-slate-200"></div>}
 
-        <!-- WhatsApp -->
-        <a href={waLink} target="_blank" rel="noopener" class="flex items-start gap-4">
-          <div class="w-6 h-6 text-[#25D366] mt-1 flex-shrink-0">
-            <svg class="fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
-          </div>
-          <div>
-            <h3 class="text-slate-900 font-medium text-sm">WhatsApp</h3>
-            <p class="text-slate-500 text-xs mt-1">Envíanos fotos: {city.phoneDisplay}</p>
-          </div>
-        </a>
+            <!-- Teléfono de la sede -->
+            <a href={`tel:${c.phone}`} class="flex items-start gap-4 group">
+              <div class="w-6 h-6 text-[#53C307] mt-1 flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-slate-900 font-medium text-sm group-hover:text-[#53C307] transition-colors">Teléfono {c.name}</h3>
+                <p class="text-slate-500 text-xs mt-1">{c.phone.replace('+34', '+34 ')}</p>
+              </div>
+            </a>
 
-        <!-- Sede de la ciudad -->
-        <div class="flex items-start gap-4">
-          <div class="w-6 h-6 text-[#53C307] mt-1 flex-shrink-0">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <!-- WhatsApp -->
+            <a href={waLink(c)} target="_blank" rel="noopener" class="flex items-start gap-4">
+              <div class="w-6 h-6 text-[#25D366] mt-1 flex-shrink-0">
+                <svg class="fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-slate-900 font-medium text-sm">WhatsApp{city ? '' : ` ${c.name}`}</h3>
+                <p class="text-slate-500 text-xs mt-1">Envíanos fotos: {c.phoneDisplay}</p>
+              </div>
+            </a>
+
+            <!-- Sede -->
+            <div class="flex items-start gap-4">
+              <div class="w-6 h-6 text-[#53C307] mt-1 flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-slate-900 font-medium text-sm">Sede{city ? '' : ` ${c.name}`}</h3>
+                <p class="text-slate-500 text-xs mt-1">{c.sedeAddress}</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 class="text-slate-900 font-medium text-sm">Sede</h3>
-            <p class="text-slate-500 text-xs mt-1">{city.sedeAddress}</p>
-          </div>
-        </div>
+        ))}
       </div>
 
       <!-- Mapa al final para no distraer de la conversión -->
       <div class="mt-10 max-w-sm rounded-xl overflow-hidden border border-slate-200">
-        <img src={mapImage} alt={`Cobertura de SolSystems en ${city.name}`} loading="lazy" class="w-full opacity-80" />
+        <img src={mapImage} alt={city ? `Cobertura de SolSystems en ${city.name}` : 'Cobertura de SolSystems'} loading="lazy" class="w-full opacity-80" />
       </div>
     </div>
 
