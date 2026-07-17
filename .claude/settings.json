@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '/\\\\.site-header/,/^\\\\s*}/' src/components/layout/Header.astro)",
+      "Bash(npm init *)",
+      "Bash(npx playwright *)",
+      "Bash(node shot.mjs)",
+      "Bash(pkill -f \"astro dev\")",
+      "Bash(python3 -)"
+    ]
+  }
+}

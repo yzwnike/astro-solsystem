@@ -14,7 +14,6 @@ import AireFaqSection from './sections/AireFaqSection.astro';
 import AireContactSection from './sections/AireContactSection.astro';
 import AireStickyCta from './sections/AireStickyCta.astro';
 import AireTracking from './sections/AireTracking.astro';
-import AireVisualBand from './sections/AireVisualBand.astro';
 import AireTestimonials from './sections/AireTestimonials.astro';
 import { type CityInfo } from '../consts';
 
@@ -66,7 +65,7 @@ const serviceSchema = {
 };
 ---
 
-<BaseLayout title={title} description={description} includeLegalizationCSS={false}>
+<BaseLayout title={title} description={description} includeLegalizationCSS={false} useMontserrat={true}>
   <Header transparent={true} />
 
   <AireTracking />
@@ -81,20 +80,10 @@ const serviceSchema = {
   <AireBrandsSection />
   <AireTrustSection />
 
-  <!-- Línea separadora (degradado azul → verde) -->
-  <div class="bg-white">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="h-1 rounded-full bg-gradient-to-r from-[#046bd2] to-[#53C307]"></div>
-    </div>
-  </div>
-
   <AireEquipmentSection />
 
-  <!-- Banda visual + CTA -->
-  <AireVisualBand />
-
-  <!-- 4. Proceso -->
-  <AireProcessSection />
+  <!-- 4. Instalación + proceso (secciones unificadas) -->
+  <AireProcessSection city={city} />
 
   <!-- 5. SEO / FAQ -->
   <AireSeoContentSection />

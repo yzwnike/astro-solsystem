@@ -13,7 +13,6 @@ export interface Props {
 
 const {
   id,
-  compact = false,
   webhook = "https://hook.eu2.make.com/yo3nlh4c9mhhspc3iupjg8jpkj7ir8dk",
   submitLabel = "Solicitar presupuesto en 24 h",
   dark = false,
@@ -22,97 +21,51 @@ const {
 const baseUrl = import.meta.env.BASE_URL;
 
 // Clases de input según el fondo
-const inputBase = "w-full rounded-none bg-transparent py-3 text-sm focus:outline-none transition-colors";
+const inputBase = "w-full rounded-none bg-transparent py-2 text-sm focus:outline-none transition-colors";
 const inputCls = dark
   ? `${inputBase} border-b border-white/30 text-white placeholder-slate-400 focus:border-[#53C307]`
   : `${inputBase} border-b border-black text-slate-900 placeholder-slate-600 focus:border-[#53C307]`;
-const labelCls = dark ? "text-slate-300" : "text-slate-700";
 ---
 
-<form id={id} class="js-aire-lead-form space-y-4" data-webhook={webhook} data-base={baseUrl}>
+<form id={id} class="js-aire-lead-form space-y-3" data-webhook={webhook} data-base={baseUrl}>
   <input type="hidden" name="form_source" value="landing_aire" />
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
     <input type="text" name="name" placeholder="Nombre*" required class={inputCls} />
-    <input type="tel" name="phone" inputmode="numeric" placeholder="Teléfono*" required class={inputCls} />
-  </div>
-
-  {!compact && (
     <input type="email" name="email" placeholder="Correo electrónico*" required class={inputCls} />
-  )}
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <input type="text" name="postalCode" inputmode="numeric" placeholder={compact ? "Cód. postal / zona*" : "Código postal / zona*"} required class={inputCls} />
-    {!compact && (
-      <input type="text" name="rooms" placeholder="Nº de estancias o m² aprox." class={inputCls} />
-    )}
-    {compact && (
-      <select name="system" class={inputCls}>
-        <option value="Split mural 1x1">Split (1 estancia)</option>
-        <option value="Multisplit">Multisplit</option>
-        <option value="Conductos">Conductos</option>
-        <option value="No lo sé">No lo sé</option>
-      </select>
-    )}
   </div>
 
-  {!compact && (
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-      <div>
-        <label class={`block text-xs font-semibold mb-2 ${labelCls}`}>Tipo de inmueble</label>
-        <select name="propertyType" class={inputCls}>
-          <option value="Vivienda">Vivienda</option>
-          <option value="Local">Local</option>
-          <option value="Oficina">Oficina</option>
-        </select>
-      </div>
-      <div>
-        <label class={`block text-xs font-semibold mb-2 ${labelCls}`}>¿Qué necesitas?</label>
-        <select name="system" class={inputCls}>
-          <option value="Split mural 1x1">Split mural individual</option>
-          <option value="Multisplit">Multisplit (varias estancias)</option>
-          <option value="Conductos">Centralizado por conductos</option>
-          <option value="Cassette">Cassette (oficina / local)</option>
-          <option value="Sustitución de equipo">Sustitución de equipo</option>
-          <option value="Mantenimiento">Mantenimiento / revisión</option>
-          <option value="No lo sé">No lo sé, necesito asesoramiento</option>
-        </select>
-      </div>
-    </div>
-  )}
+  <input type="text" name="address" placeholder="Dirección*" required class={inputCls} />
 
-  {!compact && (
-    <div class="pt-2">
-      <label class={`block text-xs font-semibold mb-2 ${labelCls}`}>¿Para cuándo lo necesitas?</label>
-      <select name="urgency" class={inputCls}>
-        <option value="Esta semana">Esta semana</option>
-        <option value="Este mes">Este mes</option>
-        <option value="Solo información">Solo información</option>
-      </select>
-    </div>
-  )}
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+    <select name="timeFrame" required class={inputCls}>
+      <option value="" disabled selected>Franja horaria*</option>
+      <option value="Mañana (9:00 - 14:00)">Mañana (9:00 - 14:00)</option>
+      <option value="Tarde (16:00 - 20:00)">Tarde (16:00 - 20:00)</option>
+      <option value="Indiferente">Indiferente</option>
+    </select>
+    <input type="text" name="postalCode" inputmode="numeric" placeholder="Código postal*" required class={inputCls} />
+  </div>
 
-  {!compact && (
-    <div class="pt-2">
-      <label class={`block text-xs font-semibold mb-2 ${labelCls}`}>Fotos del espacio (opcional, acelera el presupuesto)</label>
-      <input type="text" name="photosLink" placeholder="Pega aquí un enlace a tus fotos (Drive, Fotos…)" class={inputCls} />
-    </div>
-  )}
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+    <input type="tel" name="phone" inputmode="numeric" placeholder="Teléfono*" required class={inputCls} />
+    <input type="password" name="password" placeholder="Tu contraseña*" required autocomplete="new-password" class={inputCls} />
+  </div>
 
-  <div class="flex items-start gap-2 pt-3">
-    <input type="checkbox" name="acceptedTerms" required class="mt-1 flex-shrink-0" />
+  <div class="flex items-start gap-2 pt-1">
+    <input type="checkbox" name="acceptedTerms" required class="mt-0.5 flex-shrink-0" />
     <label class={`text-xs leading-tight ${dark ? "text-slate-300" : "text-slate-700"}`}>
-      Acepto la <a href="https://solsystems.es/politica-de-privacidad/" target="_blank" rel="noopener" class="underline hover:text-[#53C307]">política de privacidad</a> para tramitar mi solicitud.
+      Acepto los <a href="https://solsystems.es/politica-de-privacidad/" target="_blank" rel="noopener" class="underline hover:text-[#53C307]">términos y condiciones</a> y la política de privacidad.
     </label>
   </div>
 
-  <div class="pt-2">
-    <button type="submit" class="js-form-submit w-full bg-gradient-to-br from-[#00AD2E] to-[#00BF33] hover:from-[#009426] hover:to-[#00A52E] text-white font-bold text-sm uppercase tracking-wide px-8 py-3.5 rounded-full shadow-lg shadow-[#00AD2E]/40 inline-flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5">
+  <div class="pt-1">
+    <button type="submit" class="js-form-submit w-full bg-gradient-to-br from-[#00AD2E] to-[#00BF33] hover:from-[#009426] hover:to-[#00A52E] text-white font-bold text-sm uppercase tracking-wide px-8 py-3 rounded-full shadow-lg shadow-[#00AD2E]/40 inline-flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5">
       <span class="js-form-submit-text">{submitLabel}</span>
     </button>
   </div>
 
-  <div class="js-form-message hidden mt-2 p-3 rounded-lg text-sm text-center"></div>
+  <div class="js-form-message hidden mt-1 p-3 rounded-lg text-sm text-center"></div>
 </form>
 
 <script is:inline>
@@ -147,10 +100,13 @@ const labelCls = dark ? "text-slate-300" : "text-slate-700";
       var name = fd.get('name');
       var phone = fd.get('phone');
       var postalCode = fd.get('postalCode');
-      var email = fd.get('email'); // puede no existir en el compacto
+      var email = fd.get('email');
+      var address = fd.get('address');
+      var timeFrame = fd.get('timeFrame');
+      var password = fd.get('password');
       var acceptedTerms = fd.get('acceptedTerms');
 
-      if (!name || !phone || !postalCode || (form.querySelector('[name="email"]') && !email)) {
+      if (!name || !email || !address || !timeFrame || !postalCode || !phone || !password) {
         showMsg('Por favor, completa todos los campos obligatorios.', 'error');
         return;
       }
@@ -163,28 +119,17 @@ const labelCls = dark ? "text-slate-300" : "text-slate-700";
       if (btnText) btnText.textContent = 'Enviando...';
       if (msg) msg.classList.add('hidden');
 
-      var propertyType = fd.get('propertyType') || 'No especificado';
-      var system = fd.get('system') || 'No especificado';
-      var urgency = fd.get('urgency') || 'No especificado';
-      var rooms = fd.get('rooms') || 'No especificado';
-      var photosLink = fd.get('photosLink') || 'No adjuntado';
-
-      // Mismo webhook y mismas claves que index, + extras de aire; todo el detalle en message.
       var payload = {
         name: name,
-        email: email || 'No especificado',
+        email: email,
         phone: phone,
-        address: 'CP/Zona: ' + postalCode + ' · Inmueble: ' + propertyType,
-        timeFrame: 'No especificado',
+        address: address,
+        timeFrame: timeFrame,
         postalCode: postalCode,
-        rooms: rooms,
-        photosLink: photosLink,
-        propertyType: propertyType,
-        system: system,
-        urgency: urgency,
-        message: 'Solicitud de AIRE ACONDICIONADO — Inmueble: ' + propertyType + ' · Sistema: ' + system + ' · Urgencia: ' + urgency + ' · Tamaño: ' + rooms + ' · Fotos: ' + photosLink,
+        password: password,
+        message: 'Solicitud de AIRE ACONDICIONADO — Dirección: ' + address + ' · CP: ' + postalCode + ' · Franja horaria: ' + timeFrame,
         acceptedTerms: 'Sí',
-        formSource: 'Landing Aire Acondicionado Madrid (' + form.id + ')',
+        formSource: 'Landing Aire Acondicionado (' + form.id + ')',
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent
       };
@@ -197,7 +142,7 @@ const labelCls = dark ? "text-slate-300" : "text-slate-700";
         });
         if (res.ok) {
           if (typeof window.ssTrack === 'function') {
-            window.ssTrack('generate_lead', { form: form.id, system: system, urgency: urgency });
+            window.ssTrack('generate_lead', { form: form.id, postalCode: postalCode });
           }
           showMsg('¡Gracias! Hemos recibido tu solicitud. Te enviaremos una propuesta en un plazo máximo de 24 horas laborables.', 'success');
           form.reset();

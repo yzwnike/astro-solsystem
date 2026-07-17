@@ -13,12 +13,12 @@ const isLegalizacion = path === '/' || path === '';
 const onDark = isAire || isCargadores;
 ---
 
-<header class={`site-header ${transparent ? 'transparent' : ''} ${onDark ? 'on-dark' : ''}`}>
+<header class={`site-header ${transparent ? 'transparent' : ''} ${onDark ? 'on-dark' : ''} ${isAire ? 'is-aire' : ''}`}>
   <div class="container">
     <div class="main-header-bar">
       <a href="https://solsystems.es/">
         <div class="site-logo">
-          <img src={import.meta.env.BASE_URL + "images/logo.png"} alt="SolSystems">
+          <img src={isAire ? "https://lanzadera-digital.b-cdn.net/solsystems.es/solsystems.png" : import.meta.env.BASE_URL + "images/logo.png"} alt="SolSystems">
         </div>
       </a>
       
@@ -275,6 +275,61 @@ const onDark = isAire || isCargadores;
     }
     .site-header.on-dark .hamburger-line {
       background: #ffffff;
+    }
+  }
+
+  /* ===== Ajustes exclusivos de la landing de aire ===== */
+
+  /* max-width con !important para ganar al tope de 1400px que BaseLayout
+     aplica a .container a partir de 1920px. */
+  .site-header.is-aire .container {
+    width: 90%;
+    max-width: none !important;
+    padding: 0;
+  }
+
+  .site-header.is-aire .header-cta-button {
+    padding: 10px 18px;
+  }
+
+  @media (min-width: 922px) {
+    .site-header.is-aire .nav-menu a,
+    .site-header.is-aire .dropdown-link {
+      font-size: 14px;
+    }
+
+    /* El chevron es un background-image SVG, así que no hereda currentColor:
+       para recolorearlo hay que sustituir el fill del propio SVG. */
+    .site-header.is-aire .dropdown-link::after {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z' fill='%23ffffff'/%3E%3C/svg%3E");
+    }
+
+    .site-header.is-aire .dropdown-link:hover::after {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z' fill='%2353C307'/%3E%3C/svg%3E");
+    }
+
+    /* Dropdown alineado con el borde izquierdo de su nav item */
+    .site-header.is-aire .nav-item:nth-child(2) .dropdown-menu,
+    .site-header.is-aire .nav-item:nth-child(3) .dropdown-menu {
+      left: 0;
+    }
+
+    /* Separación respecto al nav item. Se fija aquí porque el `margin-top: 10px`
+       de la regla base queda anulado por un `margin: 0` posterior. */
+    .site-header.is-aire .dropdown-menu {
+      margin-top: 14px;
+    }
+
+    /* Sin triángulo. El ::before se reaprovecha como puente invisible sobre el
+       hueco: sin él, al bajar el ratón se sale del nav item y el menú se cierra. */
+    .site-header.is-aire .dropdown-menu::before {
+      border: none;
+      background: transparent;
+      top: -14px;
+      left: 0;
+      width: 100%;
+      height: 14px;
+      transform: none;
     }
   }
 

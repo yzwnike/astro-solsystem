@@ -3,12 +3,14 @@ export interface Props {
   title: string;
   description?: string;
   includeLegalizationCSS?: boolean;
+  useMontserrat?: boolean;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "Legalizamos tu instalación eléctrica de forma rápida y sin complicaciones. Boletines eléctricos CIE, tramitación ante Industria y distribuidoras. ¡Presupuesto en 2 horas!",
-  includeLegalizationCSS = false 
+  includeLegalizationCSS = false,
+  useMontserrat = false
 } = Astro.props;
 ---
 
@@ -25,6 +27,9 @@ const {
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  {useMontserrat && (
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  )}
   
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -38,6 +43,17 @@ const {
       --ast-global-color-0: #046bd2;
       --ast-global-color-2: #1e293b;
       --ast-global-color-3: #334155;
+    }
+
+    /* Tipografía opt-in (useMontserrat). Se aplica en body para ganar al
+       html{font-family} del preflight de Tailwind; los controles de formulario
+       se listan aparte porque no heredan la fuente por defecto. */
+    body.ss-montserrat,
+    body.ss-montserrat button,
+    body.ss-montserrat input,
+    body.ss-montserrat select,
+    body.ss-montserrat textarea {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
   </style>
 
@@ -126,7 +142,7 @@ const {
   {includeLegalizationCSS && <link rel="stylesheet" href={import.meta.env.BASE_URL + "styles/legalizacion.css"}/>}
 </head>
 
-<body>
+<body class={useMontserrat ? 'ss-montserrat' : ''}>
   <slot />
   
   <!-- Animation Scripts -->

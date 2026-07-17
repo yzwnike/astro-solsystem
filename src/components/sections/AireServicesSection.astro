@@ -15,7 +15,6 @@ const serviceImages = [
 const services = [
   {
     id: "split",
-    anchor: "Split 1x1",
     num: "01",
     title: "Instalación de aire acondicionado split 1x1",
     text: "El sistema más común y ágil de instalar. Ideal para climatizar una habitación, salón o despacho con una unidad interior y una exterior. Estudiamos tu espacio para recomendar la potencia y ubicación más adecuadas.",
@@ -23,7 +22,6 @@ const services = [
   },
   {
     id: "multisplit",
-    anchor: "Multisplit",
     num: "02",
     title: "Instalación multisplit para varias estancias",
     text: "Climatiza varias estancias (salón y dormitorios) con equipos 2x1, 3x1 o más conectados a una sola unidad exterior. Optimizamos el espacio en fachada y reducimos el impacto visual con un montaje limpio y bien dimensionado.",
@@ -31,7 +29,6 @@ const services = [
   },
   {
     id: "conductos",
-    anchor: "Conductos",
     num: "03",
     title: "Aire acondicionado por conductos",
     text: "La alternativa estética invisible para viviendas completas y reformas. La máquina se ubica en el falso techo y distribuye el aire mediante rejillas, con flujo uniforme y control de temperatura por zonas.",
@@ -39,7 +36,6 @@ const services = [
   },
   {
     id: "cassette",
-    anchor: "Cassette",
     num: "04",
     title: "Cassette para oficinas y locales",
     text: "Distribución de aire en 360° desde el techo, ideal para oficinas, locales y comercios. Climatización uniforme de grandes superficies con una estética integrada y profesional.",
@@ -47,7 +43,6 @@ const services = [
   },
   {
     id: "sustitucion",
-    anchor: "Sustitución",
     num: "05",
     title: "Sustitución de equipos antiguos",
     text: "¿Tu equipo consume demasiado o usa gas refrigerante descatalogado? Sustituimos sistemas antiguos por equipos inverter de alta eficiencia, cuidando la parte eléctrica y la estética del montaje.",
@@ -55,7 +50,6 @@ const services = [
   },
   {
     id: "mantenimiento",
-    anchor: "Mantenimiento",
     num: "06",
     title: "Preinstalación y mantenimiento",
     text: "Preinstalación, canalizaciones y desagües en obra, además de mantenimiento preventivo y revisión antes de verano. Revisamos equipos existentes para mejorar su rendimiento antes de los meses de más calor.",
@@ -72,15 +66,6 @@ const services = [
       <span class="block w-16 h-1 rounded-full bg-[#53C307] mx-auto mb-6"></span>
       <p class="text-slate-600">Estudiamos tu vivienda o negocio para recomendar la potencia, ubicación y tipo de equipo más adecuado. Trabajamos instalaciones eficientes, limpias y seguras, cuidando la parte eléctrica y la estética del montaje.</p>
     </div>
-
-    <!-- Anchor links internos (recomendación SEO del boceto) -->
-    <nav aria-label="Servicios de aire acondicionado" class="flex flex-wrap justify-center gap-2 mb-6 md:mb-12">
-      {services.map((service) => (
-        <a href={`#${service.id}`} class="bg-white border border-slate-200 text-slate-700 text-sm font-semibold px-4 py-2 rounded-full hover:border-[#53C307] hover:text-[#53C307] transition-colors">
-          {service.anchor}
-        </a>
-      ))}
-    </nav>
 
     <!-- ESCRITORIO: grid -->
     <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -179,21 +164,6 @@ const services = [
       document.getElementById('aire-cf-next').addEventListener('click', function () { go(1); });
       document.getElementById('aire-cf-prev').addEventListener('click', function () { go(-1); });
       dots.forEach(function (d) { d.addEventListener('click', function () { goTo(parseInt(d.getAttribute('data-i'), 10)); }); });
-
-      // Los anchor links (Split, Multisplit…) mueven el coverflow en móvil
-      document.querySelectorAll('nav[aria-label="Servicios de aire acondicionado"] a').forEach(function (link) {
-        link.addEventListener('click', function (e) {
-          if (window.innerWidth >= 768) return;
-          var id = (link.getAttribute('href') || '').slice(1);
-          var idx = cards.findIndex ? cards.findIndex(function (c) { return c.getAttribute('data-id') === id; }) : -1;
-          if (idx >= 0) {
-            e.preventDefault();
-            goTo(idx);
-            var sec = document.getElementById('servicios');
-            if (sec) sec.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
 
       // Swipe / arrastre
       var startX = null;

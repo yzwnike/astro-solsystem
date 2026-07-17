@@ -1,6 +1,16 @@
 ---
-// Estructura punto 4: Proceso
-// Solicitud → asesoramiento → presupuesto 24 h → instalación → postventa
+// Sección unificada: el claim "Instalación limpia…" (antes AireVisualBand) y el
+// timeline del proceso comparten ahora una sola sección con la imagen de fondo.
+// Proceso: solicitud → asesoramiento → presupuesto 24 h → instalación → postventa
+import { CDN_IMAGES, CITY_MADRID, type CityInfo } from '../../consts';
+
+export interface Props {
+  city?: CityInfo;
+}
+const { city = CITY_MADRID } = Astro.props;
+
+const image = `${CDN_IMAGES}/aire5.webp`;
+
 const steps = [
   { num: "1", title: "Solicitud fácil", text: "Rellena el formulario web o envía fotos de tu espacio por WhatsApp." },
   { num: "2", title: "Asesoramiento técnico", text: "Calculamos las frigorías y analizamos la viabilidad eléctrica y el desagüe." },
@@ -10,32 +20,61 @@ const steps = [
 ];
 ---
 
-<!-- ================= PROCESO DE INSTALACIÓN ================= -->
-<section class="py-14 px-4 bg-gradient-to-br from-slate-900 to-blue-950 text-white relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(83,195,7,0.1),transparent_40%)]"></div>
-  <div class="max-w-6xl mx-auto relative z-10">
-    <div class="text-center max-w-2xl mx-auto mb-10">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Cómo trabajamos la instalación</h2>
-      <span class="block w-16 h-1 rounded-full bg-[#53C307] mx-auto mb-6"></span>
-      <p class="text-slate-300 text-sm">Un proceso sencillo, ágil y transparente desde tu primer contacto hasta el confort total en tu espacio.</p>
+<!-- ============ INSTALACIÓN + PROCESO DE INSTALACIÓN ============ -->
+<section class="relative py-16 px-4 text-white overflow-hidden">
+  <!-- Imagen de fondo -->
+  <img
+    src={image}
+    alt="Instalación de aire acondicionado en vivienda por SolSystems"
+    loading="lazy"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <!-- Overlay más opaco que el de la banda original: el timeline ocupa todo el
+       ancho, así que necesita contraste también en el lado derecho. -->
+  <div class="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-slate-900/92 to-blue-950/90"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(83,195,7,0.12),transparent_40%)]"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <!-- Claim -->
+    <div class="max-w-xl mb-14">
+      <span class="inline-flex items-center gap-2 bg-[#53C307]/20 text-[#53C307] font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full mb-4 border border-[#53C307]/30">
+        Instalación en 24-48 h
+      </span>
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">
+        Instalación limpia, rápida y con garantía por técnicos propios
+      </h2>
+      <p class="text-slate-300 text-sm">
+        Equipos inverter de primeras marcas y montaje cuidado. Coordinamos tu instalación en 24-48 horas, sin sorpresas.
+      </p>
     </div>
+
+    <!-- Timeline -->
+    <h3 class="text-2xl md:text-3xl font-bold mb-4">Cómo trabajamos la instalación</h3>
+    <span class="block w-16 h-1 rounded-full bg-[#53C307] mb-6"></span>
+    <p class="text-slate-300 text-sm max-w-2xl mb-12">
+      Un proceso sencillo, ágil y transparente desde tu primer contacto hasta el confort total en tu espacio.
+    </p>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
       {steps.map((step) => (
         <div class="flex flex-col items-center text-center">
-          <div class={`w-14 h-14 rounded-full font-extrabold text-lg flex items-center justify-center mb-6 ${step.num === "1" ? "bg-[#53C307] text-white shadow-lg shadow-[#53C307]/30" : "bg-slate-800 text-white border-2 border-slate-700"}`}>
+          <div class={`w-14 h-14 rounded-full font-extrabold text-lg flex items-center justify-center mb-6 ${step.num === "1" ? "bg-[#53C307] text-white shadow-lg shadow-[#53C307]/30" : "bg-slate-800/80 text-white border-2 border-slate-700"}`}>
             {step.num}
           </div>
-          <h3 class="text-lg font-bold mb-2">{step.title}</h3>
+          <h4 class="text-lg font-bold mb-2">{step.title}</h4>
           <p class="text-slate-300 text-xs px-2">{step.text}</p>
         </div>
       ))}
     </div>
 
-    <!-- CTA repetido antes del FAQ (recomendación del boceto) -->
-    <div class="text-center mt-16">
-      <a href="#solicitar-presupuesto" class="inline-block bg-gradient-to-br from-[#00AD2E] to-[#00BF33] hover:from-[#009426] hover:to-[#00A52E] text-white font-bold text-sm uppercase tracking-wide px-8 py-4 rounded-full shadow-lg shadow-[#00AD2E]/40 transition-all duration-300 hover:-translate-y-0.5">
+    <!-- CTA antes del FAQ -->
+    <div class="flex flex-wrap gap-4 mt-14">
+      <a href="#solicitar-presupuesto" class="bg-gradient-to-br from-[#00AD2E] to-[#00BF33] hover:from-[#009426] hover:to-[#00A52E] text-white font-bold text-sm uppercase tracking-wide px-7 py-3.5 rounded-full shadow-lg shadow-[#00AD2E]/40 transition-all duration-300 hover:-translate-y-0.5">
         Quiero mi presupuesto gratis
+      </a>
+      <a href={`tel:${city.phone}`} class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-6 py-3.5 rounded-xl transition-all duration-300">
+        <svg class="w-4 h-4 text-[#53C307]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Llamar ahora
       </a>
     </div>
   </div>
