@@ -13,7 +13,19 @@
       "Bash(node drop-fix2.mjs)",
       "Bash(bash /tmp/claude-501/-Users-loickstark-Documents-Dev-astro-solsystem/09f136da-440e-4608-8132-7653d32435dd/scratchpad/check-gen.sh)",
       "Bash(python3 -c ' *)",
-      "Bash(node shoot-index.mjs)"
+      "Bash(node shoot-index.mjs)",
+      "Bash(node scripts/build-standalone.mjs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download} bytes\\\\n\" https://lanzadera-digital.b-cdn.net/solsystems.es/_astro/index.CZj7nLWf.css)",
+      "Bash(curl -s https://lanzadera-digital.b-cdn.net/solsystems.es/_astro/index.CZj7nLWf.css)",
+      "Bash(python3 -m http.server 8765)",
+      "Bash(curl -s -o /dev/null -w \"index.html -> %{http_code}\\\\n\" http://localhost:8765/)",
+      "Bash(awk '{printf \"%8.1f KB  %s\\\\n\", $5/1024, $9}')",
+      "Bash(node scripts/build-standalone.mjs --images=inline)",
+      "Bash(node scripts/build-standalone.mjs cargadores-de-coches-electricos)",
+      "Bash(pkill -f \"http.server 8765\")",
+      "Bash(grep -o '<head>.\\\\{0,90\\\\}' dist/standalone/index.html)",
+      "Bash(grep -o '<body[^>]*>.\\\\{0,120\\\\}' dist/standalone/index.html)",
+      "Bash(grep -o '<head>.\\\\{0,220\\\\}' dist/standalone/index.html)"
     ]
   }
 }
