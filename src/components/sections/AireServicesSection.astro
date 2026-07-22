@@ -72,7 +72,7 @@ const services = [
       {services.map((service, i) => (
         <div id={service.id} class="group bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col overflow-hidden scroll-mt-28 transition-all duration-300 hover:border-[#53C307] hover:shadow-xl hover:-translate-y-1">
           <div class="relative h-44 overflow-hidden">
-            <img src={serviceImages[i]} alt={service.title} loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <img src={serviceImages[i]} alt={service.title} loading="lazy" class:list={["w-full h-full object-cover transition-transform duration-500 group-hover:scale-105", service.id === "multisplit" ? "object-bottom" : "object-center"]} />
             <span class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2.5 py-1 rounded-lg">{service.num}</span>
           </div>
           <div class="p-6 flex flex-col flex-1">
@@ -96,7 +96,7 @@ const services = [
         {services.map((service, i) => (
           <article class="aire-cf-card" data-id={service.id}>
             <div class="relative h-40">
-              <img src={serviceImages[i]} alt={service.title} loading="lazy" class="w-full h-full object-cover" />
+              <img src={serviceImages[i]} alt={service.title} loading="lazy" class:list={["w-full h-full object-cover", service.id === "multisplit" ? "object-bottom" : "object-center"]} />
               <span class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold px-2.5 py-1 rounded-lg">{service.num}</span>
             </div>
             <div class="p-5 flex flex-col flex-1">
