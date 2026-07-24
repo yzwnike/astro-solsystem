@@ -2,7 +2,7 @@
 // CTA persistente (recomendación del boceto: CTA visible en primer scroll y repetido).
 // - En móvil: barra inferior fija con "Llamar" + "WhatsApp".
 // - En escritorio: botón flotante de WhatsApp.
-import { type CityInfo } from '../../consts';
+import { CITY_MADRID, type CityInfo } from '../../consts';
 
 export interface Props {
   city?: CityInfo; // sin ciudad => landing general
@@ -10,18 +10,17 @@ export interface Props {
 
 const { city } = Astro.props;
 
-// Estos CTA solo admiten un destino. En la landing general no hay una sede que
-// elegir, así que llevan a #contacto, donde están los dos teléfonos y WhatsApp.
-const telLink = city ? `tel:${city.phone}` : '#contacto';
-const waLink = city
-  ? `https://wa.me/${city.whatsapp}?text=${encodeURIComponent("Hola, quiero pedir presupuesto para la instalación de aire acondicionado.")}`
-  : '#contacto';
-const waEsExterno = Boolean(city);
+// Estos CTA solo admiten un destino. En la landing general no hay una sede
+// asociada, así que usan la de Madrid como sede principal para el teléfono y
+// el WhatsApp (así llaman/escriben de verdad, en vez de ir al formulario).
+const sede = city ?? CITY_MADRID;
+const telLink = `tel:${sede.phone}`;
+const waLink = `https://wa.me/${sede.whatsapp}?text=${encodeURIComponent("Hola, quiero pedir presupuesto para la instalación de aire acondicionado.")}`;
 const waIcon = "https://lanzadera-digital.b-cdn.net/solsystems.es/Landing%20aires%20acondicionados/whatsapp-icon.svg";
 ---
 
 <!-- Botón flotante de WhatsApp (igual que la landing de index.astro) -->
-<a href={waLink} target={waEsExterno ? '_blank' : undefined} rel={waEsExterno ? 'noopener' : undefined} class="aire-whatsapp-button" title="WhatsApp - Presupuesto inmediato">
+<a href={waLink} target="_blank" rel="noopener" class="aire-whatsapp-button" title="WhatsApp - Presupuesto inmediato">
   <img src={waIcon} alt="WhatsApp" style="width: 35px; height: 35px;" />
 </a>
 
@@ -31,7 +30,7 @@ const waIcon = "https://lanzadera-digital.b-cdn.net/solsystems.es/Landing%20aire
     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
     Llamar
   </a>
-  <a href={waLink} target={waEsExterno ? '_blank' : undefined} rel={waEsExterno ? 'noopener' : undefined} class="flex items-center justify-center gap-2 py-3.5 font-bold text-sm text-white bg-[#25D366]">
+  <a href={waLink} target="_blank" rel="noopener" class="flex items-center justify-center gap-2 py-3.5 font-bold text-sm text-white bg-[#25D366]">
     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.486 0 9.95-4.46 9.953-9.94 0-2.654-1.033-5.148-2.908-7.025C16.544 1.764 14.05 1.031 11.393 1.031 5.908 1.031 1.445 5.493 1.443 10.975c-.002 1.666.446 3.29 1.298 4.747L1.693 21.053l4.954-1.899z"/></svg>
     WhatsApp
   </a>
